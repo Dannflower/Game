@@ -8,33 +8,51 @@
 
 import SpriteKit
 
+var character: SKNode? = nil
+var destination: CGPoint? = nil
+
 class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        character = childNodeWithName("character")
         
-        self.addChild(myLabel)
     }
     
     override func mouseDown(theEvent: NSEvent) {
         /* Called when a mouse click occurs */
         
-        let location = theEvent.locationInNode(self)
+        // Mark the destination as where the user clicked in the scene
+        destination = theEvent.locationInNode(self)
+        println("Clicked at: \(destination)")
         
-        let sprite = SKSpriteNode(imageNamed:"Spaceship")
-        sprite.position = location;
-        sprite.setScale(0.5)
         
-        let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-        sprite.runAction(SKAction.repeatActionForever(action))
-        
-        self.addChild(sprite)
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
+        if destination != nil {
+            
+            if character?.position != destination {
+                
+                var currentPosition = CGVector(dx: character!.position.x, dy: character!.position.y)
+                var destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
+                
+                
+                
+            }
+        }
+    }
+    
+    func distance(start: CGVector, end: CGVector) -> CGFloat {
+        
+        var differenceVector: CGVector = difference(start, vector2: end)
+        
+        return sqrt(differenceVector.dx * differenceVector.dx + differenceVector.dy * differenceVector.dy)
+    }
+    
+    func difference(vector1: CGVector, vector2: CGVector) -> CGVector {
+        
+        return CGVectorMake(vector2.dx - vector1.dx, vector2.dy - vector1.dy)
     }
 }
