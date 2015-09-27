@@ -22,17 +22,17 @@ class GameScene: SKScene {
         /* Setup your scene here */
         
         // Load the sprite sheets
-        var playerSprites: SpriteSheet? = SpriteSheet(texture: SKTexture(imageNamed: "Player0"), rows: 15, columns: 8)
-        var treeSprites: SpriteSheet? = SpriteSheet(texture: SKTexture(imageNamed: "Tree0"), rows: 36, columns: 12)
+        let playerSprites: SpriteSheet? = SpriteSheet(texture: SKTexture(imageNamed: "Player0"), rows: 15, columns: 8)
+        let treeSprites: SpriteSheet? = SpriteSheet(texture: SKTexture(imageNamed: "Tree0"), rows: 36, columns: 12)
         
         // Select the player sprite
-        var playerTexture: SKTexture? = playerSprites?.textureForColumn(2, row: 11)
+        let playerTexture: SKTexture? = playerSprites?.textureForColumn(2, row: 11)
         playerTexture!.filteringMode = SKTextureFilteringMode.Nearest
         self.character = PlayerEntity(texture: playerTexture)
         self.character!.position = CGPointMake(256, 256)
         
         // Select the tree sprite
-        var treeTexture: SKTexture? = treeSprites?.textureForColumn(3, row: 32)
+        let treeTexture: SKTexture? = treeSprites?.textureForColumn(3, row: 32)
         treeTexture!.filteringMode = SKTextureFilteringMode.Nearest
         self.tree = TreeEntity(texture: treeTexture)
         self.tree!.position = CGPointMake(200, 200)
@@ -53,8 +53,8 @@ class GameScene: SKScene {
         // Mark the destination as where the user clicked in the scene
         destination = theEvent.locationInNode(self)
         
-        var currentPosition = CGVector(dx: character!.position.x, dy: character!.position.y)
-        var destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
+        let currentPosition = CGVector(dx: character!.position.x, dy: character!.position.y)
+        let destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
         
         distanceToMove = VectorMath.distance(currentPosition, end: destinationPosition)
     }
@@ -66,10 +66,10 @@ class GameScene: SKScene {
             
             if distanceToMove > 0.0 {
                 
-                var currentPosition = CGVector(dx: character!.position.x, dy: character!.position.y)
-                var destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
-                var directionVector = VectorMath.computeDirectionToMoveVector(currentPosition, destinationPosition: destinationPosition)
-                var compensatedSpeed = SPEED * CGFloat(currentTime - lastUpdateTime!)
+                let currentPosition = CGVector(dx: character!.position.x, dy: character!.position.y)
+                let destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
+                let directionVector = VectorMath.computeDirectionToMoveVector(currentPosition, destinationPosition: destinationPosition)
+                let compensatedSpeed = SPEED * CGFloat(currentTime - lastUpdateTime!)
                 
                 distanceToMove -= VectorMath.length(directionVector) * compensatedSpeed
                 

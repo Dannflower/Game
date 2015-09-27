@@ -12,7 +12,7 @@ class PlayerEntity: Entity {
     
     var hitPoints: Int?
     
-    override init(texture: SKTexture!, color: NSColor!, size: CGSize) {
+    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
         hitPoints = 0
         super.init(texture: texture, color: color, size: size)
     }
@@ -22,7 +22,7 @@ class PlayerEntity: Entity {
     }
     
     func printHitPoints() {
-        println("Player(\(self.name!) hit points: \(self.hitPoints!)")
+        print("Player(\(self.name!) hit points: \(self.hitPoints!)", terminator: "")
     }
     
     

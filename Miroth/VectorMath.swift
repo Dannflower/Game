@@ -13,7 +13,7 @@ class VectorMath {
     // Computes the distance between two vectors
     class func distance(start: CGVector, end: CGVector) -> CGFloat {
         
-        var differenceVector: CGVector = difference(start, vector2: end)
+        let differenceVector: CGVector = difference(start, vector2: end)
         
         return length(differenceVector)
     }
