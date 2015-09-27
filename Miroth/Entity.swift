@@ -10,11 +10,12 @@ import SpriteKit
 
 class Entity: SKSpriteNode {
     
-    let SPEED: CGFloat = 50.0
+    private let SPEED: CGFloat = 50.0
     
-    var destination: CGPoint? = nil
-    var lastUpdateTime: CFTimeInterval? = nil
-    var distanceToMove: CGFloat = 0.0
+    private var destination: CGPoint? = nil
+    private var lastUpdateTime: CFTimeInterval? = nil
+    private var distanceToMove: CGFloat = 0.0
+    private var highlight: SKShapeNode? = nil
     
     override init(texture: SKTexture?, color: NSColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -26,6 +27,27 @@ class Entity: SKSpriteNode {
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
+    }
+    
+    func disableHighlight() {
+        
+        if let highlightToRemove = self.highlight {
+        
+            self.removeChildrenInArray([highlightToRemove])
+            self.highlight = nil
+        }
+        
+    }
+    
+    func enableHighlight() {
+        
+        disableHighlight()
+        
+        self.highlight = SKShapeNode(rectOfSize: self.size)
+        self.highlight!.antialiased = false
+        self.highlight!.strokeColor = SKColor.yellowColor()
+        
+        self.addChild(highlight!)
     }
     
     func setDestination(destinationPosition: CGPoint) {

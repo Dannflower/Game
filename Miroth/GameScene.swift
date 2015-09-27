@@ -23,10 +23,14 @@ class GameScene: SKScene {
         let tree = TreeEntity()
         tree.position = CGPointMake(200, 200)
         
+        let secondTree = TreeEntity()
+        secondTree.position = CGPointMake(300, 300)
         
         // Add the new nodes
         self.addChild(tree)
+        self.addChild(secondTree)
         self.addChild(self.character!)
+        
     }
     
     override func mouseDragged(theEvent: NSEvent) {
@@ -39,9 +43,13 @@ class GameScene: SKScene {
         
         // Mark the destination as where the user clicked in the scene
         let destination = theEvent.locationInNode(self)
-        
-        
         self.character!.setDestination(destination)
+        let node = self.nodeAtPoint(destination)
+        
+        
+        if let entity = node as? Entity {
+            self.character!.setTarget(entity)
+        }
     }
     
     override func update(currentTime: CFTimeInterval) {
