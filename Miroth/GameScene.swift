@@ -10,35 +10,22 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    let SPEED: CGFloat = 50.0
-    
     var character: PlayerEntity? = nil
-    var tree: TreeEntity? = nil
-    var destination: CGPoint? = nil
-    var lastUpdateTime: CFTimeInterval? = nil
-    var distanceToMove: CGFloat = 0.0
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        // Load the sprite sheets
-        let playerSprites: SpriteSheet? = SpriteSheet(texture: SKTexture(imageNamed: "Player0"), rows: 15, columns: 8)
-        let treeSprites: SpriteSheet? = SpriteSheet(texture: SKTexture(imageNamed: "Tree0"), rows: 36, columns: 12)
-        
         // Select the player sprite
-        let playerTexture: SKTexture? = playerSprites?.textureForColumn(2, row: 11)
-        playerTexture!.filteringMode = SKTextureFilteringMode.Nearest
-        self.character = PlayerEntity(texture: playerTexture)
+        self.character = PlayerEntity()
         self.character!.position = CGPointMake(256, 256)
         
         // Select the tree sprite
-        let treeTexture: SKTexture? = treeSprites?.textureForColumn(3, row: 32)
-        treeTexture!.filteringMode = SKTextureFilteringMode.Nearest
-        self.tree = TreeEntity(texture: treeTexture)
-        self.tree!.position = CGPointMake(200, 200)
+        let tree = TreeEntity()
+        tree.position = CGPointMake(200, 200)
+        
         
         // Add the new nodes
-        self.addChild(self.tree!)
+        self.addChild(tree)
         self.addChild(self.character!)
     }
     
@@ -51,40 +38,17 @@ class GameScene: SKScene {
         /* Called when a mouse click occurs */
         
         // Mark the destination as where the user clicked in the scene
-        destination = theEvent.locationInNode(self)
+        let destination = theEvent.locationInNode(self)
         
-        let currentPosition = CGVector(dx: character!.position.x, dy: character!.position.y)
-        let destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
         
-        distanceToMove = VectorMath.distance(currentPosition, end: destinationPosition)
+        self.character!.setDestination(destination)
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        
-        if destination != nil {
-            
-            if distanceToMove > 0.0 {
-                
-                let currentPosition = CGVector(dx: character!.position.x, dy: character!.position.y)
-                let destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
-                let directionVector = VectorMath.computeDirectionToMoveVector(currentPosition, destinationPosition: destinationPosition)
-                let compensatedSpeed = SPEED * CGFloat(currentTime - lastUpdateTime!)
-                
-                distanceToMove -= VectorMath.length(directionVector) * compensatedSpeed
-                
-                if distanceToMove > 0.0 {
-                    
-                    character!.position = VectorMath.computeNewPosition(currentPosition, directionVector: directionVector, speed: compensatedSpeed)
-                
-                } else {
-                    
-                    character!.position = destination!
-                    distanceToMove = 0.0
-                }
-            }
+        if(self.character != nil) {
+            self.character!.move(currentTime)
         }
-        
-        lastUpdateTime = currentTime
     }
+
 }

@@ -10,4 +10,7 @@ import SpriteKit
 
 class TreeEntity: Entity {
     
+    convenience init() {
+        self.init(texture: SpriteLoader.getSpriteTexture(SpriteLoader.Sprite.Tree))
+    }
 }

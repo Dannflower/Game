@@ -32,7 +32,7 @@ class SpriteSheet {
         self.margin=margin
         
     }
-    
+
     convenience init(texture: SKTexture, rows: Int, columns: Int) {
         
         self.init(texture: texture, rows: rows, columns: columns, spacing: 0, margin: 0)

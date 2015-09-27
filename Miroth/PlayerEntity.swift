@@ -10,20 +10,9 @@ import SpriteKit
 
 class PlayerEntity: Entity {
     
-    var hitPoints: Int?
+    var hitPoints: Int = 0
     
-    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
-        hitPoints = 0
-        super.init(texture: texture, color: color, size: size)
+    convenience init() {
+        self.init(texture: SpriteLoader.getSpriteTexture(SpriteLoader.Sprite.HumanKnight))
     }
-    
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-    }
-    
-    func printHitPoints() {
-        print("Player(\(self.name!) hit points: \(self.hitPoints!)", terminator: "")
-    }
-    
-    
 }

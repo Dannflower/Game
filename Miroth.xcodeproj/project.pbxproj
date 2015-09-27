@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */; settings = {ASSET_TAGS = (); }; };
 		5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E649F6A1BABD88A003DEE92 /* VectorMath.swift */; };
 		5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCC11BA9082D001A48E6 /* AppDelegate.swift */; };
 		5E65CCC41BA9082D001A48E6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCC31BA9082D001A48E6 /* GameScene.swift */; };
 		5E65CCC61BA9082D001A48E6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC51BA9082D001A48E6 /* GameScene.sks */; };
 		5E65CCCB1BA9082E001A48E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC91BA9082E001A48E6 /* MainMenu.xib */; };
 		5E65CCD71BA9082E001A48E6 /* MirothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCD61BA9082E001A48E6 /* MirothTests.swift */; };
-		5EAEDB2B1BB7139D004E658D /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB2A1BB7139D004E658D /* Tree.swift */; };
+		5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */; };
 		5EAEDB351BB738D1004E658D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAEDB341BB738D1004E658D /* Images.xcassets */; };
 		5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB391BB73A21004E658D /* SpriteSheet.swift */; };
 		5EC008021BB6FE790068C167 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008011BB6FE790068C167 /* Entity.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteLoader.swift; sourceTree = "<group>"; };
 		5E649F6A1BABD88A003DEE92 /* VectorMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
 		5E65CCBC1BA9082D001A48E6 /* Miroth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Miroth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65CCC01BA9082D001A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,7 +43,7 @@
 		5E65CCD01BA9082E001A48E6 /* MirothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65CCD51BA9082E001A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E65CCD61BA9082E001A48E6 /* MirothTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirothTests.swift; sourceTree = "<group>"; };
-		5EAEDB2A1BB7139D004E658D /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeEntity.swift; sourceTree = "<group>"; };
 		5EAEDB341BB738D1004E658D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Miroth/Images.xcassets; sourceTree = "<group>"; };
 		5EAEDB391BB73A21004E658D /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		5EC008011BB6FE790068C167 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 			children = (
 				5EC008011BB6FE790068C167 /* Entity.swift */,
 				5EC008031BB701DC0068C167 /* PlayerEntity.swift */,
-				5EAEDB2A1BB7139D004E658D /* Tree.swift */,
+				5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				5EAEDB391BB73A21004E658D /* SpriteSheet.swift */,
+				5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */,
 			);
 			name = "Sprite Utilities";
 			sourceTree = "<group>";
@@ -197,7 +200,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Eric Ostrowski";
 				TargetAttributes = {
 					5E65CCBB1BA9082D001A48E6 = {
@@ -256,8 +259,9 @@
 				5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */,
 				5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */,
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
+				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
 				5E65CCC41BA9082D001A48E6 /* GameScene.swift in Sources */,
-				5EAEDB2B1BB7139D004E658D /* Tree.swift in Sources */,
+				5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */,
 				5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */,
 				5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */,
 			);
@@ -314,6 +318,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -380,6 +385,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Miroth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iwc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -391,6 +397,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Miroth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iwc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -410,6 +417,7 @@
 				);
 				INFOPLIST_FILE = MirothTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iwc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Miroth.app/Contents/MacOS/Miroth";
 			};
@@ -426,6 +434,7 @@
 				);
 				INFOPLIST_FILE = MirothTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iwc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Miroth.app/Contents/MacOS/Miroth";
 			};
