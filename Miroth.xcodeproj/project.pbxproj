@@ -14,6 +14,7 @@
 		5E65CCC61BA9082D001A48E6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC51BA9082D001A48E6 /* GameScene.sks */; };
 		5E65CCCB1BA9082E001A48E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC91BA9082E001A48E6 /* MainMenu.xib */; };
 		5E65CCD71BA9082E001A48E6 /* MirothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCD61BA9082E001A48E6 /* MirothTests.swift */; };
+		5E7B65D01BBA2AE700A9C600 /* MapEditorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B65CF1BBA2AE700A9C600 /* MapEditorScene.swift */; settings = {ASSET_TAGS = (); }; };
 		5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */; };
 		5EAEDB351BB738D1004E658D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAEDB341BB738D1004E658D /* Images.xcassets */; };
 		5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB391BB73A21004E658D /* SpriteSheet.swift */; };
@@ -37,12 +38,13 @@
 		5E65CCBC1BA9082D001A48E6 /* Miroth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Miroth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65CCC01BA9082D001A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E65CCC11BA9082D001A48E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5E65CCC31BA9082D001A48E6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		5E65CCC51BA9082D001A48E6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		5E65CCC31BA9082D001A48E6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Miroth/GameScene.swift; sourceTree = "<group>"; };
+		5E65CCC51BA9082D001A48E6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = Miroth/GameScene.sks; sourceTree = "<group>"; };
 		5E65CCCA1BA9082E001A48E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		5E65CCD01BA9082E001A48E6 /* MirothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65CCD51BA9082E001A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E65CCD61BA9082E001A48E6 /* MirothTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirothTests.swift; sourceTree = "<group>"; };
+		5E7B65CF1BBA2AE700A9C600 /* MapEditorScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapEditorScene.swift; sourceTree = "<group>"; };
 		5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeEntity.swift; sourceTree = "<group>"; };
 		5EAEDB341BB738D1004E658D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Miroth/Images.xcassets; sourceTree = "<group>"; };
 		5EAEDB391BB73A21004E658D /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
@@ -108,12 +110,11 @@
 		5E65CCBE1BA9082D001A48E6 /* Miroth */ = {
 			isa = PBXGroup;
 			children = (
+				5E7B65CE1BBA2A9200A9C600 /* Scenes */,
 				5EAEDB381BB73A02004E658D /* Sprite Utilities */,
 				5E649F6C1BABDE8D003DEE92 /* Entities */,
 				5E649F691BABD78E003DEE92 /* Math */,
 				5E65CCC11BA9082D001A48E6 /* AppDelegate.swift */,
-				5E65CCC31BA9082D001A48E6 /* GameScene.swift */,
-				5E65CCC51BA9082D001A48E6 /* GameScene.sks */,
 				5E65CCC91BA9082E001A48E6 /* MainMenu.xib */,
 				5E65CCBF1BA9082D001A48E6 /* Supporting Files */,
 			);
@@ -143,6 +144,17 @@
 				5E65CCD51BA9082E001A48E6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5E7B65CE1BBA2A9200A9C600 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5E65CCC31BA9082D001A48E6 /* GameScene.swift */,
+				5E65CCC51BA9082D001A48E6 /* GameScene.sks */,
+				5E7B65CF1BBA2AE700A9C600 /* MapEditorScene.swift */,
+			);
+			name = Scenes;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		5EAEDB381BB73A02004E658D /* Sprite Utilities */ = {
@@ -261,6 +273,7 @@
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
 				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
 				5E65CCC41BA9082D001A48E6 /* GameScene.swift in Sources */,
+				5E7B65D01BBA2AE700A9C600 /* MapEditorScene.swift in Sources */,
 				5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */,
 				5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */,
 				5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */,
