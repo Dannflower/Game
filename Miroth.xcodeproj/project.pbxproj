@@ -14,12 +14,14 @@
 		5E65CCC61BA9082D001A48E6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC51BA9082D001A48E6 /* GameScene.sks */; };
 		5E65CCCB1BA9082E001A48E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC91BA9082E001A48E6 /* MainMenu.xib */; };
 		5E65CCD71BA9082E001A48E6 /* MirothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCD61BA9082E001A48E6 /* MirothTests.swift */; };
-		5E7B65D01BBA2AE700A9C600 /* MapEditorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B65CF1BBA2AE700A9C600 /* MapEditorScene.swift */; settings = {ASSET_TAGS = (); }; };
 		5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */; };
 		5EAEDB351BB738D1004E658D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAEDB341BB738D1004E658D /* Images.xcassets */; };
 		5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB391BB73A21004E658D /* SpriteSheet.swift */; };
+		5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DC1BBCDAC900327FDF /* Layer.swift */; settings = {ASSET_TAGS = (); }; };
+		5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DE1BBCDBEB00327FDF /* Map.swift */; settings = {ASSET_TAGS = (); }; };
 		5EC008021BB6FE790068C167 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008011BB6FE790068C167 /* Entity.swift */; };
 		5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008031BB701DC0068C167 /* PlayerEntity.swift */; };
+		5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,12 +46,14 @@
 		5E65CCD01BA9082E001A48E6 /* MirothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65CCD51BA9082E001A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E65CCD61BA9082E001A48E6 /* MirothTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirothTests.swift; sourceTree = "<group>"; };
-		5E7B65CF1BBA2AE700A9C600 /* MapEditorScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapEditorScene.swift; sourceTree = "<group>"; };
 		5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeEntity.swift; sourceTree = "<group>"; };
 		5EAEDB341BB738D1004E658D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Miroth/Images.xcassets; sourceTree = "<group>"; };
 		5EAEDB391BB73A21004E658D /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
+		5EB461DC1BBCDAC900327FDF /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		5EB461DE1BBCDBEB00327FDF /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		5EC008011BB6FE790068C167 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5EC008031BB701DC0068C167 /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
+		5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 		5E65CCBE1BA9082D001A48E6 /* Miroth */ = {
 			isa = PBXGroup;
 			children = (
+				5ECBD4891BBB84A600BB6E9A /* Map Utilities */,
 				5E7B65CE1BBA2A9200A9C600 /* Scenes */,
 				5EAEDB381BB73A02004E658D /* Sprite Utilities */,
 				5E649F6C1BABDE8D003DEE92 /* Entities */,
@@ -151,7 +156,6 @@
 			children = (
 				5E65CCC31BA9082D001A48E6 /* GameScene.swift */,
 				5E65CCC51BA9082D001A48E6 /* GameScene.sks */,
-				5E7B65CF1BBA2AE700A9C600 /* MapEditorScene.swift */,
 			);
 			name = Scenes;
 			path = ..;
@@ -164,6 +168,16 @@
 				5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */,
 			);
 			name = "Sprite Utilities";
+			sourceTree = "<group>";
+		};
+		5ECBD4891BBB84A600BB6E9A /* Map Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */,
+				5EB461DC1BBCDAC900327FDF /* Layer.swift */,
+				5EB461DE1BBCDBEB00327FDF /* Map.swift */,
+			);
+			name = "Map Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +287,11 @@
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
 				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
 				5E65CCC41BA9082D001A48E6 /* GameScene.swift in Sources */,
-				5E7B65D01BBA2AE700A9C600 /* MapEditorScene.swift in Sources */,
 				5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */,
 				5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */,
+				5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */,
+				5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */,
+				5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */,
 				5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
