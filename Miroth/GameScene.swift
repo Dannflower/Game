@@ -30,9 +30,13 @@ class GameScene: SKScene {
         let secondTree = TreeEntity()
         secondTree.position = CGPointMake(300, 300)
         
+        let thirdTree = TreeEntity()
+        thirdTree.position = CGPointMake(100, 250)
+        
         // Add the new nodes
         self.addChild(tree)
         self.addChild(secondTree)
+        self.addChild(thirdTree)
         self.addChild(self.character!)
         
     }
