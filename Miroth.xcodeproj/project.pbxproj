@@ -14,6 +14,7 @@
 		5E65CCC61BA9082D001A48E6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC51BA9082D001A48E6 /* GameScene.sks */; };
 		5E65CCCB1BA9082E001A48E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC91BA9082E001A48E6 /* MainMenu.xib */; };
 		5E65CCD71BA9082E001A48E6 /* MirothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCD61BA9082E001A48E6 /* MirothTests.swift */; };
+		5EA12B581BBF7E39008BC2D9 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA12B571BBF7E39008BC2D9 /* Tileset.swift */; settings = {ASSET_TAGS = (); }; };
 		5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */; };
 		5EAEDB351BB738D1004E658D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAEDB341BB738D1004E658D /* Images.xcassets */; };
 		5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB391BB73A21004E658D /* SpriteSheet.swift */; };
@@ -46,6 +47,7 @@
 		5E65CCD01BA9082E001A48E6 /* MirothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65CCD51BA9082E001A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E65CCD61BA9082E001A48E6 /* MirothTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirothTests.swift; sourceTree = "<group>"; };
+		5EA12B571BBF7E39008BC2D9 /* Tileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tileset.swift; sourceTree = "<group>"; };
 		5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeEntity.swift; sourceTree = "<group>"; };
 		5EAEDB341BB738D1004E658D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Miroth/Images.xcassets; sourceTree = "<group>"; };
 		5EAEDB391BB73A21004E658D /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */,
 				5EB461DC1BBCDAC900327FDF /* Layer.swift */,
 				5EB461DE1BBCDBEB00327FDF /* Map.swift */,
+				5EA12B571BBF7E39008BC2D9 /* Tileset.swift */,
 			);
 			name = "Map Utilities";
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
 				5E65CCC41BA9082D001A48E6 /* GameScene.swift in Sources */,
 				5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */,
+				5EA12B581BBF7E39008BC2D9 /* Tileset.swift in Sources */,
 				5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */,
 				5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */,
 				5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */,

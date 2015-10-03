@@ -29,10 +29,6 @@ class SpriteLoader {
             
         case .Tree:
             return getSpriteTexture("Tree0", column: 3, row: 32)
-            
-        default:
-            return nil
-            
         }
     }
     

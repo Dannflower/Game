@@ -21,18 +21,33 @@ class MapLoader: NSObject, NSXMLParserDelegate {
     // Attributes
     private let WIDTH_ATTRIBUTE = "width"
     private let HEIGHT_ATTRIBUTE = "height"
+    private let TILE_HEIGHT_ATTRIBUTE = "tileheight"
+    private let TILE_WIDTH_ATTRIBUTE = "tilewidth"
+    private let NAME_ATTRIBUTE = "name"
     private let FIRST_GID_ATTRIBUTE = "firstgid"
     private let TILE_COUNT_ATTRIBUTE = "tilecount"
     private let SOURCE_ATTRIBUTE = "source"
     private let GID_ATTRIBUTE = "gid"
     
-    
-    // Maps tile GID to tileset it belongs to and its place in the tileset
-    var tilesetDict: [Int : (String, Int)] = [:]
-    // Range of tile GIDs that map to the next tileset found
+    // Range of tile GIDs that map to the current tileset
     var tilesetGidRange: Range<Int>? = nil
     
-    func loadMap(mapPath: String) {
+    // Maps tile GID to tileset it belongs to and its place in the tileset
+    var tilesetDict: [Int : (tileset: Tileset, tileNumber:Int)] = [:]
+    
+    // Maps a tileset by name to its dimensions
+    var tilesetDimensionsDict: [String : (rows: Int, columns: Int)] = [:]
+    
+    // The current map
+    var map: Map? = nil
+    
+    // The current layer
+    var layer: Layer? = nil
+    
+    // The current tileset
+    var tileset: Tileset? = nil
+    
+    func loadMap(mapPath: String) -> Map {
         
         if let fileStream = NSInputStream(fileAtPath: mapPath) {
             
@@ -44,17 +59,29 @@ class MapLoader: NSObject, NSXMLParserDelegate {
             
             print("Error loading map at: \(mapPath)")
         }
+        
+        return map!
     }
     
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {}
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    
+        switch elementName {
+            
+        case LAYER_ELEMENT:
+            
+            print("Finished layer: \(self.layer!.name)")
+            
+            map!.addLayer(layer!)
+            
+        default:
+            // Do nothing
+            return
+        }
+    }
     
     func parser(parser: NSXMLParser, didEndMappingPrefix prefix: String) {}
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        
-        var tileNumber = 0
-        var map: Map? = nil
-        var layer: Layer? = nil
         
         switch elementName {
         
@@ -63,33 +90,45 @@ class MapLoader: NSObject, NSXMLParserDelegate {
             print("Map")
             
             // Create a new map
-            map = Map(width: Int(attributeDict[WIDTH_ATTRIBUTE]!)!, height: Int(attributeDict[HEIGHT_ATTRIBUTE]!)!)
+            map = Map(
+                width: Int(attributeDict[WIDTH_ATTRIBUTE]!)!,
+                height: Int(attributeDict[HEIGHT_ATTRIBUTE]!)!,
+                tileHeight: Int(attributeDict[TILE_HEIGHT_ATTRIBUTE]!)!,
+                tileWidth: Int(attributeDict[TILE_WIDTH_ATTRIBUTE]!)!)
             
         case TILESET_ELEMENT:
             
             print("Tileset")
             
             // Determine the GID range for the tileset
-            let gidRangeStart = Int(attributeDict[FIRST_GID_ATTRIBUTE]!)!
-            let gidRangeEnd = gidRangeStart + Int(attributeDict[TILE_COUNT_ATTRIBUTE]!)!
-            tilesetGidRange = gidRangeStart..<gidRangeEnd
+            let firstGid = Int(attributeDict[FIRST_GID_ATTRIBUTE]!)!
+            let lastGid = firstGid + Int(attributeDict[TILE_COUNT_ATTRIBUTE]!)!
             
-            print("Tileset GID range: \(tilesetGidRange)")
+            //Create a new tileset
+            tileset = Tileset(
+                name: attributeDict[NAME_ATTRIBUTE]!,
+                tileHeight: Int(attributeDict[TILE_HEIGHT_ATTRIBUTE]!)!,
+                tileWidth: Int(attributeDict[TILE_WIDTH_ATTRIBUTE]!)!,
+                firstGid: firstGid,
+                lastGid: lastGid)
+            
             
         case IMAGE_ELEMENT:
             
             print("Image")
             
-            // Get the name of the tileset image
-            let imagePath = attributeDict[SOURCE_ATTRIBUTE]!
-            let nameStartIndex = imagePath.rangeOfString("imageset/")!.endIndex
-            let imageName = imagePath.substringFromIndex(nameStartIndex)
+            // Finish initializing the tileset
+            tileset!.cleanAndSetSource(attributeDict[SOURCE_ATTRIBUTE]!)
+            tileset!.height = Int(attributeDict[HEIGHT_ATTRIBUTE]!)!
+            tileset!.width = Int(attributeDict[WIDTH_ATTRIBUTE]!)!
             
-            // Assign the tileset name to each GID it corresponds to
-            for index in tilesetGidRange! {
+            var tileNumber = 0
+            
+            // Assign a tileset and tile number to each GID
+            for gid in tileset!.gidRange {
                 
-                print("GID: \(index) Tileset: \(imageName) Tile Number: \(tileNumber)")
-                tilesetDict[index] = (imageName, tileNumber++)
+                print("GID: \(gid) Tileset: \(tileset!.source) Tile Number: \(tileNumber)")
+                tilesetDict[gid] = (tileset!, tileNumber++)
             }
             
         case LAYER_ELEMENT:
@@ -97,18 +136,28 @@ class MapLoader: NSObject, NSXMLParserDelegate {
             print("Layer")
             
             // Create a new layer
-            layer = Layer(width: Int(attributeDict[WIDTH_ATTRIBUTE]!)!, height: Int(attributeDict[HEIGHT_ATTRIBUTE]!)!)
-            
+            layer = Layer(
+                name: attributeDict[NAME_ATTRIBUTE]!,
+                widthInTiles: Int(attributeDict[WIDTH_ATTRIBUTE]!)!,
+                heightInTiles: Int(attributeDict[HEIGHT_ATTRIBUTE]!)!,
+                tileHeight: map!.tileHeight!,
+                tileWidth: map!.tileWidth!)
+        
+        case DATA_ELEMENT:
+        
+            print("Data")
             
         case TILE_ELEMENT:
             
             print("Tile")
             
             // Create a new tile
+            let tile = convertGidToSpriteNode(Int(attributeDict[GID_ATTRIBUTE]!)!)
             
+            layer!.addNextTile(tile!)
             
         default:
-            // Do nothing
+            
             print("Unknown")
         }
     }
@@ -146,4 +195,28 @@ class MapLoader: NSObject, NSXMLParserDelegate {
     func parserDidEndDocument(parser: NSXMLParser) {}
     
     func parserDidStartDocument(parser: NSXMLParser) {}
+    
+    // Given a GID, create a sprite node with the texture
+    // of the tile that corresponds to the GID
+    func convertGidToSpriteNode(gid: Int) -> SKSpriteNode? {
+        
+        let spriteNode = SKSpriteNode()
+        
+        // If GID isn't mapped, assume it's an empty tile (i.e. GID zero)
+        if let tilesetAndNumber = self.tilesetDict[gid] {
+            
+            let tileset = tilesetAndNumber.tileset
+            let tileNumber = tilesetAndNumber.tileNumber
+            
+            let row = tileNumber / tileset.rows
+            let column = tileNumber % tileset.columns
+            
+            let texture = SpriteLoader.getSpriteTexture(tileset.source!, column: column, row: row)
+            
+            spriteNode.texture = texture
+            
+        }
+        
+        return spriteNode
+    }
 }
