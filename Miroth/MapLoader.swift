@@ -200,7 +200,7 @@ class MapLoader: NSObject, NSXMLParserDelegate {
     // of the tile that corresponds to the GID
     func convertGidToSpriteNode(gid: Int) -> SKSpriteNode? {
         
-        let spriteNode = SKSpriteNode()
+        let spriteNode = SKSpriteNode(texture: nil, size: CGSizeMake(16, 16))
         
         // If GID isn't mapped, assume it's an empty tile (i.e. GID zero)
         if let tilesetAndNumber = self.tilesetDict[gid] {
@@ -208,7 +208,7 @@ class MapLoader: NSObject, NSXMLParserDelegate {
             let tileset = tilesetAndNumber.tileset
             let tileNumber = tilesetAndNumber.tileNumber
             
-            let row = tileNumber / tileset.rows
+            let row = tileset.rows - 1 - tileNumber / tileset.columns
             let column = tileNumber % tileset.columns
             
             let texture = SpriteLoader.getSpriteTexture(tileset.source!, column: column, row: row)
