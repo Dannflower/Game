@@ -47,7 +47,11 @@ class MapLoader: NSObject, NSXMLParserDelegate {
     // The current tileset
     var tileset: Tileset? = nil
     
-    func loadMap(mapPath: String) -> Map {
+    var viewSize: CGSize? = nil
+    
+    func loadMap(mapPath: String, viewSize: CGSize) -> Map {
+        
+        self.viewSize = viewSize
         
         if let fileStream = NSInputStream(fileAtPath: mapPath) {
             
@@ -71,7 +75,6 @@ class MapLoader: NSObject, NSXMLParserDelegate {
             
             print("Finished layer: \(self.layer!.name)")
             
-            map!.addLayer(layer!)
             
         default:
             // Do nothing
@@ -91,6 +94,7 @@ class MapLoader: NSObject, NSXMLParserDelegate {
             
             // Create a new map
             map = Map(
+                viewSize: self.viewSize!,
                 width: Int(attributeDict[WIDTH_ATTRIBUTE]!)!,
                 height: Int(attributeDict[HEIGHT_ATTRIBUTE]!)!,
                 tileHeight: Int(attributeDict[TILE_HEIGHT_ATTRIBUTE]!)!,
@@ -142,6 +146,8 @@ class MapLoader: NSObject, NSXMLParserDelegate {
                 heightInTiles: Int(attributeDict[HEIGHT_ATTRIBUTE]!)!,
                 tileHeight: map!.tileHeight!,
                 tileWidth: map!.tileWidth!)
+            
+            self.map!.addLayer(self.layer!)
         
         case DATA_ELEMENT:
         
@@ -200,7 +206,7 @@ class MapLoader: NSObject, NSXMLParserDelegate {
     // of the tile that corresponds to the GID
     func convertGidToSpriteNode(gid: Int) -> SKSpriteNode? {
         
-        let spriteNode = SKSpriteNode(texture: nil, size: CGSizeMake(16, 16))
+        let spriteNode = SKSpriteNode()
         
         // If GID isn't mapped, assume it's an empty tile (i.e. GID zero)
         if let tilesetAndNumber = self.tilesetDict[gid] {

@@ -21,15 +21,21 @@ class Map: SKSpriteNode {
         :param: width The width of the map.
         :param: height The height of the map.
     */
-    convenience init(width: Int, height: Int, tileHeight: Int, tileWidth: Int) {
+    convenience init(viewSize: CGSize, width: Int, height: Int, tileHeight: Int, tileWidth: Int) {
         self.init()
-        self.size = CGSizeMake(CGFloat(width), CGFloat(height))
+        self.size = viewSize
         self.tileHeight = tileHeight
         self.tileWidth = tileWidth
     }
     
     func addLayer(layer: Layer) {
         
+        
+        layer.zPosition = CGFloat(self.layers!.count)
+        layer.position = CGPointMake(0, 0)
+        layer.size = self.size
+        
+        self.addChild(layer)
         self.layers!.append(layer)
     }
 }

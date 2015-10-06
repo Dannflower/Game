@@ -25,7 +25,6 @@ class Layer: SKSpriteNode {
         self.init()
         
         self.name = name
-        self.size = CGSizeMake(CGFloat(widthInTiles * tileWidth), CGFloat(heightInTiles * tileHeight))
         self.heightInTiles = heightInTiles
         self.widthInTiles = widthInTiles
         self.tileHeight = tileHeight
@@ -41,11 +40,15 @@ class Layer: SKSpriteNode {
     
     func addNextTile(tile: SKSpriteNode) {
         
+        let size = CGSizeMake(self.size.width / CGFloat(widthInTiles), self.size.height / CGFloat(self.heightInTiles))
+        
+        tile.size = size
+        
         if self.currentTile == 0 {
             
             // First tile is a special case since division by zero is bad
             self.tiles[0][0] = tile
-            tile.position = CGPointMake(0, CGFloat((self.heightInTiles - 1) * self.tileHeight!))
+            tile.position = CGPointMake(0, CGFloat((self.heightInTiles - 1)) * self.size.height / CGFloat(self.heightInTiles))
         
         } else {
             
@@ -58,7 +61,7 @@ class Layer: SKSpriteNode {
             self.tiles[currentRow][currentColumn] = tile
             
             // Position the tile
-            tile.position = CGPointMake(CGFloat(currentColumn * tileWidth!), CGFloat(currentRow * tileHeight!))
+            tile.position = CGPointMake(CGFloat(currentColumn) * self.size.width / CGFloat(self.widthInTiles), CGFloat(currentRow) * self.size.height / CGFloat(self.heightInTiles))
         }
         
         // Add the tile to the layer

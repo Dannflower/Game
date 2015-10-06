@@ -13,44 +13,17 @@ class GameScene: SKScene {
     var character: PlayerEntity? = nil
     
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
         
         let mapLoader = MapLoader()
-        let map = mapLoader.loadMap("/Users/mega_zerox6/Projects/Tiled Maps/DemoMap.tmx")
-        let layer = map.layers![0]
-        let layer2 = map.layers![1]
-        let layer3 = map.layers![2]
-        
-        layer.position = CGPointMake(200, 200)
-        layer2.position = CGPointMake(200, 200)
-        layer3.position = CGPointMake(200, 200)
-        layer.zPosition = 1
-        layer2.zPosition = 2
-        layer3.zPosition = 3
+        let map = mapLoader.loadMap("/Users/mega_zerox6/Projects/Tiled Maps/DemoMap.tmx", viewSize: self.size)
+        map.position = CGPointMake(12.8, 13)
         
         // Select the player sprite
         self.character = PlayerEntity()
         self.character!.position = CGPointMake(256, 256)
         self.character!.zPosition = 10
         
-        // Select the tree sprite
-        let tree = TreeEntity()
-        tree.position = CGPointMake(200, 200)
-        
-        let secondTree = TreeEntity()
-        secondTree.position = CGPointMake(300, 300)
-        secondTree.zPosition = 9
-        
-        let thirdTree = TreeEntity()
-        thirdTree.position = CGPointMake(100, 250)
-        
-        // Add the new nodes
-        self.addChild(layer)
-        self.addChild(layer2)
-        self.addChild(layer3)
-        //self.addChild(tree)
-        self.addChild(secondTree)
-        self.addChild(thirdTree)
+        self.addChild(map)
         self.addChild(self.character!)
         
     }
