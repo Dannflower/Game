@@ -10,27 +10,27 @@ import Foundation
 
 class Tileset {
     
-    var name: String?
-    var source: String?
-    var firstGid: Int?
-    var lastGid: Int?
+    var name: String = ""
+    var source: String = ""
+    var firstGid: Int = 0
+    var lastGid: Int = 0
     var gidRange: Range<Int> {
         get {
-            return firstGid!..<lastGid!
+            return firstGid..<lastGid
         }
     }
-    var height: Int?
-    var width: Int?
-    var tileHeight: Int?
-    var tileWidth: Int?
+    var height: Int = 0
+    var width: Int = 0
+    var tileHeight: Int = 0
+    var tileWidth: Int = 0
     var rows: Int {
         get {
-            return height! / tileHeight!
+            return height / tileHeight
         }
     }
     var columns: Int {
         get {
-            return width! / tileWidth!
+            return width / tileWidth
         }
     }
     

@@ -7,22 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */; settings = {ASSET_TAGS = (); }; };
+		5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */; };
 		5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E649F6A1BABD88A003DEE92 /* VectorMath.swift */; };
 		5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCC11BA9082D001A48E6 /* AppDelegate.swift */; };
 		5E65CCC41BA9082D001A48E6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCC31BA9082D001A48E6 /* GameScene.swift */; };
 		5E65CCC61BA9082D001A48E6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC51BA9082D001A48E6 /* GameScene.sks */; };
 		5E65CCCB1BA9082E001A48E6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC91BA9082E001A48E6 /* MainMenu.xib */; };
 		5E65CCD71BA9082E001A48E6 /* MirothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCD61BA9082E001A48E6 /* MirothTests.swift */; };
-		5EA12B581BBF7E39008BC2D9 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA12B571BBF7E39008BC2D9 /* Tileset.swift */; settings = {ASSET_TAGS = (); }; };
+		5EA12B581BBF7E39008BC2D9 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA12B571BBF7E39008BC2D9 /* Tileset.swift */; };
 		5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB2A1BB7139D004E658D /* TreeEntity.swift */; };
 		5EAEDB351BB738D1004E658D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAEDB341BB738D1004E658D /* Images.xcassets */; };
 		5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB391BB73A21004E658D /* SpriteSheet.swift */; };
-		5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DC1BBCDAC900327FDF /* Layer.swift */; settings = {ASSET_TAGS = (); }; };
-		5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DE1BBCDBEB00327FDF /* Map.swift */; settings = {ASSET_TAGS = (); }; };
+		5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DC1BBCDAC900327FDF /* Layer.swift */; };
+		5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DE1BBCDBEB00327FDF /* Map.swift */; };
+		5EBBCDD51BDD61EE000FBC6A /* MapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBBCDD41BDD61EE000FBC6A /* MapComponent.swift */; };
+		5EBBCDD71BDD62E4000FBC6A /* TmxConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */; };
 		5EC008021BB6FE790068C167 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008011BB6FE790068C167 /* Entity.swift */; };
 		5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008031BB701DC0068C167 /* PlayerEntity.swift */; };
-		5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */; settings = {ASSET_TAGS = (); }; };
+		5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		5EAEDB391BB73A21004E658D /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		5EB461DC1BBCDAC900327FDF /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		5EB461DE1BBCDBEB00327FDF /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		5EBBCDD41BDD61EE000FBC6A /* MapComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapComponent.swift; sourceTree = "<group>"; };
+		5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TmxConstants.swift; sourceTree = "<group>"; };
 		5EC008011BB6FE790068C167 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5EC008031BB701DC0068C167 /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLoader.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				5EB461DC1BBCDAC900327FDF /* Layer.swift */,
 				5EB461DE1BBCDBEB00327FDF /* Map.swift */,
 				5EA12B571BBF7E39008BC2D9 /* Tileset.swift */,
+				5EBBCDD41BDD61EE000FBC6A /* MapComponent.swift */,
+				5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */,
 			);
 			name = "Map Utilities";
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */,
+				5EBBCDD71BDD62E4000FBC6A /* TmxConstants.swift in Sources */,
 				5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */,
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
 				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
@@ -297,6 +304,7 @@
 				5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */,
 				5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */,
 				5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */,
+				5EBBCDD51BDD61EE000FBC6A /* MapComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

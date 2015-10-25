@@ -15,13 +15,20 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         
         let mapLoader = MapLoader()
-        let map = mapLoader.loadMap("/Users/mega_zerox6/Projects/Tiled Maps/DemoMap.tmx", viewSize: self.size)
+        
+        guard let map = mapLoader.loadMap("/Users/mega_zerox6/Projects/Tiled Maps/DemoMap.tmx", viewSize: self.size) else {
+            // For now, exit on error
+            exit(1)
+        }
+        
         map.position = CGPointMake(12.8, 13)
         
         // Select the player sprite
+        // Character size should be determined by the size of 1 tile
         self.character = PlayerEntity()
         self.character!.position = CGPointMake(256, 256)
         self.character!.zPosition = 10
+        self.character!.size = map.actualTileSize
         
         self.addChild(map)
         self.addChild(self.character!)

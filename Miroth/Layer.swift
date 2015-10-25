@@ -14,21 +14,24 @@ class Layer: SKSpriteNode {
     private var tiles: [[SKSpriteNode]] = []
     var currentTile = 0
     var layerName: String? = nil
-    var tileHeight: Int? = nil
-    var tileWidth: Int? = nil
+    
     var heightInTiles: Int = 0
     var widthInTiles: Int = 0
     
+    // Actual tile size
+    var actualTileSize: CGSize {
+        get {
+            return CGSizeMake(self.size.width / CGFloat(widthInTiles), self.size.height / CGFloat(heightInTiles))
+        }
+    }
     
-    convenience init(name: String, widthInTiles: Int, heightInTiles: Int, tileHeight: Int, tileWidth: Int) {
+    convenience init(name: String, widthInTiles: Int, heightInTiles: Int) {
         
         self.init()
         
         self.name = name
         self.heightInTiles = heightInTiles
         self.widthInTiles = widthInTiles
-        self.tileHeight = tileHeight
-        self.tileWidth = tileWidth
         
         // Initialize the layer with a set of untextured tiles
         self.tiles = [[SKSpriteNode]](
@@ -40,9 +43,7 @@ class Layer: SKSpriteNode {
     
     func addNextTile(tile: SKSpriteNode) {
         
-        let size = CGSizeMake(self.size.width / CGFloat(widthInTiles), self.size.height / CGFloat(self.heightInTiles))
-        
-        tile.size = size
+        tile.size = actualTileSize
         
         if self.currentTile == 0 {
             
