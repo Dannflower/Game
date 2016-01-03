@@ -31,25 +31,26 @@ class Map: SKSpriteNode {
         Creates a new Map with the specified
         width and height.
     
-        :param: width The width of the map.
-        :param: height The height of the map.
+        :param: widthInTiles The width of the map in tiles.
+        :param: heightInTiles The height of the map in tiles.
     */
-    convenience init(viewSize: CGSize, width: Int, height: Int, tileHeight: Int, tileWidth: Int) {
+    convenience init(viewSize: CGSize, widthInTiles: Int, heightInTiles: Int, tileHeight: Int, tileWidth: Int) {
         self.init()
         self.size = viewSize
         self.tileHeight = tileHeight
         self.tileWidth = tileWidth
-        self.widthInTiles = Int(self.size.width) / self.tileWidth
-        self.heightInTiles = Int(self.size.height) / self.tileHeight
+        self.widthInTiles = widthInTiles
+        self.heightInTiles = heightInTiles
     }
     
     // Adds a new layer to the map on top of previous layers
     func addLayer(layer: Layer) {
-        
+        // Add the layer on top of previous layers
         layer.zPosition = CGFloat(self.layers!.count)
         layer.position = CGPointMake(0, 0)
+        // Force layers to fill the map
         layer.size = self.size
-        
+
         self.addChild(layer)
         self.layers!.append(layer)
     }

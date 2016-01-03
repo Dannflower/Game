@@ -231,8 +231,8 @@ class MapLoader: NSObject, NSXMLParserDelegate {
         // Create a new map
         return Map(
             viewSize: self.viewSize!,
-            width: widthInt,
-            height: heightInt,
+            widthInTiles: widthInt,
+            heightInTiles: heightInt,
             tileHeight: tileHeightInt,
             tileWidth: tileWidthInt)
     }
@@ -341,7 +341,7 @@ class MapLoader: NSObject, NSXMLParserDelegate {
         // Assign a tileset and tile number to each GID
         for gid in tileset.gidRange {
             
-            print("GID: \(gid) Tileset: \(tileset.source) Tile Number: \(tileNumber)")
+            //print("GID: \(gid) Tileset: \(tileset.source) Tile Number: \(tileNumber)")
             tilesetDict[gid] = (tileset, tileNumber++)
         }
     }

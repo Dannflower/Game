@@ -20,7 +20,6 @@
 		5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB391BB73A21004E658D /* SpriteSheet.swift */; };
 		5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DC1BBCDAC900327FDF /* Layer.swift */; };
 		5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DE1BBCDBEB00327FDF /* Map.swift */; };
-		5EBBCDD51BDD61EE000FBC6A /* MapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBBCDD41BDD61EE000FBC6A /* MapComponent.swift */; };
 		5EBBCDD71BDD62E4000FBC6A /* TmxConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */; };
 		5EC008021BB6FE790068C167 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008011BB6FE790068C167 /* Entity.swift */; };
 		5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008031BB701DC0068C167 /* PlayerEntity.swift */; };
@@ -55,7 +54,6 @@
 		5EAEDB391BB73A21004E658D /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		5EB461DC1BBCDAC900327FDF /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		5EB461DE1BBCDBEB00327FDF /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		5EBBCDD41BDD61EE000FBC6A /* MapComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapComponent.swift; sourceTree = "<group>"; };
 		5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TmxConstants.swift; sourceTree = "<group>"; };
 		5EC008011BB6FE790068C167 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5EC008031BB701DC0068C167 /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 				5EB461DC1BBCDAC900327FDF /* Layer.swift */,
 				5EB461DE1BBCDBEB00327FDF /* Map.swift */,
 				5EA12B571BBF7E39008BC2D9 /* Tileset.swift */,
-				5EBBCDD41BDD61EE000FBC6A /* MapComponent.swift */,
 				5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */,
 			);
 			name = "Map Utilities";
@@ -304,7 +301,6 @@
 				5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */,
 				5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */,
 				5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */,
-				5EBBCDD51BDD61EE000FBC6A /* MapComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +422,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Miroth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iwc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -438,6 +435,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Miroth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iwc.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

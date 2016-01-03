@@ -16,12 +16,13 @@ class GameScene: SKScene {
         
         let mapLoader = MapLoader()
         
-        guard let map = mapLoader.loadMap("/Users/mega_zerox6/Projects/Tiled Maps/DemoMap.tmx", viewSize: self.size) else {
+        guard let map = mapLoader.loadMap("/Users/Eric/Documents/Tiled Maps/Demo.tmx", viewSize: self.size) else {
             // For now, exit on error
+            print("Failed to find map!")
             exit(1)
         }
         
-        map.position = CGPointMake(12.8, 13)
+        map.position = CGPointMake(5, 5)
         
         // Select the player sprite
         // Character size should be determined by the size of 1 tile

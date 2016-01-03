@@ -43,7 +43,8 @@ class Layer: SKSpriteNode {
     
     func addNextTile(tile: SKSpriteNode) {
         
-        tile.size = actualTileSize
+        tile.size = self.actualTileSize
+        //print("Layer actual tile size: \(self.actualTileSize)")
         
         if self.currentTile == 0 {
             
