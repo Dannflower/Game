@@ -14,20 +14,20 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        let mapLoader = MapLoader()
+        let mapParser = TmxMapParser()
         
-        guard let map = mapLoader.loadMap("/Users/Eric/Documents/Tiled Maps/Demo.tmx", viewSize: self.size) else {
+        guard let map = mapParser.parseMap("/Users/Eric/Documents/Tiled Maps/demo.tmx", viewSize: self.size) else {
             // For now, exit on error
-            print("Failed to find map!")
+            print("Failed to load map!")
             exit(1)
         }
         
-        map.position = CGPointMake(5, 5)
+        map.position = CGPointMake(CGFloat(map.actualTileSize.width) / 2, CGFloat(map.actualTileSize.height) / 2)
         
         // Select the player sprite
         // Character size should be determined by the size of 1 tile
         self.character = PlayerEntity()
-        self.character!.position = CGPointMake(256, 256)
+        self.character!.position = CGPointMake(0, 0)
         self.character!.zPosition = 10
         self.character!.size = map.actualTileSize
         

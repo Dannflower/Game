@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */; };
 		5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */; };
 		5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E649F6A1BABD88A003DEE92 /* VectorMath.swift */; };
 		5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCC11BA9082D001A48E6 /* AppDelegate.swift */; };
@@ -23,7 +24,7 @@
 		5EBBCDD71BDD62E4000FBC6A /* TmxConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */; };
 		5EC008021BB6FE790068C167 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008011BB6FE790068C167 /* Entity.swift */; };
 		5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC008031BB701DC0068C167 /* PlayerEntity.swift */; };
-		5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */; };
+		5ECBD48B1BBB8C3000BB6E9A /* TmxMapParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECBD48A1BBB8C3000BB6E9A /* TmxMapParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
 		5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteLoader.swift; sourceTree = "<group>"; };
 		5E649F6A1BABD88A003DEE92 /* VectorMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
 		5E65CCBC1BA9082D001A48E6 /* Miroth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Miroth.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +59,7 @@
 		5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TmxConstants.swift; sourceTree = "<group>"; };
 		5EC008011BB6FE790068C167 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		5EC008031BB701DC0068C167 /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
-		5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLoader.swift; sourceTree = "<group>"; };
+		5ECBD48A1BBB8C3000BB6E9A /* TmxMapParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TmxMapParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,11 +179,12 @@
 		5ECBD4891BBB84A600BB6E9A /* Map Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				5ECBD48A1BBB8C3000BB6E9A /* MapLoader.swift */,
+				5ECBD48A1BBB8C3000BB6E9A /* TmxMapParser.swift */,
+				5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */,
 				5EB461DC1BBCDAC900327FDF /* Layer.swift */,
 				5EB461DE1BBCDBEB00327FDF /* Map.swift */,
 				5EA12B571BBF7E39008BC2D9 /* Tileset.swift */,
-				5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */,
+				07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */,
 			);
 			name = "Map Utilities";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				5EBBCDD71BDD62E4000FBC6A /* TmxConstants.swift in Sources */,
 				5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */,
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
+				07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */,
 				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
 				5E65CCC41BA9082D001A48E6 /* GameScene.swift in Sources */,
 				5EAEDB2B1BB7139D004E658D /* TreeEntity.swift in Sources */,
@@ -299,7 +303,7 @@
 				5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */,
 				5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */,
 				5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */,
-				5ECBD48B1BBB8C3000BB6E9A /* MapLoader.swift in Sources */,
+				5ECBD48B1BBB8C3000BB6E9A /* TmxMapParser.swift in Sources */,
 				5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

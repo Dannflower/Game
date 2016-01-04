@@ -27,6 +27,22 @@ class Map: SKSpriteNode {
     // The set of layers that make up this map
     private var layers: [Layer]? = []
     
+    func setTileHeight(tileHeight: Int) {
+        self.tileHeight = tileHeight
+    }
+    
+    func setTileWidth(tileWidth: Int) {
+        self.tileWidth = tileWidth
+    }
+    
+    func setWidthInTiles(widthInTiles: Int) {
+        self.widthInTiles = widthInTiles
+    }
+    
+    func setHeightInTiles(heightInTiles: Int) {
+        self.heightInTiles = heightInTiles
+    }
+    
     /**
         Creates a new Map with the specified
         width and height.
@@ -41,6 +57,11 @@ class Map: SKSpriteNode {
         self.tileWidth = tileWidth
         self.widthInTiles = widthInTiles
         self.heightInTiles = heightInTiles
+    }
+    
+    convenience init(viewSize: CGSize) {
+        self.init()
+        self.size = viewSize
     }
     
     // Adds a new layer to the map on top of previous layers
