@@ -25,6 +25,7 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
         case MalformedAttribute(attributeName: String)
     }
     
+    // Parses the map
     func parseMap(mapPath: String, viewSize: CGSize) -> Map? {
         
         self.mapBuilder = MapBuilder(mapViewSize: viewSize)
