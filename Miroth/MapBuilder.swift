@@ -110,6 +110,7 @@ class MapBuilder {
             let tileset = tilesetAndNumber.tileset
             let tileNumber = tilesetAndNumber.tileNumber
             
+            // Convert the tile number into a row/column position
             let row = tileset.rows - 1 - tileNumber / tileset.columns
             let column = tileNumber % tileset.columns
             

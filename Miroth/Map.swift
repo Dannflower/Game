@@ -17,6 +17,8 @@ class Map: SKSpriteNode {
     private var widthInTiles: Int = 0
     private var heightInTiles: Int = 0
     
+    private var playerSpawn: CGPoint?
+    
     // Actual tile size
     var actualTileSize: CGSize {
         get {
@@ -41,6 +43,14 @@ class Map: SKSpriteNode {
     
     func setHeightInTiles(heightInTiles: Int) {
         self.heightInTiles = heightInTiles
+    }
+    
+    func setPlayerSpawn(playerSpawn: CGPoint) {
+        self.playerSpawn = playerSpawn
+    }
+    
+    func getPlayerSpawn() -> CGPoint {
+        return self.playerSpawn!
     }
     
     /**

@@ -15,6 +15,7 @@ class Entity: SKSpriteNode {
     private var destination: CGPoint? = nil
     private var lastUpdateTime: CFTimeInterval? = nil
     private var distanceToMove: CGFloat = 0.0
+    private var isMoving: Bool = false
     private var highlight: SKShapeNode? = nil
     
     override init(texture: SKTexture?, color: NSColor, size: CGSize) {
@@ -27,6 +28,11 @@ class Entity: SKSpriteNode {
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
+    }
+    
+    func isEntityMoving() -> Bool {
+        
+        return self.isMoving
     }
     
     func disableHighlight() {
@@ -76,11 +82,13 @@ class Entity: SKSpriteNode {
                 if distanceToMove > 0.0 {
                     
                     self.position = VectorMath.computeNewPosition(currentPosition, directionVector: directionVector, speed: compensatedSpeed)
+                    self.isMoving = true
                     
                 } else {
                     
                     self.position = destination!
                     distanceToMove = 0.0
+                    self.isMoving = false
                 }
             }
         }
