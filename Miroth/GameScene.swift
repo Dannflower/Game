@@ -10,6 +10,11 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    var wDown: Bool = false
+    var aDown: Bool = false
+    var sDown: Bool = false
+    var dDown: Bool = false
+    
     var character: PlayerEntity! = nil
     var map: Map! = nil
     
@@ -17,7 +22,9 @@ class GameScene: SKScene {
         
         let mapParser = TmxMapParser()
         
-        guard let newMap = mapParser.parseMap("/Users/Eric/Documents/Tiled Maps/demo.tmx", viewSize: self.size) else {
+        let mapPath = NSBundle.mainBundle().URLForResource("map01", withExtension: "tmx")
+        
+        guard let newMap = mapParser.parseMap(mapPath!.path!, viewSize: self.size) else {
             // For now, exit on error
             print("Failed to load map!")
             exit(1)
@@ -40,12 +47,6 @@ class GameScene: SKScene {
     }
     
     override func keyDown(theEvent: NSEvent) {
-        
-        // Ignore inputs if the character is already moving
-        if(self.character.isEntityMoving()) {
-            
-            return
-        }
         
         var newX: CGFloat = 0.0
         var newY: CGFloat = 0.0
@@ -72,14 +73,64 @@ class GameScene: SKScene {
             print("Up")
             newY = self.map.actualTileSize.height
             
+        // W Key
+        case 13:
+            print("W")
+            wDown = true
+        
+        // A Key
+        case 0:
+            print("A")
+            aDown = true
+            
+        // S Key
+        case 1:
+            print("S")
+            sDown = true
+            
+        // D Key
+        case 2:
+            print("D")
+            dDown = true
+            
         default:
-            print("Ignored key code")
+            print("Code: \(theEvent.keyCode)")
         }
         
         // Compute the new destination to move to
         let destination = CGPointMake(self.character.position.x + newX, self.character.position.y + newY)
         
         self.character.setDestination(destination)
+    }
+    
+    override func keyUp(theEvent: NSEvent) {
+        
+        // Determine if all WASD keys are up, if so, stop movement
+        switch theEvent.keyCode {
+        
+        // W Key
+        case 13:
+            print("W up")
+            wDown = false
+            
+        // A Key
+        case 0:
+            print("A up")
+            aDown = false
+            
+        // S Key
+        case 1:
+            print("S up")
+            sDown = false
+            
+        // D Key
+        case 2:
+            print("D up")
+            dDown = false
+            
+        default:
+            print("Code: \(theEvent.keyCode)")
+        }
     }
     
     override func mouseDragged(theEvent: NSEvent) {
@@ -102,6 +153,30 @@ class GameScene: SKScene {
     }
     
     override func update(currentTime: CFTimeInterval) {
+        
+        let moveSpeed: CGFloat = 10.0
+        var xSpeed: CGFloat = 0.0
+        var ySpeed: CGFloat = 0.0
+        
+        if(self.wDown) {
+            ySpeed += moveSpeed
+        }
+        
+        if(self.aDown) {
+            xSpeed -= moveSpeed
+        }
+        
+        if(self.sDown) {
+            ySpeed -= moveSpeed
+        }
+        
+        if(self.dDown) {
+            xSpeed += moveSpeed
+        }
+        
+        let destination = CGPointMake(self.character.position.x + xSpeed, self.character.position.y + ySpeed)
+        self.character.setDestination(destination)
+        
         /* Called before each frame is rendered */
         if(self.character != nil) {
             self.character!.move(currentTime)
