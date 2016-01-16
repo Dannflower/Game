@@ -43,7 +43,6 @@ class GameScene: SKScene {
         
         self.addChild(self.map)
         self.addChild(self.character)
-        
     }
     
     override func keyDown(theEvent: NSEvent) {

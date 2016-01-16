@@ -243,6 +243,82 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 self.mapBuilder.addTileToLayer(gidInt)
                 
                 
+            case TmxConstants.Element.OBJECT_GROUP:
+                
+                print("Object group")
+                
+                
+            case TmxConstants.Element.OBJECT:
+                
+                print("Object")
+                
+                guard let id = attributeDict[TmxConstants.Attribute.ID] else {
+                    
+                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.ID)
+                }
+                
+                guard let type = attributeDict[TmxConstants.Attribute.TYPE] else {
+                    
+                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.TYPE)
+                }
+                
+                guard let gid = attributeDict[TmxConstants.Attribute.GID] else {
+                    
+                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.GID)
+                }
+                
+                guard let x = attributeDict[TmxConstants.Attribute.X] else {
+                    
+                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.X)
+                }
+                
+                guard let y = attributeDict[TmxConstants.Attribute.Y] else {
+                    
+                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.Y)
+                }
+                
+                guard let width = attributeDict[TmxConstants.Attribute.WIDTH] else {
+                    
+                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.WIDTH)
+                }
+                
+                guard let height = attributeDict[TmxConstants.Attribute.HEIGHT] else {
+                    
+                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
+                }
+                
+                guard let idInt = Int(id) else {
+                    
+                    throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.ID)
+                }
+                
+                guard let gidInt = Int(gid) else {
+                    
+                    throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.GID)
+                }
+                
+                guard let xInt = Int(x) else {
+                    
+                    throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.X)
+                }
+                
+                guard let yInt = Int(y) else {
+                    
+                    throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.Y)
+                }
+                
+                guard let widthInt = Int(width) else {
+                    
+                    throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.WIDTH)
+                }
+                
+                guard let heightInt = Int(height) else {
+                    
+                    throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
+                }
+                
+                self.mapBuilder.addObjectToLayer(idInt, type: type, gid: gidInt, x: xInt, y: yInt, width: widthInt, height: heightInt)
+                
             default:
                 
                 print("Unknown")

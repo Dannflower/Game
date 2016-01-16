@@ -19,7 +19,7 @@ class MapBuilder {
     // The current Tileset being built
     private var currentTileset: Tileset! = nil
     
-    // The current Layer being built
+    // The current TileLayer being built
     private var currentLayer: Layer! = nil
     
     // Error types
@@ -78,6 +78,27 @@ class MapBuilder {
         }
     }
     
+    func addObjectToLayer(id: Int, type: String, gid: Int, x: Int, y: Int, width: Int, height: Int) {
+        
+        // Get the object's sprite
+        let objectSprite = convertGidToSpriteNode(gid)
+        
+        // Create the object
+        let object = Object(id: id, type: type, texture: objectSprite)
+        
+        self.currentLayer.addObject(object)
+    }
+    
+    /**
+
+        Creates a new active layer.
+
+        - parameter name: The name of the layer.
+        - parameter widthInTiles: The width of the layer measured in tiles.
+        - parameter heightInTiles: The height of the layer measured in tiles.
+
+    */
+
     func createLayer(name: String, widthInTiles: Int, heightInTiles: Int) {
         
         // Create a new layer
@@ -91,8 +112,11 @@ class MapBuilder {
     
     func addTileToLayer(gid: Int) {
         
-        // Create a new tile
-        let tile = convertGidToSpriteNode(gid)!
+        // Get the texture
+        let tileTexture = convertGidToSpriteNode(gid)
+        
+        // Create the tile
+        let tile = SKSpriteNode(texture: tileTexture)
         
         // Add the tile to the layer being built
         self.currentLayer.addNextTile(tile)
@@ -100,9 +124,9 @@ class MapBuilder {
     
     // Given a GID, create a sprite node with the texture
     // of the tile that corresponds to the GID
-    private func convertGidToSpriteNode(gid: Int) -> SKSpriteNode? {
+    private func convertGidToSpriteNode(gid: Int) -> SKTexture? {
         
-        let spriteNode = SKSpriteNode()
+        var texture: SKTexture? = nil
         
         // If GID isn't mapped, assume it's an empty tile (i.e. GID zero)
         if let tilesetAndNumber = self.tilesetDict[gid] {
@@ -114,12 +138,9 @@ class MapBuilder {
             let row = tileset.rows - 1 - tileNumber / tileset.columns
             let column = tileNumber % tileset.columns
             
-            let texture = SpriteLoader.getSpriteTexture(tileset.source, column: column, row: row)
-            
-            spriteNode.texture = texture
-            
+            texture = SpriteLoader.getSpriteTexture(tileset.source, column: column, row: row)
         }
         
-        return spriteNode
+        return texture
     }
 }

@@ -18,6 +18,8 @@ struct TmxConstants {
         static let LAYER = "layer"
         static let DATA = "data"
         static let TILE = "tile"
+        static let OBJECT_GROUP = "objectgroup"
+        static let OBJECT = "object"
     }
 
     struct Attribute {
@@ -31,6 +33,10 @@ struct TmxConstants {
         static let TILE_COUNT = "tilecount"
         static let SOURCE = "source"
         static let GID = "gid"
+        static let ID = "id"
+        static let TYPE = "type"
+        static let X = "x"
+        static let Y = "y"
     }
 }
 
