@@ -326,19 +326,19 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
             
         } catch MapLoaderError.MissingAttribute(let attributeName) {
             
-            print("Error loading layer! Missing attribute: \(attributeName)")
+            print("Error loading map! Missing attribute: \(attributeName)")
             hasMapError = true
-            return
+            exit(-1)
             
         } catch MapLoaderError.MalformedAttribute(let attributeName) {
             
-            print("Error loading layer! Malformed attribute: \(attributeName)")
+            print("Error loading map! Malformed attribute: \(attributeName)")
             hasMapError = true
-            return
+            exit(-1)
             
         } catch {
             
-            print("Error loading layer!")
+            print("Error loading map!")
             hasMapError = true
             return
         }

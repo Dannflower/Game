@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="262">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="263">
  <tileset firstgid="1" name="Floor" tilewidth="16" tileheight="16" tilecount="819">
   <image source="../../../Documents/Tilesets/DawnLike_4/Objects_imageset/Floor.png" width="336" height="624"/>
  </tileset>
@@ -653,10 +653,7 @@
    <tile gid="156"/>
   </data>
  </layer>
- <objectgroup name="Level 0 Blockers">
-  <object id="261" type="Blocked" gid="2664" x="134" y="265.333" width="16" height="16"/>
- </objectgroup>
- <layer name="Level 0 Structures" width="25" height="25">
+ <layer name="Level 1 Structures" width="25" height="25">
   <data>
    <tile gid="2281"/>
    <tile gid="2281"/>
@@ -1285,7 +1282,7 @@
    <tile gid="2281"/>
   </data>
  </layer>
- <objectgroup name="Level 0 Structure Blockers">
+ <objectgroup name="Level 1 Structures">
   <object id="42" type="Blocked" gid="2664" x="256" y="240" width="16" height="16"/>
   <object id="43" type="Blocked" gid="2664" x="224" y="288" width="16" height="16"/>
   <object id="44" type="Blocked" gid="2664" x="272" y="144" width="16" height="16"/>
@@ -1465,6 +1462,7 @@
   <object id="228" type="Blocked" gid="2664" x="112" y="256" width="16" height="16"/>
   <object id="229" type="Blocked" gid="2664" x="112" y="224" width="16" height="16"/>
   <object id="230" type="Blocked" gid="2664" x="96" y="224" width="16" height="16"/>
+  <object id="262" type="Spawn:Player" gid="2112" x="240" y="176" width="16" height="16"/>
  </objectgroup>
  <layer name="Player Layer" width="25" height="25">
   <data>

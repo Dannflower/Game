@@ -17,7 +17,7 @@ class Map: SKSpriteNode {
     private var widthInTiles: Int = 0
     private var heightInTiles: Int = 0
     
-    private var playerSpawn: CGPoint?
+    private var player: PlayerEntity? = nil
     
     // The set of layers that make up this map
     private var layers: [Layer] = []
@@ -45,20 +45,17 @@ class Map: SKSpriteNode {
         self.heightInTiles = heightInTiles
     }
     
-    func setPlayerSpawn(playerSpawn: CGPoint) {
-        self.playerSpawn = playerSpawn
-    }
-    
-    func getPlayerSpawn() -> CGPoint {
-        return self.playerSpawn!
-    }
-    
     func getTileWidth() -> Int {
         return self.tileWidth
     }
     
     func getTileHeight() -> Int {
         return self.tileHeight
+    }
+    
+    func getLayer(layerPosition: Int) -> Layer {
+        
+        return self.layers[layerPosition]
     }
     
     /**
@@ -92,5 +89,34 @@ class Map: SKSpriteNode {
 
         self.addChild(layer)
         self.layers.append(layer)
+    }
+    
+    func addNextTileToLayer(layerNumber: Int, tile: SKSpriteNode) {
+        
+        self.layers[layerNumber].addNextTile(tile)
+    }
+    
+    func addObjectToLayer(layerNumber: Int, object: Object) {
+        
+        handleObjectType(object)
+        
+        self.layers[layerNumber].addObject(object)
+    }
+    
+    private func handleObjectType(object: Object) {
+        
+        switch object.getType() {
+            
+        case "Blocked":
+            // Blockers should be transparent
+            object.texture = nil
+            
+        case "Spawn:Player":
+            // Add the PlayerEntity to the map
+            break
+            
+        default:
+            break
+        }
     }
 }

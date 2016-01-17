@@ -12,11 +12,41 @@ class Object: SKSpriteNode {
     
     private var id: Int
     private var type: String
+    private var x: CGFloat
+    private var y: CGFloat
     
-    init(id: Int, type: String, texture: SKTexture?) {
+    /**
+
+        Returns the object's id.
+    
+    */
+    func getId() -> Int {
+        return self.id
+    }
+    
+    func getX() -> CGFloat {
+        return self.x
+    }
+    
+    func getY() -> CGFloat {
+        return self.y
+    }
+    
+    /**
+
+        Returns the object's type.
+
+    */
+    func getType() -> String {
+        return self.type
+    }
+    
+    init(id: Int, type: String, texture: SKTexture?, x: CGFloat, y: CGFloat) {
         
         self.id = id
         self.type = type
+        self.x = x
+        self.y = y
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture!.size())
     }

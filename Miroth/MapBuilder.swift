@@ -20,7 +20,7 @@ class MapBuilder {
     private var currentTileset: Tileset! = nil
     
     // The current TileLayer being built
-    private var currentLayer: Layer! = nil
+    private var currentLayer: Int = -1
     
     // Error types
     enum MapLoaderError: ErrorType {
@@ -80,7 +80,7 @@ class MapBuilder {
     
     /**
 
-        Adds an object to the active layer.
+        Adds an object to the current layer.
 
         - parameter id: The object id.
         - parameter type: The type of the object.
@@ -98,14 +98,15 @@ class MapBuilder {
         let objectSprite = convertGidToSpriteNode(gid)
         
         // Create the object
-        let object = Object(id: id, type: type, texture: objectSprite)
+        let object = Object(id: id, type: type, texture: objectSprite, x: x, y: y)
         
-        self.currentLayer.addObjectAt(object, x: x, y: y)
+        // Add it to the layer
+        self.map.addObjectToLayer(self.currentLayer, object: object)
     }
     
     /**
 
-        Creates a new active layer.
+        Creates a new layer and makes it the current layer.
 
         - parameter name: The name of the layer.
         - parameter widthInTiles: The width of the layer measured in tiles.
@@ -116,14 +117,15 @@ class MapBuilder {
     func createLayer(name: String, widthInTiles: Int, heightInTiles: Int) {
         
         // Create a new layer
-        self.currentLayer = Layer(
+        let layer = Layer(
             name: name,
             widthInTiles: widthInTiles,
             heightInTiles: heightInTiles,
             tileWidth: self.map.getTileWidth(),
             tileHeight: self.map.getTileHeight())
         
-        self.map.addLayer(self.currentLayer)
+        self.map.addLayer(layer)
+        self.currentLayer++
     }
     
     func addTileToLayer(gid: Int) {
@@ -135,7 +137,7 @@ class MapBuilder {
         let tile = SKSpriteNode(texture: tileTexture)
         
         // Add the tile to the layer being built
-        self.currentLayer.addNextTile(tile)
+        self.map.addNextTileToLayer(self.currentLayer, tile: tile)
     }
     
     // Given a GID, create a sprite node with the texture

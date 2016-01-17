@@ -70,9 +70,10 @@ class Entity: SKSpriteNode {
         
         if destination != nil {
             
+            let currentPosition = CGVector(dx: self.position.x, dy: self.position.y)
+            
             if distanceToMove > 0.0 {
                 
-                let currentPosition = CGVector(dx: self.position.x, dy: self.position.y)
                 let destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
                 let directionVector = VectorMath.computeDirectionToMoveVector(currentPosition, destinationPosition: destinationPosition)
                 let compensatedSpeed = SPEED * CGFloat(currentTime - lastUpdateTime!)
@@ -91,6 +92,10 @@ class Entity: SKSpriteNode {
                     self.isMoving = false
                 }
             }
+            
+            // Check for collisions and move back to previous valid position if necessary
+            
+            
         }
         
         lastUpdateTime = currentTime

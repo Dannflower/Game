@@ -78,14 +78,17 @@ class Layer: SKSpriteNode {
         currentTile += 1
     }
     
-    func addObjectAt(object: Object, x: CGFloat, y: CGFloat) {
+    func addObject(object: Object) {
         
         object.size = self.actualTileSize
         
-        let xScale = self.size.width / CGFloat(self.tileWidth * self.widthInTiles)
-        let yScale = self.size.height / CGFloat(self.tileHeight * self.heightInTiles)
+        let xScale: CGFloat = self.size.width / CGFloat(self.tileWidth * self.widthInTiles)
+        let yScale: CGFloat = self.size.height / CGFloat(self.tileHeight * self.heightInTiles)
         
-        object.position = CGPointMake((CGFloat(x) * xScale), self.size.height - (CGFloat(y) * yScale))
+        let x = object.getX()
+        let y = object.getY()
+        
+        object.position = CGPointMake(x * xScale, self.size.height - (y * yScale))
         
         // Force the object between this layer and the next
         object.zPosition = self.zPosition + 0.5
