@@ -22,6 +22,8 @@ class Layer: SKSpriteNode {
     private var heightInTiles: Int = 0
     private var widthInTiles: Int = 0
     
+    private var objects: [Object] = []
+    
     // Actual tile size
     var actualTileSize: CGSize {
         get {
@@ -78,21 +80,52 @@ class Layer: SKSpriteNode {
         currentTile += 1
     }
     
+    /**
+
+        Returns an array of objects the node is colliding with.
+
+        - parameter node: The node being checked for collisions.
+
+    */
+    func checkForCollisions(node: SKSpriteNode) -> [Object] {
+        
+        var collisions: [Object] = []
+        
+        for object in self.objects {
+            
+            if(node.intersectsNode(object)) {
+                
+                collisions.append(object)
+            }
+        }
+        
+        return collisions
+    }
+    
+    func addEntity(entity: Entity, x: CGFloat, y: CGFloat) {
+        
+        entity.setLayer(self)
+        addSpriteNodeAboveLayer(entity, x: x, y: y)
+    }
+    
     func addObject(object: Object) {
         
-        object.size = self.actualTileSize
+        self.objects.append(object)
+        addSpriteNodeAboveLayer(object, x: object.getX(), y: object.getY())
+    }
+    
+    private func addSpriteNodeAboveLayer(node: SKSpriteNode, x: CGFloat, y: CGFloat) {
+        
+        // Force the object between this layer and the next
+        node.zPosition = self.zPosition + 0.5
+        
+        node.size = self.actualTileSize
         
         let xScale: CGFloat = self.size.width / CGFloat(self.tileWidth * self.widthInTiles)
         let yScale: CGFloat = self.size.height / CGFloat(self.tileHeight * self.heightInTiles)
         
-        let x = object.getX()
-        let y = object.getY()
+        node.position = CGPointMake(x * xScale, self.size.height - (y * yScale))
         
-        object.position = CGPointMake(x * xScale, self.size.height - (y * yScale))
-        
-        // Force the object between this layer and the next
-        object.zPosition = self.zPosition + 0.5
-        
-        self.addChild(object)
+        self.addChild(node)
     }
 }

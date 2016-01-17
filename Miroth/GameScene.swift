@@ -36,13 +36,9 @@ class GameScene: SKScene {
         
         // Select the player sprite
         // Character size should be determined by the size of 1 tile
-        self.character = PlayerEntity()
-        self.character.position = CGPointMake(self.map.actualTileSize.width * 10 - self.map.actualTileSize.width / 2, self.map.actualTileSize.height * 11 - self.map.actualTileSize.height / 2)
-        self.character.zPosition = 4
-        self.character.size = map.actualTileSize
+        self.character = self.map.getPlayerEntity()
         
         self.addChild(self.map)
-        self.addChild(self.character)
     }
     
     override func keyDown(theEvent: NSEvent) {

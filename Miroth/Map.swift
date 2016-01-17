@@ -58,6 +58,11 @@ class Map: SKSpriteNode {
         return self.layers[layerPosition]
     }
     
+    func getPlayerEntity() -> PlayerEntity? {
+        
+        return self.player
+    }
+    
     /**
         Creates a new Map with the specified
         width and height.
@@ -100,23 +105,30 @@ class Map: SKSpriteNode {
         
         handleObjectType(object)
         
-        self.layers[layerNumber].addObject(object)
-    }
-    
-    private func handleObjectType(object: Object) {
-        
         switch object.getType() {
             
         case "Blocked":
+            
             // Blockers should be transparent
             object.texture = nil
+            self.layers[layerNumber].addObject(object)
             
         case "Spawn:Player":
-            // Add the PlayerEntity to the map
-            break
+            
+            // Create a new player
+            self.player = PlayerEntity()
+            self.layers[layerNumber].addEntity(self.player!, x: object.getX(), y: object.getY())
+            
             
         default:
             break
         }
+        
+        
+    }
+    
+    private func handleObjectType(object: Object) {
+        
+
     }
 }

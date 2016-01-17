@@ -17,6 +17,7 @@ class Entity: SKSpriteNode {
     private var distanceToMove: CGFloat = 0.0
     private var isMoving: Bool = false
     private var highlight: SKShapeNode? = nil
+    private var layer: Layer? = nil
     
     override init(texture: SKTexture?, color: NSColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -33,6 +34,10 @@ class Entity: SKSpriteNode {
     func isEntityMoving() -> Bool {
         
         return self.isMoving
+    }
+    
+    func setLayer(layer: Layer) {
+        self.layer = layer
     }
     
     func disableHighlight() {
@@ -70,10 +75,11 @@ class Entity: SKSpriteNode {
         
         if destination != nil {
             
-            let currentPosition = CGVector(dx: self.position.x, dy: self.position.y)
+            let validPosition = self.position
             
             if distanceToMove > 0.0 {
                 
+                let currentPosition = CGVector(dx: self.position.x, dy: self.position.y)
                 let destinationPosition = CGVector(dx: destination!.x, dy: destination!.y)
                 let directionVector = VectorMath.computeDirectionToMoveVector(currentPosition, destinationPosition: destinationPosition)
                 let compensatedSpeed = SPEED * CGFloat(currentTime - lastUpdateTime!)
@@ -93,7 +99,14 @@ class Entity: SKSpriteNode {
                 }
             }
             
-            // Check for collisions and move back to previous valid position if necessary
+            // Check for collisions
+            let collisionObjects = self.layer!.checkForCollisions(self)
+            
+            // If any collisions have occurred, move the entity back to its last valid position
+            if !collisionObjects.isEmpty {
+                
+                self.position = validPosition
+            }
             
             
         }
