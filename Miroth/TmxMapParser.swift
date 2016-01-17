@@ -297,12 +297,12 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.GID)
                 }
                 
-                guard let xInt = Int(x) else {
+                guard let xFloat = Float(x) else {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.X)
                 }
                 
-                guard let yInt = Int(y) else {
+                guard let yFloat = Float(y) else {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.Y)
                 }
@@ -317,7 +317,7 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
                 }
                 
-                self.mapBuilder.addObjectToLayer(idInt, type: type, gid: gidInt, x: xInt, y: yInt, width: widthInt, height: heightInt)
+                self.mapBuilder.addObjectToLayer(idInt, type: type, gid: gidInt, x: CGFloat(xFloat), y: CGFloat(yFloat), width: widthInt, height: heightInt)
                 
             default:
                 

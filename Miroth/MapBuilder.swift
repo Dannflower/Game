@@ -78,7 +78,21 @@ class MapBuilder {
         }
     }
     
-    func addObjectToLayer(id: Int, type: String, gid: Int, x: Int, y: Int, width: Int, height: Int) {
+    /**
+
+        Adds an object to the active layer.
+
+        - parameter id: The object id.
+        - parameter type: The type of the object.
+        - parameter gid: The global texture id of the object's sprite.
+        - parameter x: The x-coordinate of the object on the layer.
+        - parameter y: The y-coordinage of the object on the layer.
+        - parameter width: The width of the object.
+        - parameter height: The height of the object.
+
+    */
+
+    func addObjectToLayer(id: Int, type: String, gid: Int, x: CGFloat, y: CGFloat, width: Int, height: Int) {
         
         // Get the object's sprite
         let objectSprite = convertGidToSpriteNode(gid)
@@ -86,7 +100,7 @@ class MapBuilder {
         // Create the object
         let object = Object(id: id, type: type, texture: objectSprite)
         
-        self.currentLayer.addObject(object)
+        self.currentLayer.addObjectAt(object, x: x, y: y)
     }
     
     /**
@@ -105,7 +119,9 @@ class MapBuilder {
         self.currentLayer = Layer(
             name: name,
             widthInTiles: widthInTiles,
-            heightInTiles: heightInTiles)
+            heightInTiles: heightInTiles,
+            tileWidth: self.map.getTileWidth(),
+            tileHeight: self.map.getTileHeight())
         
         self.map.addLayer(self.currentLayer)
     }

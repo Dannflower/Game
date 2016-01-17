@@ -47,30 +47,7 @@ class GameScene: SKScene {
     
     override func keyDown(theEvent: NSEvent) {
         
-        var newX: CGFloat = 0.0
-        var newY: CGFloat = 0.0
-        
         switch theEvent.keyCode {
-            
-        // Left arrow
-        case 123:
-            print("Left")
-            newX = -self.map.actualTileSize.width
-            
-        // Right arrow
-        case 124:
-            print("Right")
-            newX = self.map.actualTileSize.width
-        
-        // Down arrow
-        case 125:
-            print("Down")
-            newY = -self.map.actualTileSize.height
-            
-        // Up arrow
-        case 126:
-            print("Up")
-            newY = self.map.actualTileSize.height
             
         // W Key
         case 13:
@@ -95,11 +72,6 @@ class GameScene: SKScene {
         default:
             print("Code: \(theEvent.keyCode)")
         }
-        
-        // Compute the new destination to move to
-        let destination = CGPointMake(self.character.position.x + newX, self.character.position.y + newY)
-        
-        self.character.setDestination(destination)
     }
     
     override func keyUp(theEvent: NSEvent) {

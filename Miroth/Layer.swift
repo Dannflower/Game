@@ -16,6 +16,9 @@ class Layer: SKSpriteNode {
     private var tiles: [[SKSpriteNode]] = []
     private var currentTile = 0
     
+    private var tileHeight: Int = 0
+    private var tileWidth: Int = 0
+    
     private var heightInTiles: Int = 0
     private var widthInTiles: Int = 0
     
@@ -26,13 +29,15 @@ class Layer: SKSpriteNode {
         }
     }
     
-    convenience init(name: String, widthInTiles: Int, heightInTiles: Int) {
+    convenience init(name: String, widthInTiles: Int, heightInTiles: Int, tileWidth: Int, tileHeight: Int) {
         
         self.init()
         
         self.layerName = name
         self.heightInTiles = heightInTiles
         self.widthInTiles = widthInTiles
+        self.tileHeight = tileHeight
+        self.tileWidth = tileWidth
         
         // Initialize the layer with a set of untextured tiles
         self.tiles = [[SKSpriteNode]](
@@ -73,7 +78,17 @@ class Layer: SKSpriteNode {
         currentTile += 1
     }
     
-    func addObject(object: Object) {
+    func addObjectAt(object: Object, x: CGFloat, y: CGFloat) {
+        
+        object.size = self.actualTileSize
+        
+        let xScale = self.size.width / CGFloat(self.tileWidth * self.widthInTiles)
+        let yScale = self.size.height / CGFloat(self.tileHeight * self.heightInTiles)
+        
+        object.position = CGPointMake((CGFloat(x) * xScale), self.size.height - (CGFloat(y) * yScale))
+        
+        // Force the object between this layer and the next
+        object.zPosition = self.zPosition + 0.5
         
         self.addChild(object)
     }

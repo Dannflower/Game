@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="233">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="262">
  <tileset firstgid="1" name="Floor" tilewidth="16" tileheight="16" tilecount="819">
   <image source="../../../Documents/Tilesets/DawnLike_4/Objects_imageset/Floor.png" width="336" height="624"/>
  </tileset>
@@ -653,7 +653,9 @@
    <tile gid="156"/>
   </data>
  </layer>
- <objectgroup name="Level 0 Blockers"/>
+ <objectgroup name="Level 0 Blockers">
+  <object id="261" type="Blocked" gid="2664" x="134" y="265.333" width="16" height="16"/>
+ </objectgroup>
  <layer name="Level 0 Structures" width="25" height="25">
   <data>
    <tile gid="2281"/>
@@ -2724,6 +2726,7 @@
  </layer>
  <layer name="Upper Decor2" width="25" height="25">
   <data>
+   <tile gid="2235"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2747,8 +2750,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="2235"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3324,6 +3326,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="2235"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3347,8 +3350,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="2235"/>
   </data>
  </layer>
 </map>

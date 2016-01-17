@@ -53,6 +53,14 @@ class Map: SKSpriteNode {
         return self.playerSpawn!
     }
     
+    func getTileWidth() -> Int {
+        return self.tileWidth
+    }
+    
+    func getTileHeight() -> Int {
+        return self.tileHeight
+    }
+    
     /**
         Creates a new Map with the specified
         width and height.
