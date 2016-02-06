@@ -26,9 +26,9 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
     }
     
     // Parses the map
-    func parseMap(mapPath: String, viewSize: CGSize) -> Map? {
+    func parseMap(mapPath: String) -> Map? {
         
-        self.mapBuilder = MapBuilder(mapViewSize: viewSize)
+        self.mapBuilder = MapBuilder()
         
         if let fileStream = NSInputStream(fileAtPath: mapPath) {
             

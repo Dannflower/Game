@@ -24,7 +24,7 @@ class GameScene: SKScene {
         
         let mapPath = NSBundle.mainBundle().URLForResource("map02", withExtension: "tmx")
         
-        guard let newMap = mapParser.parseMap(mapPath!.path!, viewSize: self.size) else {
+        guard let newMap = mapParser.parseMap(mapPath!.path!) else {
             // For now, exit on error
             print("Failed to load map!")
             exit(1)
@@ -32,13 +32,19 @@ class GameScene: SKScene {
         
         self.map = newMap
         
+        // Center the map in the Scene
         self.map.position = CGPointMake(CGFloat(map.actualTileSize.width) / 2, CGFloat(map.actualTileSize.height) / 2)
         
-        // Select the player sprite
-        // Character size should be determined by the size of 1 tile
+        // Get the player entity
         self.character = self.map.getPlayerEntity()
         
         self.addChild(self.map)
+        
+        // Match the Scene to the size of the newly loaded map
+        self.size = self.map.size
+        
+        print("GameScene \(self.size)")
+        print("Map \(self.map.size)")
     }
     
     override func keyDown(theEvent: NSEvent) {

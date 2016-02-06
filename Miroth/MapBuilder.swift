@@ -11,7 +11,7 @@ import SpriteKit
 class MapBuilder {
     
     // The map
-    private var map: Map
+    private var map: Map! = nil
     
     // Maps tile GID to the tileset it belongs to and its place in the tileset
     private var tilesetDict: [Int : (tileset: Tileset, tileNumber: Int)] = [:]
@@ -29,9 +29,9 @@ class MapBuilder {
         case MalformedAttribute(attributeName: String)
     }
     
-    init(mapViewSize: CGSize) {
+    init() {
         
-        map = Map(viewSize: mapViewSize)
+        self.map = Map()
     }
     
     func getMap() -> Map {
@@ -42,10 +42,11 @@ class MapBuilder {
     func createMap(widthInTiles: Int, heightInTiles: Int, tileHeight: Int, tileWidth: Int) {
         
         // Configure the map
-        self.map.setWidthInTiles(widthInTiles)
-        self.map.setHeightInTiles(heightInTiles)
-        self.map.setTileHeight(tileHeight)
-        self.map.setTileWidth(tileWidth)
+        self.map = Map(
+            widthInTiles: widthInTiles,
+            heightInTiles: heightInTiles,
+            tileHeight: tileHeight,
+            tileWidth: tileWidth)
     }
     
     func createTileset(name: String, firstGid: Int, tileCount: Int, tileHeight: Int, tileWidth: Int) {

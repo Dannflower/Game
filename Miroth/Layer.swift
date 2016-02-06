@@ -114,19 +114,6 @@ class Layer: SKSpriteNode {
                 let collidableBYLowerBound = collidableB.position.y - collidableB.size.height / 2
                 let collidableBYUpperBound = collidableB.position.y + collidableB.size.height / 2
                 
-                print("A X-Lower = \(collidableAXLowerBound)")
-                print("A X-Upper = \(collidableAXUpperBound)")
-                
-                print("A Y-Lower = \(collidableAYLowerBound)")
-                print("A Y-Upper = \(collidableAYUpperBound)")
-                
-                print("B X-Lower = \(collidableBXLowerBound)")
-                print("B X-Upper = \(collidableBXUpperBound)")
-                
-                print("B Y-Lower = \(collidableBYLowerBound)")
-                print("B Y-Upper = \(collidableBYUpperBound)")
-                
-                
                 // This only works if both A and B are identical in size.
                 if collidableAXLowerBound > collidableBXLowerBound && collidableAXLowerBound < collidableBXUpperBound {
                     
