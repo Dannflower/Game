@@ -103,8 +103,6 @@ class Map: SKSpriteNode {
     
     func addObjectToLayer(layerNumber: Int, object: Object) {
         
-        handleObjectType(object)
-        
         switch object.getType() {
             
         case "Blocked":
@@ -123,12 +121,13 @@ class Map: SKSpriteNode {
         default:
             break
         }
-        
-        
     }
     
-    private func handleObjectType(object: Object) {
+    func checkForAndNotifyOfCollisions() {
         
-
+        for layer in self.layers {
+            
+            layer.checkForAndNotifyOfCollisions()
+        }
     }
 }

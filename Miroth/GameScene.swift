@@ -22,7 +22,7 @@ class GameScene: SKScene {
         
         let mapParser = TmxMapParser()
         
-        let mapPath = NSBundle.mainBundle().URLForResource("map01", withExtension: "tmx")
+        let mapPath = NSBundle.mainBundle().URLForResource("map02", withExtension: "tmx")
         
         guard let newMap = mapParser.parseMap(mapPath!.path!, viewSize: self.size) else {
             // For now, exit on error
@@ -43,30 +43,34 @@ class GameScene: SKScene {
     
     override func keyDown(theEvent: NSEvent) {
         
+        self.map.checkForAndNotifyOfCollisions()
+        
         switch theEvent.keyCode {
             
         // W Key
         case 13:
-            print("W")
+            
             wDown = true
         
         // A Key
         case 0:
-            print("A")
+            
             aDown = true
             
         // S Key
         case 1:
-            print("S")
+            
             sDown = true
             
         // D Key
         case 2:
-            print("D")
-            dDown = true
             
+            dDown = true
+        
+        // Do nothing
         default:
-            print("Code: \(theEvent.keyCode)")
+            
+            break
         }
     }
     
@@ -77,26 +81,28 @@ class GameScene: SKScene {
         
         // W Key
         case 13:
-            print("W up")
+            
             wDown = false
             
         // A Key
         case 0:
-            print("A up")
+            
             aDown = false
             
         // S Key
         case 1:
-            print("S up")
+            
             sDown = false
             
         // D Key
         case 2:
-            print("D up")
+            
             dDown = false
             
+        // Do nothing
         default:
-            print("Code: \(theEvent.keyCode)")
+            
+            break
         }
     }
     
@@ -148,6 +154,8 @@ class GameScene: SKScene {
         if(self.character != nil) {
             self.character!.move(currentTime)
         }
+        
+        
     }
 
 }

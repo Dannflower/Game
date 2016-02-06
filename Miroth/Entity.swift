@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Entity: SKSpriteNode {
+class Entity: SKSpriteNode, Collidable {
     
     private let SPEED: CGFloat = 50.0
     
@@ -75,8 +75,6 @@ class Entity: SKSpriteNode {
         
         if destination != nil {
             
-            let validPosition = self.position
-            
             if distanceToMove > 0.0 {
                 
                 let currentPosition = CGVector(dx: self.position.x, dy: self.position.y)
@@ -98,19 +96,16 @@ class Entity: SKSpriteNode {
                     self.isMoving = false
                 }
             }
-            
-            // Check for collisions
-            let collisionObjects = self.layer!.checkForCollisions(self)
-            
-            // If any collisions have occurred, move the entity back to its last valid position
-            if !collisionObjects.isEmpty {
-                
-                self.position = validPosition
-            }
-            
-            
         }
         
         lastUpdateTime = currentTime
+    }
+    
+    
+    func collidedWith(collidable: Collidable) {
+        
+        // Do nothing.
+        // Sub-classes are responsible for their own implementations.
+        print("Entity collided with something!")
     }
 }

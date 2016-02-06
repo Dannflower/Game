@@ -12,6 +12,8 @@
 		073B1E6D1C45E30A0021BE62 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B1E6C1C45E30A0021BE62 /* GameScene.swift */; };
 		07A79CD61C488B5200F1E600 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07A79CD51C488B5200F1E600 /* Images.xcassets */; };
 		07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */; };
+		07BE7C841C658F320057B75F /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE7C831C658F320057B75F /* Collidable.swift */; };
+		07CE360E1C65AEDE000E76DB /* map02.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 07CE360D1C65AEDE000E76DB /* map02.tmx */; };
 		07D3C74B1C4AC2CA00F95463 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3C74A1C4AC2CA00F95463 /* Object.swift */; };
 		07D3C74D1C4AC3FC00F95463 /* Blocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3C74C1C4AC3FC00F95463 /* Blocker.swift */; };
 		5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */; };
@@ -46,6 +48,8 @@
 		073B1E6C1C45E30A0021BE62 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Miroth/GameScene.swift; sourceTree = "<group>"; };
 		07A79CD51C488B5200F1E600 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
+		07BE7C831C658F320057B75F /* Collidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collidable.swift; sourceTree = "<group>"; };
+		07CE360D1C65AEDE000E76DB /* map02.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map02.tmx; sourceTree = "<group>"; };
 		07D3C74A1C4AC2CA00F95463 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		07D3C74C1C4AC3FC00F95463 /* Blocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blocker.swift; sourceTree = "<group>"; };
 		5E5A68AF1BB77FD7001D7664 /* SpriteLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteLoader.swift; sourceTree = "<group>"; };
@@ -89,10 +93,19 @@
 		073B1E661C45DEF80021BE62 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				07CE360D1C65AEDE000E76DB /* map02.tmx */,
 				073B1E671C45DF1E0021BE62 /* map01.tmx */,
 			);
 			name = Maps;
 			path = Miroth;
+			sourceTree = "<group>";
+		};
+		07BE7C821C658F180057B75F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				07BE7C831C658F320057B75F /* Collidable.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		07D3C7491C4AC28300F95463 /* Objects */ = {
@@ -146,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				5E65CCC11BA9082D001A48E6 /* AppDelegate.swift */,
+				07BE7C821C658F180057B75F /* Protocols */,
 				5E649F6C1BABDE8D003DEE92 /* Entities */,
 				5ECBD4891BBB84A600BB6E9A /* Map Utilities */,
 				5E649F691BABD78E003DEE92 /* Math */,
@@ -299,6 +313,7 @@
 			files = (
 				073B1E681C45DF1E0021BE62 /* map01.tmx in Resources */,
 				07A79CD61C488B5200F1E600 /* Images.xcassets in Resources */,
+				07CE360E1C65AEDE000E76DB /* map02.tmx in Resources */,
 				5E65CCC61BA9082D001A48E6 /* GameScene.sks in Resources */,
 				073B1E6B1C45E12D0021BE62 /* MainMenu.xib in Resources */,
 			);
@@ -332,6 +347,7 @@
 				5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */,
 				5ECBD48B1BBB8C3000BB6E9A /* TmxMapParser.swift in Sources */,
 				073B1E6D1C45E30A0021BE62 /* GameScene.swift in Sources */,
+				07BE7C841C658F320057B75F /* Collidable.swift in Sources */,
 				07D3C74B1C4AC2CA00F95463 /* Object.swift in Sources */,
 				5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */,
 			);

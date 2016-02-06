@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Object: SKSpriteNode {
+class Object: SKSpriteNode, Collidable {
     
     private var id: Int
     private var type: String
@@ -53,5 +53,12 @@ class Object: SKSpriteNode {
     
     required init(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func collidedWith(collidable: Collidable) {
+        
+        // Do nothing.
+        // Sub-classes are responsible for their own implementations.
+        print("Object collided with something!")
     }
 }

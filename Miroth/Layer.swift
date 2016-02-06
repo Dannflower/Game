@@ -12,8 +12,10 @@ class Layer: SKSpriteNode {
     
     private var layerName: String = ""
     
-    // Two dimensional array of SKSpriteNodes
+    // Two-dimensional array of tile SpriteNodes that make layer.
     private var tiles: [[SKSpriteNode]] = []
+    
+    // The current tile
     private var currentTile = 0
     
     private var tileHeight: Int = 0
@@ -23,6 +25,8 @@ class Layer: SKSpriteNode {
     private var widthInTiles: Int = 0
     
     private var objects: [Object] = []
+    private var entities: [Entity] = []
+    private var collidables: [Collidable] = []
     
     // Actual tile size
     var actualTileSize: CGSize {
@@ -82,36 +86,98 @@ class Layer: SKSpriteNode {
     
     /**
 
-        Returns an array of objects the node is colliding with.
+        Checks for collisions on this layer and informs the colliding objects.
 
         - parameter node: The node being checked for collisions.
 
     */
-    func checkForCollisions(node: SKSpriteNode) -> [Object] {
+    func checkForAndNotifyOfCollisions() {
         
-        var collisions: [Object] = []
-        
-        for object in self.objects {
+        for var i = 0; i < self.collidables.count - 1; i++ {
             
-            if(node.intersectsNode(object)) {
+            for var j = i + 1; j < self.collidables.count; j++ {
                 
-                collisions.append(object)
+                var collisionDetected = false
+                
+                let collidableA = self.collidables[i]
+                let collidableB = self.collidables[j]
+                
+                let collidableAXLowerBound = collidableA.position.x - collidableA.size.width / 2
+                let collidableAXUpperBound = collidableA.position.x + collidableA.size.width / 2
+                
+                let collidableAYLowerBound = collidableA.position.y - collidableA.size.height / 2
+                let collidableAYUpperBound = collidableA.position.y + collidableA.size.height / 2
+                
+                let collidableBXLowerBound = collidableB.position.x - collidableB.size.width / 2
+                let collidableBXUpperBound = collidableB.position.x + collidableB.size.width / 2
+                
+                let collidableBYLowerBound = collidableB.position.y - collidableB.size.height / 2
+                let collidableBYUpperBound = collidableB.position.y + collidableB.size.height / 2
+                
+                print("A X-Lower = \(collidableAXLowerBound)")
+                print("A X-Upper = \(collidableAXUpperBound)")
+                
+                print("A Y-Lower = \(collidableAYLowerBound)")
+                print("A Y-Upper = \(collidableAYUpperBound)")
+                
+                print("B X-Lower = \(collidableBXLowerBound)")
+                print("B X-Upper = \(collidableBXUpperBound)")
+                
+                print("B Y-Lower = \(collidableBYLowerBound)")
+                print("B Y-Upper = \(collidableBYUpperBound)")
+                
+                
+                // This only works if both A and B are identical in size.
+                if collidableAXLowerBound > collidableBXLowerBound && collidableAXLowerBound < collidableBXUpperBound {
+                    
+                    if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
+                        
+                        // Bottom-left corner of A is in B. Rounding error on this one is causing it to trigger
+                        collisionDetected = true
+                    
+                    } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
+                        
+                        // Upper-left corner of A is in B.
+                        collisionDetected = true
+                    }
+                
+                } else if collidableAXUpperBound > collidableBXLowerBound && collidableAXUpperBound < collidableBXUpperBound {
+                    
+                    if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
+                        
+                        // Bottom-right corner of A is in B.
+                        collisionDetected = true
+                    
+                    } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
+                        
+                        // Upper-right corner of A is in B.
+                        collisionDetected = true
+                    }
+                }
+                
+                if collisionDetected {
+                    
+                    // Inform the collidables that they collided.
+                    collidableA.collidedWith(collidableB)
+                    collidableB.collidedWith(collidableA)
+                }
             }
         }
-        
-        return collisions
     }
     
     func addEntity(entity: Entity, x: CGFloat, y: CGFloat) {
         
         entity.setLayer(self)
         addSpriteNodeAboveLayer(entity, x: x, y: y)
+        self.entities.append(entity)
+        self.collidables.append(entity)
     }
     
     func addObject(object: Object) {
         
-        self.objects.append(object)
         addSpriteNodeAboveLayer(object, x: object.getX(), y: object.getY())
+        self.objects.append(object)
+        self.collidables.append(object)
     }
     
     private func addSpriteNodeAboveLayer(node: SKSpriteNode, x: CGFloat, y: CGFloat) {
