@@ -106,6 +106,6 @@ class Entity: SKSpriteNode, Collidable {
         
         // Do nothing.
         // Sub-classes are responsible for their own implementations.
-        print("Entity collided with something!")
+        //print("Entity collided with something!")
     }
 }

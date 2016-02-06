@@ -61,7 +61,7 @@ class Layer: SKSpriteNode {
             
             // First tile is a special case since division by zero is bad
             self.tiles[0][0] = tile
-            tile.position = CGPointMake(0, CGFloat((self.heightInTiles - 1)) * self.size.height / CGFloat(self.heightInTiles))
+            tile.position = CGPointMake(tile.size.width / 2, CGFloat((self.heightInTiles - 1)) * tile.size.height + (tile.size.height / 2))
         
         } else {
             
@@ -74,7 +74,7 @@ class Layer: SKSpriteNode {
             self.tiles[currentRow][currentColumn] = tile
             
             // Position the tile
-            tile.position = CGPointMake(CGFloat(currentColumn) * self.size.width / CGFloat(self.widthInTiles), CGFloat(currentRow) * self.size.height / CGFloat(self.heightInTiles))
+            tile.position = CGPointMake(CGFloat(currentColumn) * tile.size.width + (tile.size.width / 2), CGFloat(currentRow) * tile.size.width + (tile.size.height / 2))
         }
         
         // Add the tile to the layer

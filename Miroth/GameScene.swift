@@ -22,7 +22,7 @@ class GameScene: SKScene {
         
         let mapParser = TmxMapParser()
         
-        let mapPath = NSBundle.mainBundle().URLForResource("map02", withExtension: "tmx")
+        let mapPath = NSBundle.mainBundle().URLForResource("map01", withExtension: "tmx")
         
         guard let newMap = mapParser.parseMap(mapPath!.path!) else {
             // For now, exit on error
@@ -33,7 +33,7 @@ class GameScene: SKScene {
         self.map = newMap
         
         // Center the map in the Scene
-        self.map.position = CGPointMake(CGFloat(map.actualTileSize.width) / 2, CGFloat(map.actualTileSize.height) / 2)
+        self.map.position = CGPointMake(0, 0)
         
         // Get the player entity
         self.character = self.map.getPlayerEntity()
@@ -42,7 +42,6 @@ class GameScene: SKScene {
         
         // Match the Scene to the size of the newly loaded map
         self.size = self.map.size
-        
         print("GameScene \(self.size)")
         print("Map \(self.map.size)")
     }

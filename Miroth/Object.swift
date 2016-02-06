@@ -59,6 +59,6 @@ class Object: SKSpriteNode, Collidable {
         
         // Do nothing.
         // Sub-classes are responsible for their own implementations.
-        print("Object collided with something!")
+        //print("Object collided with something!")
     }
 }

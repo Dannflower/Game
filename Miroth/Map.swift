@@ -92,7 +92,7 @@ class Map: SKSpriteNode {
         // Add the layer on top of previous layers
         layer.zPosition = CGFloat(self.layers.count)
         
-        // Place the layer at the map's origin
+        // Place the layer at the origin of the map
         layer.position = CGPointMake(0, 0)
         
         // Force layers to be the same size as the map
