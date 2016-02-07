@@ -26,7 +26,8 @@ class Layer: SKSpriteNode {
     
     private var objects: [Object] = []
     private var entities: [Entity] = []
-    private var collidables: [Collidable] = []
+    private var movingCollidables: [Collidable] = []
+    private var stationaryCollidables: [Collidable] = []
     
     // Actual tile size
     var actualTileSize: CGSize {
@@ -93,58 +94,35 @@ class Layer: SKSpriteNode {
     */
     func checkForAndNotifyOfCollisions() {
         
-        for var i = 0; i < self.collidables.count - 1; i++ {
+        // Check moving collidables against each other
+        for var i = 0; i < self.movingCollidables.count - 1; i++ {
             
-            for var j = i + 1; j < self.collidables.count; j++ {
+            for var j = i + 1; j < self.movingCollidables.count; j++ {
                 
-                var collisionDetected = false
+                let collidableA = self.movingCollidables[i]
+                let collidableB = self.movingCollidables[j]
                 
-                let collidableA = self.collidables[i]
-                let collidableB = self.collidables[j]
-                
-                let collidableAXLowerBound = collidableA.position.x - collidableA.size.width / 2
-                let collidableAXUpperBound = collidableA.position.x + collidableA.size.width / 2
-                
-                let collidableAYLowerBound = collidableA.position.y - collidableA.size.height / 2
-                let collidableAYUpperBound = collidableA.position.y + collidableA.size.height / 2
-                
-                let collidableBXLowerBound = collidableB.position.x - collidableB.size.width / 2
-                let collidableBXUpperBound = collidableB.position.x + collidableB.size.width / 2
-                
-                let collidableBYLowerBound = collidableB.position.y - collidableB.size.height / 2
-                let collidableBYUpperBound = collidableB.position.y + collidableB.size.height / 2
-                
-                // This only works if both A and B are identical in size.
-                if collidableAXLowerBound > collidableBXLowerBound && collidableAXLowerBound < collidableBXUpperBound {
+                if checkForCollisionBetween(collidableA, collidableB: collidableB) {
                     
-                    if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
-                        
-                        // Bottom-left corner of A is in B. Rounding error on this one is causing it to trigger
-                        collisionDetected = true
-                    
-                    } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
-                        
-                        // Upper-left corner of A is in B.
-                        collisionDetected = true
-                    }
-                
-                } else if collidableAXUpperBound > collidableBXLowerBound && collidableAXUpperBound < collidableBXUpperBound {
-                    
-                    if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
-                        
-                        // Bottom-right corner of A is in B.
-                        collisionDetected = true
-                    
-                    } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
-                        
-                        // Upper-right corner of A is in B.
-                        collisionDetected = true
-                    }
+                    // Inform the collidables that they collided
+                    collidableA.collidedWith(collidableB)
+                    collidableB.collidedWith(collidableA)
                 }
                 
-                if collisionDetected {
+            }
+        }
+        
+        // Check moving collidables against stationary ones
+        for var i = 0; i < self.movingCollidables.count; i++ {
+            
+            for var j = 0; j < self.stationaryCollidables.count; j++ {
+                
+                let collidableA = self.movingCollidables[i]
+                let collidableB = self.stationaryCollidables[j]
+                
+                if checkForCollisionBetween(collidableA, collidableB: collidableB) {
                     
-                    // Inform the collidables that they collided.
+                    // Inform the collidables that they collided
                     collidableA.collidedWith(collidableB)
                     collidableB.collidedWith(collidableA)
                 }
@@ -152,19 +130,64 @@ class Layer: SKSpriteNode {
         }
     }
     
+    private func checkForCollisionBetween(collidableA: Collidable, collidableB: Collidable) -> Bool {
+        
+        let collidableAXLowerBound = collidableA.position.x - collidableA.size.width / 2
+        let collidableAXUpperBound = collidableA.position.x + collidableA.size.width / 2
+        
+        let collidableAYLowerBound = collidableA.position.y - collidableA.size.height / 2
+        let collidableAYUpperBound = collidableA.position.y + collidableA.size.height / 2
+        
+        let collidableBXLowerBound = collidableB.position.x - collidableB.size.width / 2
+        let collidableBXUpperBound = collidableB.position.x + collidableB.size.width / 2
+        
+        let collidableBYLowerBound = collidableB.position.y - collidableB.size.height / 2
+        let collidableBYUpperBound = collidableB.position.y + collidableB.size.height / 2
+        
+        // This only works if both A and B are identical in size.
+        if collidableAXLowerBound > collidableBXLowerBound && collidableAXLowerBound < collidableBXUpperBound {
+            
+            if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
+                
+                // Bottom-left corner of A is in B. Rounding error on this one is causing it to trigger
+                return true
+                
+            } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
+                
+                // Upper-left corner of A is in B.
+                return true
+            }
+            
+        } else if collidableAXUpperBound > collidableBXLowerBound && collidableAXUpperBound < collidableBXUpperBound {
+            
+            if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
+                
+                // Bottom-right corner of A is in B.
+                return true
+                
+            } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
+                
+                // Upper-right corner of A is in B.
+                return true
+            }
+        }
+        
+        return false
+    }
+
     func addEntity(entity: Entity, x: CGFloat, y: CGFloat) {
         
         entity.setLayer(self)
         addSpriteNodeAboveLayer(entity, x: x, y: y)
         self.entities.append(entity)
-        self.collidables.append(entity)
+        self.movingCollidables.append(entity)
     }
-    
+
     func addObject(object: Object) {
         
         addSpriteNodeAboveLayer(object, x: object.getX(), y: object.getY())
         self.objects.append(object)
-        self.collidables.append(object)
+        self.stationaryCollidables.append(object)
     }
     
     private func addSpriteNodeAboveLayer(node: SKSpriteNode, x: CGFloat, y: CGFloat) {
