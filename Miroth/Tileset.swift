@@ -45,9 +45,9 @@ class Tileset {
         self.lastGid = lastGid
     }
     
+    // TODO: This should use NSBundle.mainBundle().URLForResource("filename", withExtension: ".png")
     func cleanAndSetSource(sourcePath: String) {
         
-        //TODO: Temp fix for cleaning up asset names
         let nameStartIndex = sourcePath.rangeOfString("imageset/")!.endIndex
         let nameEndIndex = sourcePath.rangeOfString(".png")!.startIndex
         

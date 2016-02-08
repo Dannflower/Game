@@ -12,8 +12,6 @@ class Object: SKSpriteNode, Collidable {
     
     private var id: Int
     private var type: String
-    private var x: CGFloat
-    private var y: CGFloat
     
     /**
 
@@ -22,14 +20,6 @@ class Object: SKSpriteNode, Collidable {
     */
     func getId() -> Int {
         return self.id
-    }
-    
-    func getX() -> CGFloat {
-        return self.x
-    }
-    
-    func getY() -> CGFloat {
-        return self.y
     }
     
     /**
@@ -41,12 +31,10 @@ class Object: SKSpriteNode, Collidable {
         return self.type
     }
     
-    init(id: Int, type: String, texture: SKTexture?, x: CGFloat, y: CGFloat) {
+    init(id: Int, type: String, texture: SKTexture?) {
         
         self.id = id
         self.type = type
-        self.x = x
-        self.y = y
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture!.size())
     }

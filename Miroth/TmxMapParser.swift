@@ -61,9 +61,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 
             case TmxConstants.Element.MAP:
             
-                print("Map")
-            
-                // Collect attributes from dictionary
                 guard let widthInTiles = attributeDict[TmxConstants.Attribute.WIDTH] else {
                 
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.WIDTH)
@@ -83,8 +80,7 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.TILE_WIDTH)
                 }
-            
-                // Convert attribute strings to integers
+                
                 guard let widthInTilesInt = Int(widthInTiles) else {
                 
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.WIDTH)
@@ -111,7 +107,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 
             case TmxConstants.Element.TILESET:
                 
-                // Collect attributes from dictionary
                 guard let name = attributeDict[TmxConstants.Attribute.NAME] else {
                     
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.NAME)
@@ -137,7 +132,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.TILE_WIDTH)
                 }
                 
-                // Convert attribute strings to integers
                 guard let firstGidInt = Int(firstGid) else {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.FIRST_GID)
@@ -163,7 +157,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 
             case TmxConstants.Element.IMAGE:
                 
-                // Collect attributes from dictionary
                 guard let source = attributeDict[TmxConstants.Attribute.SOURCE] else {
                     
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.SOURCE)
@@ -179,7 +172,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.WIDTH)
                 }
                 
-                // Convert attribute strings to integers
                 guard let heightInt = Int(height) else {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
@@ -195,7 +187,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 
             case TmxConstants.Element.LAYER:
                 
-                // Collect attributes from dictionary
                 guard let name = attributeDict[TmxConstants.Attribute.NAME] else {
                     
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.NAME)
@@ -211,7 +202,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
                 }
                 
-                // Convert attribute strings to integers
                 guard let widthInTilesInt = Int(widthInTiles) else {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.WIDTH)
@@ -224,9 +214,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 
                 self.mapBuilder.createLayer(name, widthInTiles: widthInTilesInt, heightInTiles: heightInTilesInt)
             
-            case TmxConstants.Element.DATA:
-            
-                print("Data")
                 
             case TmxConstants.Element.TILE:
                 
@@ -243,14 +230,7 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 self.mapBuilder.addTileToLayer(gidInt)
                 
                 
-            case TmxConstants.Element.OBJECT_GROUP:
-                
-                print("Object group")
-                
-                
             case TmxConstants.Element.OBJECT:
-                
-                print("Object")
                 
                 guard let id = attributeDict[TmxConstants.Attribute.ID] else {
                     
@@ -317,11 +297,11 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
                 }
                 
-                self.mapBuilder.addObjectToLayer(idInt, type: type, gid: gidInt, x: CGFloat(xFloat), y: CGFloat(yFloat), width: widthInt, height: heightInt)
+                self.mapBuilder.addObjectToLayer(idInt, type: type, gid: gidInt, tmxX: CGFloat(xFloat), tmxY: CGFloat(yFloat), width: widthInt, height: heightInt)
                 
             default:
                 
-                print("Unknown")
+                break
             }
             
         } catch MapLoaderError.MissingAttribute(let attributeName) {

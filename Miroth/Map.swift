@@ -67,10 +67,10 @@ class Map: SKSpriteNode {
         Creates a new Map with the specified
         width and height.
      
-        - param widthInTiles The width of the map in tiles.
-        - param heightInTiles The height of the map in tiles.
-        - param tileHeight The height of a single tile.
-        - param tileWidth The width of a single tile.
+        - parameter widthInTiles: The width of the map in tiles.
+        - parameter heightInTiles: The height of the map in tiles.
+        - parameter tileHeight: The height of a single tile.
+        - parameter tileWidth: The width of a single tile.
     */
     convenience init(widthInTiles: Int, heightInTiles: Int, tileHeight: Int, tileWidth: Int) {
         self.init()
@@ -85,7 +85,7 @@ class Map: SKSpriteNode {
         
         Adds a new layer to the map on top of previous layers.
 
-        - param layer The layer being added to the map.
+        - parameter layer: The layer being added to the map.
     */
     func addLayer(layer: Layer) {
         
@@ -102,12 +102,22 @@ class Map: SKSpriteNode {
         self.layers.append(layer)
     }
     
+    /**
+
+        Adds the SKSpriteNode to the next tile position in the
+        specified layer (tiles are added to rows from left to right
+        moving to the next row after the previous is filled).
+
+        - parameter layerNumber: The index of the layer to add the tile to.
+        - parameter tile: The tile to add to the layer.
+    */
     func addNextTileToLayer(layerNumber: Int, tile: SKSpriteNode) {
         
         self.layers[layerNumber].addNextTile(tile)
     }
     
-    func addObjectToLayer(layerNumber: Int, object: Object) {
+    // TODO This should be turned into an object factory...
+    func addObjectToLayer(layerNumber: Int, object: Object, x: CGFloat, y: CGFloat) {
         
         switch object.getType() {
             
@@ -115,13 +125,13 @@ class Map: SKSpriteNode {
             
             // Blockers should be transparent
             object.texture = nil
-            self.layers[layerNumber].addObject(object)
+            self.layers[layerNumber].addObject(object, x: x, y: y)
             
         case "Spawn:Player":
             
             // Create a new player
             self.player = PlayerEntity()
-            self.layers[layerNumber].addEntity(self.player!, x: object.getX(), y: object.getY())
+            self.layers[layerNumber].addEntity(self.player!, x: x, y: y)
             
             
         default:
@@ -129,6 +139,11 @@ class Map: SKSpriteNode {
         }
     }
     
+    /**
+
+        Checks for collisions in each layer and informs
+        any collidables of collisions they are involved in.
+    */
     func checkForAndNotifyOfCollisions() {
         
         for layer in self.layers {

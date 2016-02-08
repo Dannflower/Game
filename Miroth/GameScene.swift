@@ -42,13 +42,9 @@ class GameScene: SKScene {
         
         // Match the Scene to the size of the newly loaded map
         self.size = self.map.size
-        print("GameScene \(self.size)")
-        print("Map \(self.map.size)")
     }
     
     override func keyDown(theEvent: NSEvent) {
-        
-        self.map.checkForAndNotifyOfCollisions()
         
         switch theEvent.keyCode {
             
@@ -160,7 +156,7 @@ class GameScene: SKScene {
             self.character!.move(currentTime)
         }
         
-        
+        self.map.checkForAndNotifyOfCollisions()
     }
 
 }

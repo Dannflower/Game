@@ -15,6 +15,8 @@ class SpriteLoader {
         case HumanKnight
         
         case Tree
+        
+        case Blocker
     }
     
     private static var spriteSheets = [String : SpriteSheet]()
@@ -29,6 +31,9 @@ class SpriteLoader {
             
         case .Tree:
             return getSpriteTexture("Tree0", column: 3, row: 32)
+            
+        case .Blocker:
+            return getSpriteTexture("Blocked Tile", column: 0, row: 0)
         }
     }
     

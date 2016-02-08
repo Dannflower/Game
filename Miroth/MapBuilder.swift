@@ -22,6 +22,9 @@ class MapBuilder {
     // The current TileLayer being built
     private var currentLayer: Int = -1
     
+    // The size of the current layer being built
+    private var currentLayerSize: CGSize! = nil
+    
     // Error types
     enum MapLoaderError: ErrorType {
         
@@ -39,6 +42,15 @@ class MapBuilder {
         return self.map
     }
     
+    /**
+
+        Creates an empty map with the specified properties.
+
+        - parameter widthInTiles: The width of the map measured in tiles.
+        - parameter heightInTiles: The height of the map measured in tiles.
+        - parameter tileHeight: The height of tiles used in the map.
+        - parameter tileWidth: The width of tiles used in the map.
+    */
     func createMap(widthInTiles: Int, heightInTiles: Int, tileHeight: Int, tileWidth: Int) {
         
         // Configure the map
@@ -49,6 +61,16 @@ class MapBuilder {
             tileWidth: tileWidth)
     }
     
+    /**
+
+        Creates a new Tileset with the specified properties.
+
+        - parameter name: The name of the tileset.
+        - parameter firstGid: The GID of the first tile in the tileset.
+        - parameter tileCount: The number of tiles in the tileset.
+        - parameter tileHeight: The height of a single tile in the tileset.
+        - parameter tileWidth: The width of a single tile in the tileset.
+    */
     func createTileset(name: String, firstGid: Int, tileCount: Int, tileHeight: Int, tileWidth: Int) {
         
         // Determine the GID range for the tileset
@@ -63,6 +85,14 @@ class MapBuilder {
             lastGid: lastGid)
     }
     
+    /**
+
+        Sets the source file of the current Tileset.
+
+        - parameter source: The file path to the source image of the Tileset.
+        - parameter height: The height in pixels of the source image.
+        - parameter width: The width in pixels of the source image.
+    */
     func setTilesetSource(source: String, height: Int, width: Int) {
         
         // Finish initializing the tileset
@@ -86,23 +116,22 @@ class MapBuilder {
         - parameter id: The object id.
         - parameter type: The type of the object.
         - parameter gid: The global texture id of the object's sprite.
-        - parameter x: The x-coordinate of the object on the layer.
-        - parameter y: The y-coordinage of the object on the layer.
+        - parameter tmxX: The TMX x-coordinate of the object on the layer.
+        - parameter tmxY: The TMX y-coordinage of the object on the layer.
         - parameter width: The width of the object.
         - parameter height: The height of the object.
 
     */
-
-    func addObjectToLayer(id: Int, type: String, gid: Int, x: CGFloat, y: CGFloat, width: Int, height: Int) {
+    func addObjectToLayer(id: Int, type: String, gid: Int, tmxX: CGFloat, tmxY: CGFloat, width: Int, height: Int) {
         
-        // Get the object's sprite
         let objectSprite = convertGidToSpriteNode(gid)
+        let object = Object(id: id, type: type, texture: objectSprite)
         
-        // Create the object
-        let object = Object(id: id, type: type, texture: objectSprite, x: x, y: y)
+        // Convert the coordinates from TMX to SpriteKit coordinates
+        let x = tmxX
+        let y = self.currentLayerSize.height - tmxY
         
-        // Add it to the layer
-        self.map.addObjectToLayer(self.currentLayer, object: object)
+        self.map.addObjectToLayer(self.currentLayer, object: object, x: x, y: y)
     }
     
     /**
@@ -114,7 +143,6 @@ class MapBuilder {
         - parameter heightInTiles: The height of the layer measured in tiles.
 
     */
-
     func createLayer(name: String, widthInTiles: Int, heightInTiles: Int) {
         
         // Create a new layer
@@ -126,23 +154,34 @@ class MapBuilder {
             tileHeight: self.map.getTileHeight())
         
         self.map.addLayer(layer)
+        self.currentLayerSize = CGSizeMake(CGFloat(widthInTiles * self.map.getTileWidth()), CGFloat(heightInTiles * self.map.getTileHeight()))
         self.currentLayer++
     }
     
+    /**
+
+        Adds a tile to the current layer being built
+        using the texture associated with the specified
+        GID.
+
+        - parameter gid: The GID of the texture to use for the tile being added.
+    */
     func addTileToLayer(gid: Int) {
         
-        // Get the texture
         let tileTexture = convertGidToSpriteNode(gid)
-        
-        // Create the tile
         let tile = SKSpriteNode(texture: tileTexture)
         
-        // Add the tile to the layer being built
         self.map.addNextTileToLayer(self.currentLayer, tile: tile)
     }
     
-    // Given a GID, create a sprite node with the texture
-    // of the tile that corresponds to the GID
+    /**
+
+        Creates an SKTexture from the specified GID.
+
+        - parameter gid: The GID of the texture.
+    
+        - returns: An SKTexture loaded with the texture associated with the specified GID.
+    */
     private func convertGidToSpriteNode(gid: Int) -> SKTexture? {
         
         var texture: SKTexture? = nil

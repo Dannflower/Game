@@ -12,10 +12,8 @@ class Layer: SKSpriteNode {
     
     private var layerName: String = ""
     
-    // Two-dimensional array of tile SpriteNodes that make layer.
     private var tiles: [[SKSpriteNode]] = []
     
-    // The current tile
     private var currentTile = 0
     
     private var tileHeight: Int = 0
@@ -54,6 +52,16 @@ class Layer: SKSpriteNode {
                 repeatedValue: SKSpriteNode()))
     }
     
+    /**
+     
+     Adds the SKSpriteNode to the next tile position in the
+     layer (tiles are added to rows from left to right
+     moving to the next row after the previous is filled).
+     
+     - parameter tile: The tile to add to the layer.
+     
+     
+     */
     func addNextTile(tile: SKSpriteNode) {
         
         tile.size = self.actualTileSize
@@ -88,8 +96,6 @@ class Layer: SKSpriteNode {
     /**
 
         Checks for collisions on this layer and informs the colliding objects.
-
-        - parameter node: The node being checked for collisions.
 
     */
     func checkForAndNotifyOfCollisions() {
@@ -130,6 +136,16 @@ class Layer: SKSpriteNode {
         }
     }
     
+    /**
+
+        Checks if there is a collision between the two specified Collidables.
+
+        - parameter collidableA: The Collidable being checked for a collision with CollidableB.
+        - parameter collidableB: The collidable being checked for a collision with CollidableA.
+
+        - returns: True if there is a collision between collidableA and collidableB, false otherwise.
+     
+    */
     private func checkForCollisionBetween(collidableA: Collidable, collidableB: Collidable) -> Bool {
         
         let collidableAXLowerBound = collidableA.position.x - collidableA.size.width / 2
@@ -175,6 +191,15 @@ class Layer: SKSpriteNode {
         return false
     }
 
+    /**
+        
+        Adds an Entity to the layer at the coordinates specified.
+
+        - parameter entity: The Entity being added to the layer.
+        - parameter x: The x-coordinate of the location where the Entity is being added.
+        - parameter y: The y-coordinate of the location where the Entity is being added.
+     
+    */
     func addEntity(entity: Entity, x: CGFloat, y: CGFloat) {
         
         entity.setLayer(self)
@@ -183,24 +208,40 @@ class Layer: SKSpriteNode {
         self.movingCollidables.append(entity)
     }
 
-    func addObject(object: Object) {
+    /**
+
+        Adds an Object to the layer at the coordinates specified.
+
+        - parameter object: The object being added to the layer.
+        - parameter x: The x-coordinate of the location where the Object is being added.
+        - parameter y: The y-coordinate of the location where the Object is being added.
+    */
+    func addObject(object: Object, x: CGFloat, y: CGFloat) {
         
-        addSpriteNodeAboveLayer(object, x: object.getX(), y: object.getY())
+        addSpriteNodeAboveLayer(object, x: x, y: y)
         self.objects.append(object)
         self.stationaryCollidables.append(object)
     }
     
+    /**
+
+        Adds a SpriteNode to the layer, above the tiles, at the coordinates specified after converting
+        TMX coordinates to SpriteKit coordinates.
+
+        - parameter node: The SpriteNode being added to the layer.
+        - parameter tmxX: The TMX x-coordinate of the location the node is being added to the layer.
+        - parameter tmxY: The TMX y-coordinate of the location the node is being added to the layer.
+    */
     private func addSpriteNodeAboveLayer(node: SKSpriteNode, x: CGFloat, y: CGFloat) {
         
-        // Force the object between this layer and the next
+        // Position object above tiles of this layer
         node.zPosition = self.zPosition + 0.5
         
+        // Force objects to match tile size
         node.size = self.actualTileSize
         
-        let xScale: CGFloat = self.size.width / CGFloat(self.tileWidth * self.widthInTiles)
-        let yScale: CGFloat = self.size.height / CGFloat(self.tileHeight * self.heightInTiles)
-        
-        node.position = CGPointMake(x * xScale, self.size.height - (y * yScale))
+        // Adjust for node's anchor point
+        node.position = CGPointMake(x + node.size.width / 2, y + node.size.height / 2)
         
         self.addChild(node)
     }
