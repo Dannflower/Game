@@ -22,7 +22,7 @@ class GameScene: SKScene {
         
         let mapParser = TmxMapParser()
         
-        let mapPath = NSBundle.mainBundle().URLForResource("map01", withExtension: "tmx")
+        let mapPath = NSBundle.mainBundle().URLForResource("map_7Soul", withExtension: "tmx")
         
         guard let newMap = mapParser.parseMap(mapPath!.path!) else {
             // For now, exit on error

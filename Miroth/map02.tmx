@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" nextobjectid="18">
+ <tileset firstgid="1" name="Tree0" tilewidth="16" tileheight="16" tilecount="432">
+  <image source="../Images.xcassets/Objects/Tree0.imageset/Tree0.png" width="192" height="576"/>
+ </tileset>
+ <tileset firstgid="433" name="Blocked Tile" tilewidth="16" tileheight="16" tilecount="1">
+  <image source="../Images.xcassets/Objects/Blocked Tile.imageset/Blocked Tile.png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="434" name="Player0" tilewidth="16" tileheight="16" tilecount="120">
+  <image source="../Images.xcassets/Characters/Player0.imageset/Player0.png" width="128" height="240"/>
+ </tileset>
+ <layer name="Ground" width="10" height="10">
+  <data>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="40"/>
+   <tile gid="40"/>
+   <tile gid="40"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="40"/>
+   <tile gid="40"/>
+   <tile gid="40"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="40"/>
+   <tile gid="40"/>
+   <tile gid="40"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="3" name="Spawn:Player" type="Spawn:Player" gid="434" x="112" y="112" width="16" height="16"/>
+  <object id="8" name="Blocked" type="Blocked" gid="433" x="80" y="80" width="16" height="16"/>
+  <object id="10" name="Blocked" type="Blocked" gid="433" x="64" y="96" width="16" height="16"/>
+  <object id="11" name="Blocked" type="Blocked" gid="433" x="80" y="96" width="16" height="16"/>
+  <object id="12" name="Blocked" type="Blocked" gid="433" x="96" y="96" width="16" height="16"/>
+  <object id="13" name="Blocked" type="Blocked" gid="433" x="96" y="80" width="16" height="16"/>
+  <object id="14" name="Blocked" type="Blocked" gid="433" x="96" y="64" width="16" height="16"/>
+  <object id="15" name="Blocked" type="Blocked" gid="433" x="80" y="64" width="16" height="16"/>
+  <object id="16" name="Blocked" type="Blocked" gid="433" x="64" y="64" width="16" height="16"/>
+  <object id="17" name="Blocked" type="Blocked" gid="433" x="64" y="80" width="16" height="16"/>
+ </objectgroup>
+</map>

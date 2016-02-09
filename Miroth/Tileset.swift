@@ -45,12 +45,19 @@ class Tileset {
         self.lastGid = lastGid
     }
     
-    // TODO: This should use NSBundle.mainBundle().URLForResource("filename", withExtension: ".png")
+    /**
+        
+        Cleans the TMX formatted file path and sets
+        it as this Tilesets source file (source image
+        must be included and indexed in Images.xcassets).
+
+        - parameter sourcePath: The file path of the source file as provided by TMX.
+    */
     func cleanAndSetSource(sourcePath: String) {
         
-        let nameStartIndex = sourcePath.rangeOfString("imageset/")!.endIndex
-        let nameEndIndex = sourcePath.rangeOfString(".png")!.startIndex
+        let pathComponents = sourcePath.componentsSeparatedByString("/")
+        let fileNameComponents = pathComponents.last!.componentsSeparatedByString(".")
         
-        self.source = sourcePath.substringWithRange(nameStartIndex..<nameEndIndex)
+        self.source = fileNameComponents.first!
     }
 }
