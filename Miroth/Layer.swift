@@ -234,8 +234,8 @@ class Layer: SKSpriteNode {
     */
     private func addSpriteNodeAboveLayer(node: SKSpriteNode, x: CGFloat, y: CGFloat) {
         
-        // Position object above tiles of this layer
-        node.zPosition = self.zPosition + 0.5
+        // Position node above tiles of this layer (this is 0.5 above this layer's z-position)
+        node.zPosition = 0.5
         
         // Force objects to match tile size
         node.size = self.actualTileSize
