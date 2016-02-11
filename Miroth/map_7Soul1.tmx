@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" nextobjectid="40">
+ <tileset firstgid="1" name="dungeon_A" tilewidth="16" tileheight="16" tilecount="156">
+  <image source="../Images.xcassets/Tiles - Dungeon/dungeon_A.imageset/dungeon_A.png" width="208" height="192"/>
+ </tileset>
+ <tileset firstgid="157" name="dungeon_B" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="../Images.xcassets/Tiles - Dungeon/dungeon_B.imageset/dungeon_B.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="413" name="Blocked Tile" tilewidth="16" tileheight="16" tilecount="1">
+  <image source="../Images.xcassets/Objects/Blocked Tile.imageset/Blocked Tile.png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="414" name="adventurer_m" tilewidth="16" tileheight="16" tilecount="16">
+  <image source="../Images.xcassets/Sprites/Human (Front)/Full - Sheet/adventurer_m.imageset/adventurer_m.png" width="64" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="10" height="10">
+  <data>
+   <tile gid="160"/>
+   <tile gid="190"/>
+   <tile gid="190"/>
+   <tile gid="190"/>
+   <tile gid="164"/>
+   <tile gid="190"/>
+   <tile gid="190"/>
+   <tile gid="190"/>
+   <tile gid="190"/>
+   <tile gid="161"/>
+   <tile gid="175"/>
+   <tile gid="105"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="106"/>
+   <tile gid="107"/>
+   <tile gid="173"/>
+   <tile gid="183"/>
+   <tile gid="118"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="120"/>
+   <tile gid="181"/>
+   <tile gid="175"/>
+   <tile gid="118"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="120"/>
+   <tile gid="173"/>
+   <tile gid="183"/>
+   <tile gid="118"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="120"/>
+   <tile gid="181"/>
+   <tile gid="175"/>
+   <tile gid="118"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="120"/>
+   <tile gid="173"/>
+   <tile gid="183"/>
+   <tile gid="118"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="120"/>
+   <tile gid="181"/>
+   <tile gid="175"/>
+   <tile gid="118"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="119"/>
+   <tile gid="120"/>
+   <tile gid="173"/>
+   <tile gid="175"/>
+   <tile gid="131"/>
+   <tile gid="132"/>
+   <tile gid="132"/>
+   <tile gid="132"/>
+   <tile gid="132"/>
+   <tile gid="132"/>
+   <tile gid="132"/>
+   <tile gid="133"/>
+   <tile gid="173"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+   <tile gid="158"/>
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" type="Blocked" gid="413" x="144" y="32" width="16" height="16"/>
+  <object id="2" type="Blocked" gid="413" x="144" y="48" width="16" height="16"/>
+  <object id="3" type="Blocked" gid="413" x="144" y="64" width="16" height="16"/>
+  <object id="4" type="Blocked" gid="413" x="144" y="80" width="16" height="16"/>
+  <object id="5" type="Blocked" gid="413" x="144" y="96" width="16" height="16"/>
+  <object id="6" type="Blocked" gid="413" x="144" y="112" width="16" height="16"/>
+  <object id="7" type="Blocked" gid="413" x="144" y="128" width="16" height="16"/>
+  <object id="8" type="Blocked" gid="413" x="144" y="144" width="16" height="16"/>
+  <object id="9" type="Blocked" gid="413" x="144" y="160" width="16" height="16"/>
+  <object id="10" type="Blocked" gid="413" x="128" y="160" width="16" height="16"/>
+  <object id="11" type="Blocked" gid="413" x="112" y="160" width="16" height="16"/>
+  <object id="12" type="Blocked" gid="413" x="96" y="160" width="16" height="16"/>
+  <object id="13" type="Blocked" gid="413" x="80" y="160" width="16" height="16"/>
+  <object id="14" type="Blocked" gid="413" x="64" y="160" width="16" height="16"/>
+  <object id="15" type="Blocked" gid="413" x="48" y="160" width="16" height="16"/>
+  <object id="16" type="Blocked" gid="413" x="32" y="160" width="16" height="16"/>
+  <object id="17" type="Blocked" gid="413" x="16" y="160" width="16" height="16"/>
+  <object id="18" type="Blocked" gid="413" x="0" y="160" width="16" height="16"/>
+  <object id="19" type="Blocked" gid="413" x="0" y="144" width="16" height="16"/>
+  <object id="20" type="Blocked" gid="413" x="0" y="128" width="16" height="16"/>
+  <object id="21" type="Blocked" gid="413" x="0" y="112" width="16" height="16"/>
+  <object id="22" type="Blocked" gid="413" x="0" y="96" width="16" height="16"/>
+  <object id="23" type="Blocked" gid="413" x="0" y="80" width="16" height="16"/>
+  <object id="24" type="Blocked" gid="413" x="0" y="64" width="16" height="16"/>
+  <object id="25" type="Blocked" gid="413" x="0" y="48" width="16" height="16"/>
+  <object id="26" type="Blocked" gid="413" x="0" y="32" width="16" height="16"/>
+  <object id="27" type="Blocked" gid="413" x="0" y="16" width="16" height="16"/>
+  <object id="28" type="Blocked" gid="413" x="16" y="16" width="16" height="16"/>
+  <object id="29" type="Blocked" gid="413" x="32" y="16" width="16" height="16"/>
+  <object id="30" type="Blocked" gid="413" x="48" y="16" width="16" height="16"/>
+  <object id="34" type="Blocked" gid="413" x="80" y="16" width="16" height="16"/>
+  <object id="35" type="Blocked" gid="413" x="96" y="16" width="16" height="16"/>
+  <object id="36" type="Blocked" gid="413" x="112" y="16" width="16" height="16"/>
+  <object id="37" type="Blocked" gid="413" x="128" y="16" width="16" height="16"/>
+  <object id="38" type="Blocked" gid="413" x="144" y="16" width="16" height="16"/>
+  <object id="39" name="Spawn:Player" type="Spawn:Player" gid="416" x="80" y="96" width="16" height="16"/>
+ </objectgroup>
+</map>
