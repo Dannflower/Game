@@ -66,11 +66,15 @@ class Layer: SKSpriteNode {
         
         tile.size = self.actualTileSize
         
+        // Position tiles using lower-left corner of bounding box
+        tile.anchorPoint = CGPointMake(0, 0)
+        
         if self.currentTile == 0 {
             
             // First tile is a special case since division by zero is bad
             self.tiles[0][0] = tile
-            tile.position = CGPointMake(tile.size.width / 2, CGFloat((self.heightInTiles - 1)) * tile.size.height + (tile.size.height / 2))
+            tile.position = CGPointMake(0, CGFloat((self.heightInTiles - 1)) * tile.size.height)
+            print(tile.position)
         
         } else {
             
@@ -83,7 +87,7 @@ class Layer: SKSpriteNode {
             self.tiles[currentRow][currentColumn] = tile
             
             // Position the tile
-            tile.position = CGPointMake(CGFloat(currentColumn) * tile.size.width + (tile.size.width / 2), CGFloat(currentRow) * tile.size.width + (tile.size.height / 2))
+            tile.position = CGPointMake(CGFloat(currentColumn) * tile.size.width, CGFloat(currentRow) * tile.size.width)
         }
         
         // Add the tile to the layer
@@ -148,24 +152,24 @@ class Layer: SKSpriteNode {
     */
     private func checkForCollisionBetween(collidableA: Collidable, collidableB: Collidable) -> Bool {
         
-        let collidableAXLowerBound = collidableA.position.x - collidableA.size.width / 2
-        let collidableAXUpperBound = collidableA.position.x + collidableA.size.width / 2
+        let collidableAXLowerBound = collidableA.position.x
+        let collidableAXUpperBound = collidableA.position.x + collidableA.size.width
         
-        let collidableAYLowerBound = collidableA.position.y - collidableA.size.height / 2
-        let collidableAYUpperBound = collidableA.position.y + collidableA.size.height / 2
+        let collidableAYLowerBound = collidableA.position.y
+        let collidableAYUpperBound = collidableA.position.y + collidableA.size.height
         
-        let collidableBXLowerBound = collidableB.position.x - collidableB.size.width / 2
-        let collidableBXUpperBound = collidableB.position.x + collidableB.size.width / 2
+        let collidableBXLowerBound = collidableB.position.x
+        let collidableBXUpperBound = collidableB.position.x + collidableB.size.width
         
-        let collidableBYLowerBound = collidableB.position.y - collidableB.size.height / 2
-        let collidableBYUpperBound = collidableB.position.y + collidableB.size.height / 2
+        let collidableBYLowerBound = collidableB.position.y
+        let collidableBYUpperBound = collidableB.position.y + collidableB.size.height
         
         // This only works if both A and B are identical in size.
         if collidableAXLowerBound > collidableBXLowerBound && collidableAXLowerBound < collidableBXUpperBound {
             
             if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
                 
-                // Bottom-left corner of A is in B. Rounding error on this one is causing it to trigger
+                // Bottom-left corner of A is in B.
                 return true
                 
             } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
@@ -220,6 +224,7 @@ class Layer: SKSpriteNode {
         
         addSpriteNodeAboveLayer(object, x: x, y: y)
         self.objects.append(object)
+        // TODO: Only add appropriate objects to stationary list
         self.stationaryCollidables.append(object)
     }
     
@@ -240,8 +245,9 @@ class Layer: SKSpriteNode {
         // Force objects to match tile size
         node.size = self.actualTileSize
         
-        // Adjust for node's anchor point
-        node.position = CGPointMake(x + node.size.width / 2, y + node.size.height / 2)
+        // Position using lower-left corner
+        node.anchorPoint = CGPointMake(0, 0)
+        node.position = CGPointMake(x, y)
         
         self.addChild(node)
     }

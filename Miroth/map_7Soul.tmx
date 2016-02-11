@@ -1821,7 +1821,7 @@
   </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="3" name="Spawn:Player" type="Spawn:Player" gid="1073" x="96" y="304" width="16" height="16"/>
+  <object id="3" name="Spawn:Player" type="Spawn:Player" gid="1073" x="0" y="16" width="16" height="16"/>
   <object id="6" type="Blocked" gid="1087" x="160" y="272" width="16" height="16"/>
   <object id="7" type="Blocked" gid="1087" x="160" y="256" width="16" height="16"/>
   <object id="8" type="Blocked" gid="1087" x="160" y="240" width="16" height="16"/>

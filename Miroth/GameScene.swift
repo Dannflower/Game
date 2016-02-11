@@ -38,6 +38,8 @@ class GameScene: SKScene {
         // Get the player entity
         self.character = self.map.getPlayerEntity()
         
+        print(self.character.position)
+        
         self.addChild(self.map)
         
         // Match the Scene to the size of the newly loaded map

@@ -14,14 +14,23 @@ protocol Collidable {
     /**
         
         The position of the collidable.
+     
     */
-    var position: CGPoint { get set }
+    var position: CGPoint { get }
     
     /**
         
         The size of the collidable.
+     
     */
-    var size: CGSize { get set }
+    var size: CGSize { get }
+    
+    /**
+     
+        Returns the type of the collidable.
+     
+    */
+    func getType() -> String
     
     /**
         

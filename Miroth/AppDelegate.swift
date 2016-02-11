@@ -36,7 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /* Pick a size for the scene */
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             
-
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .Fill
             

@@ -18,6 +18,8 @@ class Entity: SKSpriteNode, Collidable {
     private var isMoving: Bool = false
     private var highlight: SKShapeNode? = nil
     private var layer: Layer? = nil
+    private var lastValidPosition: CGPoint? = nil
+    private var type: String = ""
     
     override init(texture: SKTexture?, color: NSColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -29,6 +31,10 @@ class Entity: SKSpriteNode, Collidable {
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
+    }
+    
+    func getType() -> String {
+        return self.type
     }
     
     func isEntityMoving() -> Bool {
@@ -47,7 +53,6 @@ class Entity: SKSpriteNode, Collidable {
             self.removeChildrenInArray([highlightToRemove])
             self.highlight = nil
         }
-        
     }
     
     func enableHighlight() {
@@ -72,6 +77,8 @@ class Entity: SKSpriteNode, Collidable {
     }
     
     func move(currentTime: CFTimeInterval) {
+        print(self.position)
+        self.lastValidPosition = self.position
         
         if destination != nil {
             
@@ -106,6 +113,11 @@ class Entity: SKSpriteNode, Collidable {
         
         // Do nothing.
         // Sub-classes are responsible for their own implementations.
-        print("Entity collided with: \(collidable)")
+        print("Entity collided with: \(collidable.getType())")
+
+        if collidable.getType() == "Blocked" {
+            
+            self.position = self.lastValidPosition!
+        }
     }
 }
