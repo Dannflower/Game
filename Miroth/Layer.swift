@@ -164,30 +164,12 @@ class Layer: SKSpriteNode {
         let collidableBYLowerBound = collidableB.position.y
         let collidableBYUpperBound = collidableB.position.y + collidableB.size.height
         
-        // This only works if both A and B are identical in size.
-        if collidableAXLowerBound > collidableBXLowerBound && collidableAXLowerBound < collidableBXUpperBound {
+        // Checks for gaps on the X and Y axis between the objects
+        if(collidableAXLowerBound < collidableBXUpperBound && collidableAXUpperBound > collidableBXLowerBound) {
             
-            if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
+            if(collidableAYLowerBound < collidableBYUpperBound && collidableAYUpperBound > collidableBYLowerBound) {
                 
-                // Bottom-left corner of A is in B.
-                return true
-                
-            } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
-                
-                // Upper-left corner of A is in B.
-                return true
-            }
-            
-        } else if collidableAXUpperBound > collidableBXLowerBound && collidableAXUpperBound < collidableBXUpperBound {
-            
-            if collidableAYLowerBound > collidableBYLowerBound && collidableAYLowerBound < collidableBYUpperBound {
-                
-                // Bottom-right corner of A is in B.
-                return true
-                
-            } else if collidableAYUpperBound > collidableBYLowerBound && collidableAYUpperBound < collidableBYUpperBound {
-                
-                // Upper-right corner of A is in B.
+                // Collision
                 return true
             }
         }
