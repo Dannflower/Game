@@ -102,6 +102,7 @@ class Layer: SKSpriteNode {
         if var actorCollisions = collisions[actorA] {
             
             actorCollisions.append(actorB)
+            collisions[actorA] = actorCollisions
         
         } else {
             
@@ -112,6 +113,7 @@ class Layer: SKSpriteNode {
         if var actorCollisions = collisions[actorB] {
             
             actorCollisions.append(actorA)
+            collisions[actorB] = actorCollisions
             
         } else {
             

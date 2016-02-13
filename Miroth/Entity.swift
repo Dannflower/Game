@@ -10,7 +10,7 @@ import SpriteKit
 
 class Entity: Actor {
     
-    private let SPEED: CGFloat = 50.0
+    private let SPEED: CGFloat = 100.0
     
     private var destination: CGPoint? = nil
     private var lastUpdateTime: CFTimeInterval? = nil

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" nextobjectid="40">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" nextobjectid="45">
  <tileset firstgid="1" name="dungeon_A" tilewidth="16" tileheight="16" tilecount="156">
   <image source="../Images.xcassets/Tiles - Dungeon/dungeon_A.imageset/dungeon_A.png" width="208" height="192"/>
  </tileset>
@@ -116,6 +116,110 @@
    <tile gid="158"/>
   </data>
  </layer>
+ <layer name="Tile Layer 2" width="10" height="10">
+  <data>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="373"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="373"/>
+   <tile gid="373"/>
+   <tile gid="373"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="373"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+  </data>
+ </layer>
  <objectgroup name="Object Layer 1">
   <object id="1" type="Blocked" gid="413" x="144" y="32" width="16" height="16"/>
   <object id="2" type="Blocked" gid="413" x="144" y="48" width="16" height="16"/>
@@ -153,5 +257,10 @@
   <object id="37" type="Blocked" gid="413" x="128" y="16" width="16" height="16"/>
   <object id="38" type="Blocked" gid="413" x="144" y="16" width="16" height="16"/>
   <object id="39" name="Spawn:Player" type="Spawn:Player" gid="416" x="80" y="96" width="16" height="16"/>
+  <object id="40" type="Blocked" gid="413" x="80" y="64" width="16" height="16"/>
+  <object id="41" type="Blocked" gid="413" x="80" y="48" width="16" height="16"/>
+  <object id="42" type="Blocked" gid="413" x="64" y="64" width="16" height="16"/>
+  <object id="43" type="Blocked" gid="413" x="48" y="64" width="16" height="16"/>
+  <object id="44" type="Blocked" gid="413" x="80" y="80" width="16" height="16"/>
  </objectgroup>
 </map>
