@@ -232,11 +232,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                 
             case TmxConstants.Element.OBJECT:
                 
-                guard let id = attributeDict[TmxConstants.Attribute.ID] else {
-                    
-                    throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.ID)
-                }
-                
                 guard let type = attributeDict[TmxConstants.Attribute.TYPE] else {
                     
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.TYPE)
@@ -267,11 +262,6 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
                 }
                 
-                guard let idInt = Int(id) else {
-                    
-                    throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.ID)
-                }
-                
                 guard let gidInt = Int(gid) else {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.GID)
@@ -297,7 +287,7 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.HEIGHT)
                 }
                 
-                self.mapBuilder.addObjectToLayer(idInt, type: type, gid: gidInt, tmxX: CGFloat(xFloat), tmxY: CGFloat(yFloat), width: widthInt, height: heightInt)
+                self.mapBuilder.addActorToLayer(type, gid: gidInt, tmxX: CGFloat(xFloat), tmxY: CGFloat(yFloat), width: widthInt, height: heightInt)
                 
             default:
                 

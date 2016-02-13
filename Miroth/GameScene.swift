@@ -120,12 +120,6 @@ class GameScene: SKScene {
         // Mark the destination as where the user clicked in the scene
         let destination = theEvent.locationInNode(self)
         self.character!.setDestination(destination)
-        let node = self.nodeAtPoint(destination)
-        
-        
-        if let entity = node as? Entity {
-            self.character!.setTarget(entity)
-        }
     }
     
     override func update(currentTime: CFTimeInterval) {

@@ -122,16 +122,16 @@ class MapBuilder {
         - parameter height: The height of the object.
 
     */
-    func addObjectToLayer(id: Int, type: String, gid: Int, tmxX: CGFloat, tmxY: CGFloat, width: Int, height: Int) {
+    func addActorToLayer(type: String, gid: Int, tmxX: CGFloat, tmxY: CGFloat, width: Int, height: Int) {
         
-        let objectSprite = convertGidToSpriteNode(gid)
-        let object = Object(id: id, type: type, texture: objectSprite)
+        let actorSprite = convertGidToTexture(gid)
+        let actor = Actor(type: type, texture: actorSprite)
         
         // Convert the coordinates from TMX to SpriteKit coordinates
         let x = tmxX
         let y = self.currentLayerSize.height - tmxY
         
-        self.map.addObjectToLayer(self.currentLayer, object: object, x: x, y: y)
+        self.map.addActorToLayer(self.currentLayer, actor: actor, x: x, y: y)
     }
     
     /**
@@ -168,7 +168,7 @@ class MapBuilder {
     */
     func addTileToLayer(gid: Int) {
         
-        let tileTexture = convertGidToSpriteNode(gid)
+        let tileTexture = convertGidToTexture(gid)
         let tile = SKSpriteNode(texture: tileTexture)
         
         self.map.addNextTileToLayer(self.currentLayer, tile: tile)
@@ -182,7 +182,7 @@ class MapBuilder {
     
         - returns: An SKTexture loaded with the texture associated with the specified GID.
     */
-    private func convertGidToSpriteNode(gid: Int) -> SKTexture? {
+    private func convertGidToTexture(gid: Int) -> SKTexture? {
         
         var texture: SKTexture? = nil
         

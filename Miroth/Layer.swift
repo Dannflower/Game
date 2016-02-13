@@ -22,10 +22,9 @@ class Layer: SKSpriteNode {
     private var heightInTiles: Int = 0
     private var widthInTiles: Int = 0
     
-    private var objects: [Object] = []
-    private var entities: [Entity] = []
-    private var movingCollidables: [Collidable] = []
-    private var stationaryCollidables: [Collidable] = []
+    private var actors: [Actor] = []
+    private var movingActors: [Actor] = []
+    private var stationaryActors: [Actor] = []
     
     // Actual tile size
     var actualTileSize: CGSize {
@@ -97,6 +96,29 @@ class Layer: SKSpriteNode {
         currentTile += 1
     }
     
+    private func addCollision(actorA: Actor, actorB: Actor, inout collisions: [Actor : [Actor]]) {
+        
+        // Add the collision for actorA
+        if var actorCollisions = collisions[actorA] {
+            
+            actorCollisions.append(actorB)
+        
+        } else {
+            
+            collisions[actorA] = [actorB]
+        }
+        
+        // Add the collision for actorB
+        if var actorCollisions = collisions[actorB] {
+            
+            actorCollisions.append(actorA)
+            
+        } else {
+            
+            collisions[actorB] = [actorA]
+        }
+    }
+    
     /**
 
         Checks for collisions on this layer and informs the colliding objects.
@@ -104,70 +126,74 @@ class Layer: SKSpriteNode {
     */
     func checkForAndNotifyOfCollisions() {
         
-        // Check moving collidables against each other
-        for var i = 0; i < self.movingCollidables.count - 1; i++ {
+        var collisions: [Actor: [Actor]] = [:]
+        
+        // Check moving Actors against each other
+        for var i = 0; i < self.movingActors.count - 1; i++ {
             
-            for var j = i + 1; j < self.movingCollidables.count; j++ {
+            for var j = i + 1; j < self.movingActors.count; j++ {
                 
-                let collidableA = self.movingCollidables[i]
-                let collidableB = self.movingCollidables[j]
+                let actorA = self.movingActors[i]
+                let actorB = self.movingActors[j]
                 
-                if checkForCollisionBetween(collidableA, collidableB: collidableB) {
+                if checkForCollisionBetween(actorA, actorB: actorB) {
                     
-                    // Inform the collidables that they collided
-                    collidableA.collidedWith(collidableB)
-                    collidableB.collidedWith(collidableA)
+                    addCollision(actorA, actorB: actorB, collisions: &collisions)
                 }
                 
             }
         }
         
-        // Check moving collidables against stationary ones
-        for var i = 0; i < self.movingCollidables.count; i++ {
+        // Check moving Actors against stationary ones
+        for var i = 0; i < self.movingActors.count; i++ {
             
-            for var j = 0; j < self.stationaryCollidables.count; j++ {
+            for var j = 0; j < self.stationaryActors.count; j++ {
                 
-                let collidableA = self.movingCollidables[i]
-                let collidableB = self.stationaryCollidables[j]
+                let actorA = self.movingActors[i]
+                let actorB = self.stationaryActors[j]
                 
-                if checkForCollisionBetween(collidableA, collidableB: collidableB) {
+                if checkForCollisionBetween(actorA, actorB: actorB) {
                     
-                    // Inform the collidables that they collided
-                    collidableA.collidedWith(collidableB)
-                    collidableB.collidedWith(collidableA)
+                    addCollision(actorA, actorB: actorB, collisions: &collisions)
                 }
             }
+        }
+        
+        // Inform all Actors involved in collisions of the Actors they collided with.
+        for (collider, collidees) in collisions {
+            
+            collider.collidedWith(collidees)
         }
     }
     
     /**
 
-        Checks if there is a collision between the two specified Collidables.
+        Checks if there is a collision between the two specified Actors.
 
-        - parameter collidableA: The Collidable being checked for a collision with CollidableB.
-        - parameter collidableB: The collidable being checked for a collision with CollidableA.
+        - parameter actorA: The Actor being checked for a collision with ActorB.
+        - parameter actorB: The Actor being checked for a collision with ActorA.
 
-        - returns: True if there is a collision between collidableA and collidableB, false otherwise.
+        - returns: True if there is a collision between actorA and actorB, false otherwise.
      
     */
-    private func checkForCollisionBetween(collidableA: Collidable, collidableB: Collidable) -> Bool {
+    private func checkForCollisionBetween(actorA: Actor, actorB: Actor) -> Bool {
         
-        let collidableAXLowerBound = collidableA.position.x
-        let collidableAXUpperBound = collidableA.position.x + collidableA.size.width
+        let actorAXLowerBound = actorA.position.x
+        let actorAXUpperBound = actorA.position.x + actorA.size.width
         
-        let collidableAYLowerBound = collidableA.position.y
-        let collidableAYUpperBound = collidableA.position.y + collidableA.size.height
+        let actorAYLowerBound = actorA.position.y
+        let actorAYUpperBound = actorA.position.y + actorA.size.height
         
-        let collidableBXLowerBound = collidableB.position.x
-        let collidableBXUpperBound = collidableB.position.x + collidableB.size.width
+        let actorBXLowerBound = actorB.position.x
+        let actorBXUpperBound = actorB.position.x + actorB.size.width
         
-        let collidableBYLowerBound = collidableB.position.y
-        let collidableBYUpperBound = collidableB.position.y + collidableB.size.height
+        let actorBYLowerBound = actorB.position.y
+        let actorBYUpperBound = actorB.position.y + actorB.size.height
         
         // Checks for gaps on the X and Y axis between the objects
-        if(collidableAXLowerBound < collidableBXUpperBound && collidableAXUpperBound > collidableBXLowerBound) {
+        if(actorAXLowerBound < actorBXUpperBound && actorAXUpperBound > actorBXLowerBound) {
             
-            if(collidableAYLowerBound < collidableBYUpperBound && collidableAYUpperBound > collidableBYLowerBound) {
+            if(actorAYLowerBound < actorBYUpperBound && actorAYUpperBound > actorBYLowerBound) {
                 
                 // Collision
                 return true
@@ -179,35 +205,27 @@ class Layer: SKSpriteNode {
 
     /**
         
-        Adds an Entity to the layer at the coordinates specified.
+        Adds an Actor to the layer at the coordinates specified.
 
-        - parameter entity: The Entity being added to the layer.
+        - parameter actor: The Actor being added to the layer.
         - parameter x: The x-coordinate of the location where the Entity is being added.
         - parameter y: The y-coordinate of the location where the Entity is being added.
      
     */
-    func addEntity(entity: Entity, x: CGFloat, y: CGFloat) {
+    func addActor(actor: Actor, x: CGFloat, y: CGFloat) {
         
-        entity.setLayer(self)
-        addSpriteNodeAboveLayer(entity, x: x, y: y)
-        self.entities.append(entity)
-        self.movingCollidables.append(entity)
-    }
-
-    /**
-
-        Adds an Object to the layer at the coordinates specified.
-
-        - parameter object: The object being added to the layer.
-        - parameter x: The x-coordinate of the location where the Object is being added.
-        - parameter y: The y-coordinate of the location where the Object is being added.
-    */
-    func addObject(object: Object, x: CGFloat, y: CGFloat) {
+        addSpriteNodeAboveLayer(actor, x: x, y: y)
+        self.actors.append(actor)
         
-        addSpriteNodeAboveLayer(object, x: x, y: y)
-        self.objects.append(object)
-        // TODO: Only add appropriate objects to stationary list
-        self.stationaryCollidables.append(object)
+        if(actor.isStationaryActor()) {
+            
+            self.stationaryActors.append(actor)
+        
+        } else {
+            
+            self.movingActors.append(actor)
+        }
+        
     }
     
     /**

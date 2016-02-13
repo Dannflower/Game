@@ -117,21 +117,21 @@ class Map: SKSpriteNode {
     }
     
     // TODO This should be turned into an object factory...
-    func addObjectToLayer(layerNumber: Int, object: Object, x: CGFloat, y: CGFloat) {
+    func addActorToLayer(layerNumber: Int, actor: Actor, x: CGFloat, y: CGFloat) {
         
-        switch object.getType() {
+        switch actor.getType() {
             
         case "Blocked":
             
             // Blockers should be transparent
-            object.texture = nil
-            self.layers[layerNumber].addObject(object, x: x, y: y)
+            actor.texture = nil
+            self.layers[layerNumber].addActor(actor, x: x, y: y)
             
         case "Spawn:Player":
             
             // Create a new player
             self.player = PlayerEntity()
-            self.layers[layerNumber].addEntity(self.player!, x: x, y: y)
+            self.layers[layerNumber].addActor(self.player!, x: x, y: y)
             
             
         default:
