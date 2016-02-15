@@ -14,7 +14,7 @@ class SpriteLoader {
         
         case HumanKnight
         
-        case Tree
+        case AdventurerMale
         
         case Blocker
     }
@@ -27,23 +27,24 @@ class SpriteLoader {
         switch sprite {
             
         case .HumanKnight:
-            return getSpriteTexture("Player0", column: 1, row: 11)
+            return getSpriteTexture("Player0", spriteSize: CGSizeMake(16.0, 16.0), column: 1, row: 11, spacing: 0, margin: 0)
             
-        case .Tree:
-            return getSpriteTexture("Tree0", column: 3, row: 32)
+        case .AdventurerMale:
+            return getSpriteTexture("adventurer_m_front", spriteSize: CGSizeMake(16.0, 16.0), column: 0, row: 3, spacing: 2, margin: 1)
             
         case .Blocker:
-            return getSpriteTexture("Blocked Tile", column: 0, row: 0)
+            return getSpriteTexture("Blocked Tile", spriteSize: CGSizeMake(16.0, 16.0), column: 0, row: 0, spacing: 0, margin: 0)
         }
     }
     
-    class func getSpriteTexture(spriteSheetName: String, column: Int, row: Int) -> SKTexture? {
+    class func getSpriteTexture(spriteSheetName: String, spriteSize: CGSize, column: Int, row: Int, spacing: Int, margin: Int) -> SKTexture? {
         
         var spriteSheet: SpriteSheet? = spriteSheets[spriteSheetName]
         
         // If the sprite sheet doesn't exist, load it
         if(spriteSheet == nil) {
-            loadSpriteSheet(spriteSheetName)
+            
+            loadSpriteSheet(spriteSheetName, spriteSize: spriteSize, spacing: spacing, margin: margin)
             spriteSheet = spriteSheets[spriteSheetName]
         }
         
@@ -54,14 +55,17 @@ class SpriteLoader {
         return spriteTexture
     }
     
-    private static func loadSpriteSheet(name: String) {
+    private static func loadSpriteSheet(name: String, spriteSize: CGSize, spacing: Int, margin: Int) {
         
         let spriteSheetTexture = SKTexture(imageNamed: name)
+        // TODO Texture size should not be hard-coded
+        var rows = (spriteSheetTexture.size().height - CGFloat(2 * margin)) / (spriteSize.height + CGFloat(spacing))
+        var columns = (spriteSheetTexture.size().width - CGFloat(2 * margin)) / (spriteSize.width + CGFloat(spacing))
         
-        let rows = Int(spriteSheetTexture.size().height / 16)
-        let columns = Int(spriteSheetTexture.size().width / 16)
+        rows = ceil(rows)
+        columns = ceil(columns)
         
-        let spriteSheet = SpriteSheet(texture: spriteSheetTexture, rows: rows, columns: columns)
+        let spriteSheet = SpriteSheet(texture: spriteSheetTexture, rows: Int(rows), columns: Int(columns), spacing: spacing, margin: margin)
         
         spriteSheets[name] = spriteSheet
     }

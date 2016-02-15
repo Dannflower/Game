@@ -28,6 +28,8 @@ struct TmxConstants {
         static let HEIGHT = "height"
         static let TILE_HEIGHT = "tileheight"
         static let TILE_WIDTH = "tilewidth"
+        static let SPACING = "spacing"
+        static let MARGIN = "margin"
         static let NAME = "name"
         static let FIRST_GID = "firstgid"
         static let TILE_COUNT = "tilecount"

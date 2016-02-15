@@ -71,7 +71,7 @@ class MapBuilder {
         - parameter tileHeight: The height of a single tile in the tileset.
         - parameter tileWidth: The width of a single tile in the tileset.
     */
-    func createTileset(name: String, firstGid: Int, tileCount: Int, tileHeight: Int, tileWidth: Int) {
+    func createTileset(name: String, firstGid: Int, tileCount: Int, tileHeight: Int, tileWidth: Int, spacing: Int, margin: Int) {
         
         // Determine the GID range for the tileset
         let lastGid = firstGid + tileCount
@@ -82,7 +82,9 @@ class MapBuilder {
             tileHeight: tileHeight,
             tileWidth: tileWidth,
             firstGid: firstGid,
-            lastGid: lastGid)
+            lastGid: lastGid,
+            spacing: spacing,
+            margin: margin)
     }
     
     /**
@@ -99,6 +101,15 @@ class MapBuilder {
         self.currentTileset.cleanAndSetSource(source)
         self.currentTileset.height = height
         self.currentTileset.width = width
+        
+        var rows = CGFloat(height - (2 * self.currentTileset.margin)) / CGFloat(self.currentTileset.tileHeight + self.currentTileset.spacing)
+        var columns = CGFloat(width - (2 * self.currentTileset.margin)) / CGFloat(self.currentTileset.tileWidth + self.currentTileset.spacing)
+        
+        rows = ceil(rows)
+        columns = ceil(columns)
+        
+        self.currentTileset.rows = Int(rows)
+        self.currentTileset.columns = Int(columns)
         
         var tileNumber = 0
         
@@ -196,7 +207,11 @@ class MapBuilder {
             let row = tileset.rows - 1 - tileNumber / tileset.columns
             let column = tileNumber % tileset.columns
             
-            texture = SpriteLoader.getSpriteTexture(tileset.source, column: column, row: row)
+            let tileSize = CGSizeMake(CGFloat(tileset.tileWidth), CGFloat(tileset.tileHeight))
+            let spacing = tileset.spacing
+            let margin = tileset.margin
+            
+            texture = SpriteLoader.getSpriteTexture(tileset.source, spriteSize: tileSize, column: column, row: row, spacing: spacing, margin: margin)
         }
         
         return texture

@@ -132,6 +132,10 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     throw MapLoaderError.MissingAttribute(attributeName: TmxConstants.Attribute.TILE_WIDTH)
                 }
                 
+                let spacing = attributeDict[TmxConstants.Attribute.SPACING]
+                
+                let margin = attributeDict[TmxConstants.Attribute.MARGIN]
+                
                 guard let firstGidInt = Int(firstGid) else {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.FIRST_GID)
@@ -151,8 +155,35 @@ class TmxMapParser: NSObject, NSXMLParserDelegate {
                     
                     throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.TILE_WIDTH)
                 }
+                
+                // Default spacing to 0
+                var spacingInt: Int? = 0
+                
+                if spacing != nil {
                     
-                self.mapBuilder.createTileset(name, firstGid: firstGidInt, tileCount: tileCountInt, tileHeight: tileHeightInt, tileWidth: tileWidthInt)
+                    spacingInt = Int(spacing!)
+                    
+                    if spacingInt == nil {
+                        
+                        throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.SPACING)
+                    }
+                    
+                }
+                
+                // Default margin to 0
+                var marginInt: Int? = 0
+                
+                if margin != nil {
+                    
+                    marginInt = Int(margin!)
+                    
+                    if margin == nil {
+                        
+                        throw MapLoaderError.MalformedAttribute(attributeName: TmxConstants.Attribute.MARGIN)
+                    }
+                }
+                
+                self.mapBuilder.createTileset(name, firstGid: firstGidInt, tileCount: tileCountInt, tileHeight: tileHeightInt, tileWidth: tileWidthInt, spacing: spacingInt!, margin: marginInt!)
                
                 
             case TmxConstants.Element.IMAGE:

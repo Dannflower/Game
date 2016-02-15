@@ -13,14 +13,14 @@ class SpriteSheet {
     let texture: SKTexture
     let rows: Int
     let columns: Int
-    var margin: CGFloat=0
-    var spacing: CGFloat=0
+    var margin: CGFloat = 0
+    var spacing: CGFloat = 0
     
     var frameSize: CGSize {
         
         return CGSize(
-            width: (self.texture.size().width - (self.margin * 2 + self.spacing * CGFloat(self.columns - 1))) / CGFloat(self.columns),
-            height: (self.texture.size().height - (self.margin * 2 + self.spacing * CGFloat(self.rows - 1))) / CGFloat(self.rows))
+            width: 16.0,
+            height: 16.0)
     }
     
     init(texture: SKTexture, rows: Int, columns: Int, spacing: CGFloat, margin: CGFloat) {
@@ -33,9 +33,9 @@ class SpriteSheet {
         
     }
 
-    convenience init(texture: SKTexture, rows: Int, columns: Int) {
+    convenience init(texture: SKTexture, rows: Int, columns: Int, spacing: Int, margin: Int) {
         
-        self.init(texture: texture, rows: rows, columns: columns, spacing: 0, margin: 0)
+        self.init(texture: texture, rows: rows, columns: columns, spacing: CGFloat(spacing), margin: CGFloat(margin))
     }
     
     func textureForColumn(column: Int, row: Int) -> SKTexture? {
@@ -47,16 +47,21 @@ class SpriteSheet {
         }
         
         var textureRect = CGRect(
-            x: self.margin + CGFloat(column) * (self.frameSize.width + self.spacing) - self.spacing,
-            y: self.margin + CGFloat(row) * (self.frameSize.height + self.spacing) - self.spacing,
+            x: self.margin + CGFloat(column) * (self.frameSize.width + self.spacing),
+            y: self.margin + CGFloat(row) * (self.frameSize.height + self.spacing),
             width: self.frameSize.width,
             height: self.frameSize.height)
+        
+        print(textureRect)
+        print(self.texture.size())
         
         textureRect = CGRect(
             x: textureRect.origin.x / self.texture.size().width,
             y: textureRect.origin.y / self.texture.size().height,
             width: textureRect.size.width / self.texture.size().width,
             height: textureRect.size.height / self.texture.size().height)
+        
+        print(textureRect)
         
         return SKTexture(rect: textureRect, inTexture: self.texture)
     }

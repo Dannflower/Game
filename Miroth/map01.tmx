@@ -24,6 +24,9 @@
  <tileset firstgid="2664" name="Blocked Tile" tilewidth="16" tileheight="16" tilecount="1">
   <image source="../Images.xcassets/Objects/Blocked Tile.imageset/Blocked Tile.png" width="16" height="16"/>
  </tileset>
+ <tileset firstgid="2665" name="dungeon_A" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="156">
+  <image source="../Images.xcassets/Tiles - Dungeon/dungeon_A.imageset/dungeon_A.png" width="234" height="218"/>
+ </tileset>
  <layer name="Level 0" width="25" height="25">
   <data>
    <tile gid="156"/>

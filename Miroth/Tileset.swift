@@ -23,24 +23,20 @@ class Tileset {
     var width: Int = 0
     var tileHeight: Int = 0
     var tileWidth: Int = 0
-    var rows: Int {
-        get {
-            return height / tileHeight
-        }
-    }
-    var columns: Int {
-        get {
-            return width / tileWidth
-        }
-    }
+    var spacing: Int = 0
+    var margin: Int = 0
+    var rows: Int = 0
+    var columns: Int = 0
     
-    convenience init(name: String, tileHeight: Int, tileWidth: Int, firstGid: Int, lastGid: Int) {
+    convenience init(name: String, tileHeight: Int, tileWidth: Int, firstGid: Int, lastGid: Int, spacing: Int, margin: Int) {
         
         self.init()
         
         self.name = name
         self.tileHeight = tileHeight
         self.tileWidth = tileWidth
+        self.spacing = spacing
+        self.margin = margin
         self.firstGid = firstGid
         self.lastGid = lastGid
     }
