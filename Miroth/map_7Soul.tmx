@@ -6,8 +6,8 @@
  <tileset firstgid="559" name="Grasslands_B" tilewidth="16" tileheight="16" tilecount="512">
   <image source="../Images.xcassets/Tiles - Grasslands/Grasslands_B.imageset/Grasslands_B.png" width="256" height="512"/>
  </tileset>
- <tileset firstgid="1071" name="adventurer_m" tilewidth="16" tileheight="16" tilecount="16">
-  <image source="../Images.xcassets/Sprites/Human (Front)/Full - Sheet/adventurer_m.imageset/adventurer_m.png" width="64" height="64"/>
+ <tileset firstgid="1071" name="adventurer_m" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="16">
+     <image source="../Images.xcassets/Sprites/Human (Front)/Full - Sheet/adventurer_m_front.imageset/adventurer_m.png" width="72" height="72"/>
  </tileset>
  <tileset firstgid="1087" name="Blocked Tile" tilewidth="16" tileheight="16" tilecount="1">
   <image source="../Images.xcassets/Objects/Blocked Tile.imageset/Blocked Tile.png" width="16" height="16"/>
