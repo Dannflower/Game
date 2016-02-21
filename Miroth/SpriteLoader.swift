@@ -22,6 +22,14 @@ class SpriteLoader {
     private static var spriteSheets = [String : SpriteSheet]()
     
     
+    /**
+        
+        Returns the specified pre-configured texture.
+
+        - parameter sprite: The desired sprite.
+
+        - returns: The specified sprite.
+    */
     class func getSpriteTexture(sprite: Sprite) -> SKTexture? {
         
         switch sprite {
@@ -37,36 +45,84 @@ class SpriteLoader {
         }
     }
     
-    class func getSpriteTexture(spriteSheetName: String, spriteSize: CGSize, column: Int, row: Int, spacing: Int, margin: Int) -> SKTexture? {
+    /**
+     
+        Returns a SpriteSheet based on the source image and specified properties, loading it if necessary.
+     
+        - parameter spriteSheetSourceImage: The file name of the source image or its path.
+        - parameter spriteSize: The size of a sprite in the sprite sheet.
+        - parameter spacing: The spacing in pixels between each sprite in the sprite sheet.
+        - parameter margin: The margin between the edge of the sprite sheet and the actual sprites.
+     
+        - returns: The requested SpriteSheet.
+     */
+    class func getSpriteTexture(spriteSheetSourceImage: String, spriteSize: CGSize, column: Int, row: Int, spacing: Int, margin: Int) -> SKTexture? {
         
-        var spriteSheet: SpriteSheet? = spriteSheets[spriteSheetName]
-        
-        // If the sprite sheet doesn't exist, load it
-        if(spriteSheet == nil) {
-            
-            loadSpriteSheet(spriteSheetName, spriteSize: spriteSize, spacing: spacing, margin: margin)
-            spriteSheet = spriteSheets[spriteSheetName]
-        }
+        let spriteSheet: SpriteSheet? = loadSpriteSheet(spriteSheetSourceImage, spriteSize: spriteSize, spacing: spacing, margin: margin, firstGid: 0, lastGid: 0)
         
         let spriteTexture = spriteSheet?.textureForColumn(column, row: row)
-        spriteTexture?.filteringMode = SKTextureFilteringMode.Nearest
         
         // Return the requested sprite or nil if it couldn't be obtained
         return spriteTexture
     }
     
-    private static func loadSpriteSheet(name: String, spriteSize: CGSize, spacing: Int, margin: Int) {
+    /**
         
-        let spriteSheetTexture = SKTexture(imageNamed: name)
-        // TODO Texture size should not be hard-coded
-        var rows = (spriteSheetTexture.size().height - CGFloat(2 * margin)) / (spriteSize.height + CGFloat(spacing))
-        var columns = (spriteSheetTexture.size().width - CGFloat(2 * margin)) / (spriteSize.width + CGFloat(spacing))
+        Returns a SpriteSheet based on the source image and specified properties, loading it if necessary.
+
+        - parameter spriteSheetSourceImage: The file name of the source image or its path.
+        - parameter spriteSize: The size of a sprite in the sprite sheet.
+        - parameter spacing: The spacing in pixels between each sprite in the sprite sheet.
+        - parameter margin: The margin between the edge of the sprite sheet and the actual sprites.
+
+        - returns: The requested SpriteSheet.
+    */
+    class func getSpriteSheet(spriteSheetSourceImage: String, spriteSize: CGSize, spacing: Int, margin: Int, firstGid: Int, lastGid: Int) -> SpriteSheet {
         
-        rows = ceil(rows)
-        columns = ceil(columns)
+        return loadSpriteSheet(spriteSheetSourceImage, spriteSize: spriteSize, spacing: spacing, margin: margin, firstGid: firstGid, lastGid: lastGid)
+    }
+    
+    /**
+
+        Loads a new SpriteSheet from the source image using the specified properties.
+
+        - parameter spriteSheetSourceImage: The file name of the source image or its path.
+        - parameter spriteSize: The size of a sprite in the SpriteSheet.
+        - parameter spacing: The spacing in pixels between each sprite in the sprite sheet.
+        - parameter margin: The margin between the edge of the sprite sheet and the actual sprites.
+
+        - returns: The requested SpriteSheet.
+    */
+    private static func loadSpriteSheet(spriteSheetSourceImage: String, spriteSize: CGSize, spacing: Int, margin: Int, firstGid: Int, lastGid: Int) -> SpriteSheet {
         
-        let spriteSheet = SpriteSheet(texture: spriteSheetTexture, rows: Int(rows), columns: Int(columns), spacing: spacing, margin: margin)
+        var spriteSheet: SpriteSheet? = spriteSheets[spriteSheetSourceImage]
         
-        spriteSheets[name] = spriteSheet
+        // If the sprite sheet doesn't exist, load it
+        if(spriteSheet == nil) {
+            
+            let spriteSheetTexture = createSourceImageTexture(spriteSheetSourceImage)
+            
+            spriteSheet = SpriteSheet(texture: spriteSheetTexture!, spriteSize: spriteSize, spacing: spacing, margin: margin, firstGid: firstGid, lastGid: lastGid)
+            
+            spriteSheets[spriteSheetSourceImage] = spriteSheet
+        }
+        
+        return spriteSheet!
+    }
+    
+    /**
+     
+        Cleans the TMX formatted file path and sets
+        it as this Tilesets source file (source image
+        must be included and indexed in Images.xcassets).
+     
+        - parameter sourcePath: The file path of the source file as provided by TMX.
+     */
+    private static func createSourceImageTexture(sourcePath: String) -> SKTexture? {
+        
+        let pathComponents = sourcePath.componentsSeparatedByString("/")
+        let fileNameComponents = pathComponents.last!.componentsSeparatedByString(".")
+        
+        return SKTexture(imageNamed: fileNameComponents.first!)
     }
 }

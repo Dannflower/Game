@@ -14,17 +14,16 @@ class GameScene: SKScene {
     var aDown: Bool = false
     var sDown: Bool = false
     var dDown: Bool = false
+    let mapParser = TmxMapParser()
     
     var character: PlayerEntity! = nil
     var map: Map! = nil
     
     override func didMoveToView(view: SKView) {
         
-        let mapParser = TmxMapParser()
+        let mapPath = NSBundle.mainBundle().URLForResource("map_7Soul", withExtension: "tmx")
         
-        let mapPath = NSBundle.mainBundle().URLForResource("map_7Soul1", withExtension: "tmx")
-        
-        guard let newMap = mapParser.parseMap(mapPath!.path!) else {
+        guard let newMap = self.mapParser.parseMap(mapPath!.path!) else {
             // For now, exit on error
             print("Failed to load map!")
             exit(1)
@@ -37,8 +36,6 @@ class GameScene: SKScene {
         
         // Get the player entity
         self.character = self.map.getPlayerEntity()
-        
-        print(self.character.position)
         
         self.addChild(self.map)
         
@@ -70,11 +67,49 @@ class GameScene: SKScene {
             
             dDown = true
         
+        case 38:
+            
+            self.character.attack()
+            
+        case 122:
+            
+            switchToMap("map_7Soul1")
+            
+        case 120:
+            
+            switchToMap("map_7Soul")
+            
         // Do nothing
         default:
+            print(theEvent.keyCode)
             
-            break
         }
+    }
+    
+    func switchToMap(mapName: String) {
+        
+        self.removeAllChildren()
+        
+        let mapPath = NSBundle.mainBundle().URLForResource(mapName, withExtension: "tmx")
+        
+        guard let newMap = self.mapParser.parseMap(mapPath!.path!) else {
+            // For now, exit on error
+            print("Failed to load map!")
+            exit(1)
+        }
+        
+        self.map = newMap
+        
+        // Center the map in the Scene
+        self.map.position = CGPointMake(0, 0)
+        
+        // Get the player entity
+        self.character = self.map.getPlayerEntity()
+        
+        self.addChild(self.map)
+        
+        // Match the Scene to the size of the newly loaded map
+        self.size = self.map.size
     }
     
     override func keyUp(theEvent: NSEvent) {

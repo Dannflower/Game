@@ -73,7 +73,6 @@ class Layer: SKSpriteNode {
             // First tile is a special case since division by zero is bad
             self.tiles[0][0] = tile
             tile.position = CGPointMake(0, CGFloat((self.heightInTiles - 1)) * tile.size.height)
-            print(tile.position)
         
         } else {
             

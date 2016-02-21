@@ -23,4 +23,16 @@ class PlayerEntity: Entity {
         
         self.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures([self.texture!, animatedTexture1!, animatedTexture2!, animatedTexture3!], timePerFrame: 0.25)))
     }
+    
+    func attack() {
+        
+        let animatedTexture1 = SpriteLoader.getSpriteTexture("sword attack", spriteSize: CGSizeMake(16.0, 16.0), column: 0, row: 0, spacing: 0, margin: 0)!
+        let animatedTexture2 = SpriteLoader.getSpriteTexture("sword attack", spriteSize: CGSizeMake(16.0, 16.0), column: 1, row: 0, spacing: 0, margin: 0)!
+        let animatedTexture3 = SpriteLoader.getSpriteTexture("sword attack", spriteSize: CGSizeMake(16.0, 16.0), column: 2, row: 0, spacing: 0, margin: 0)!
+        let animatedTexture4 = SpriteLoader.getSpriteTexture("sword attack", spriteSize: CGSizeMake(16.0, 16.0), column: 3, row: 0, spacing: 0, margin: 0)!
+        
+        self.runAction(SKAction.animateWithTextures([animatedTexture1, animatedTexture2, animatedTexture3, animatedTexture4], timePerFrame: 0.1))
+
+
+    }
 }

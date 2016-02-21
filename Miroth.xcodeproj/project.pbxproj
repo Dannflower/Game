@@ -22,7 +22,6 @@
 		5E65CCC21BA9082D001A48E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCC11BA9082D001A48E6 /* AppDelegate.swift */; };
 		5E65CCC61BA9082D001A48E6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5E65CCC51BA9082D001A48E6 /* GameScene.sks */; };
 		5E65CCD71BA9082E001A48E6 /* MirothTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65CCD61BA9082E001A48E6 /* MirothTests.swift */; };
-		5EA12B581BBF7E39008BC2D9 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA12B571BBF7E39008BC2D9 /* Tileset.swift */; };
 		5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAEDB391BB73A21004E658D /* SpriteSheet.swift */; };
 		5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DC1BBCDAC900327FDF /* Layer.swift */; };
 		5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB461DE1BBCDBEB00327FDF /* Map.swift */; };
@@ -62,7 +61,6 @@
 		5E65CCD01BA9082E001A48E6 /* MirothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MirothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E65CCD51BA9082E001A48E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E65CCD61BA9082E001A48E6 /* MirothTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirothTests.swift; sourceTree = "<group>"; };
-		5EA12B571BBF7E39008BC2D9 /* Tileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tileset.swift; sourceTree = "<group>"; };
 		5EAEDB391BB73A21004E658D /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		5EB461DC1BBCDAC900327FDF /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		5EB461DE1BBCDBEB00327FDF /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 				5EBBCDD61BDD62E4000FBC6A /* TmxConstants.swift */,
 				5EB461DC1BBCDAC900327FDF /* Layer.swift */,
 				5EB461DE1BBCDBEB00327FDF /* Map.swift */,
-				5EA12B571BBF7E39008BC2D9 /* Tileset.swift */,
 				07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */,
 			);
 			name = "Map Utilities";
@@ -325,7 +322,6 @@
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
 				07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */,
 				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
-				5EA12B581BBF7E39008BC2D9 /* Tileset.swift in Sources */,
 				5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */,
 				5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */,
 				5EB461DD1BBCDAC900327FDF /* Layer.swift in Sources */,

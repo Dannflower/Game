@@ -14,10 +14,10 @@ class MapBuilder {
     private var map: Map! = nil
     
     // Maps tile GID to the tileset it belongs to and its place in the tileset
-    private var tilesetDict: [Int : (tileset: Tileset, tileNumber: Int)] = [:]
+    private var tilesetDict: [Int : (tileset: SpriteSheet, tileNumber: Int)] = [:]
     
     // The current Tileset being built
-    private var currentTileset: Tileset! = nil
+    private var currentTileset: TilesetData! = nil
     
     // The current TileLayer being built
     private var currentLayer: Int = -1
@@ -25,11 +25,14 @@ class MapBuilder {
     // The size of the current layer being built
     private var currentLayerSize: CGSize! = nil
     
-    // Error types
-    enum MapLoaderError: ErrorType {
+    // Partial data representing a Tileset
+    struct TilesetData {
         
-        case MissingAttribute(attributeName: String)
-        case MalformedAttribute(attributeName: String)
+        var tileSize: CGSize
+        var spacing: Int
+        var margin: Int
+        var firstGid: Int
+        var lastGid: Int
     }
     
     init() {
@@ -75,16 +78,10 @@ class MapBuilder {
         
         // Determine the GID range for the tileset
         let lastGid = firstGid + tileCount
+        let tileSize = CGSizeMake(CGFloat(tileWidth), CGFloat(tileHeight))
         
         //Create a new tileset
-        self.currentTileset = Tileset(
-            name: name,
-            tileHeight: tileHeight,
-            tileWidth: tileWidth,
-            firstGid: firstGid,
-            lastGid: lastGid,
-            spacing: spacing,
-            margin: margin)
+        self.currentTileset = TilesetData(tileSize: tileSize, spacing: spacing, margin: margin, firstGid: firstGid, lastGid: lastGid)
     }
     
     /**
@@ -97,26 +94,14 @@ class MapBuilder {
     */
     func setTilesetSource(source: String, height: Int, width: Int) {
         
-        // Finish initializing the tileset
-        self.currentTileset.cleanAndSetSource(source)
-        self.currentTileset.height = height
-        self.currentTileset.width = width
-        
-        var rows = CGFloat(height - (2 * self.currentTileset.margin)) / CGFloat(self.currentTileset.tileHeight + self.currentTileset.spacing)
-        var columns = CGFloat(width - (2 * self.currentTileset.margin)) / CGFloat(self.currentTileset.tileWidth + self.currentTileset.spacing)
-        
-        rows = ceil(rows)
-        columns = ceil(columns)
-        
-        self.currentTileset.rows = Int(rows)
-        self.currentTileset.columns = Int(columns)
+        let spriteSheet = SpriteLoader.getSpriteSheet(source, spriteSize: self.currentTileset.tileSize, spacing: self.currentTileset.spacing, margin: self.currentTileset.margin, firstGid: self.currentTileset.firstGid, lastGid: self.currentTileset.lastGid)
         
         var tileNumber = 0
         
         // Assign a tileset and tile number to each GID
-        for gid in self.currentTileset.gidRange {
+        for gid in spriteSheet.gidRange {
             
-            tilesetDict[gid] = (self.currentTileset, tileNumber++)
+            tilesetDict[gid] = (spriteSheet, tileNumber++)
         }
     }
     
@@ -204,14 +189,10 @@ class MapBuilder {
             let tileNumber = tilesetAndNumber.tileNumber
             
             // Convert the tile number into a row/column position
-            let row = tileset.rows - 1 - tileNumber / tileset.columns
-            let column = tileNumber % tileset.columns
+            let row = tileset.getRows() - 1 - tileNumber / tileset.getColumns()
+            let column = tileNumber % tileset.getColumns()
             
-            let tileSize = CGSizeMake(CGFloat(tileset.tileWidth), CGFloat(tileset.tileHeight))
-            let spacing = tileset.spacing
-            let margin = tileset.margin
-            
-            texture = SpriteLoader.getSpriteTexture(tileset.source, spriteSize: tileSize, column: column, row: row, spacing: spacing, margin: margin)
+            texture = tileset.textureForColumn(column, row: row)
         }
         
         return texture

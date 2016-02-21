@@ -7,7 +7,7 @@
   <image source="../Images.xcassets/Tiles - Grasslands/Grasslands_B.imageset/Grasslands_B.png" width="256" height="512"/>
  </tileset>
  <tileset firstgid="1071" name="adventurer_m" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="16">
-     <image source="../Images.xcassets/Sprites/Human (Front)/Full - Sheet/adventurer_m_front.imageset/adventurer_m.png" width="72" height="72"/>
+  <image source="../Images.xcassets/Sprites/Human (Front)/Full - Sheet/adventurer_m_front.imageset/adventurer_m.png" width="72" height="72"/>
  </tileset>
  <tileset firstgid="1087" name="Blocked Tile" tilewidth="16" tileheight="16" tilecount="1">
   <image source="../Images.xcassets/Objects/Blocked Tile.imageset/Blocked Tile.png" width="16" height="16"/>
@@ -1267,17 +1267,17 @@
    <tile gid="584"/>
    <tile gid="585"/>
    <tile gid="583"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="767"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="768"/>
+   <tile gid="769"/>
    <tile gid="568"/>
    <tile gid="569"/>
    <tile gid="567"/>
@@ -1297,17 +1297,17 @@
    <tile gid="568"/>
    <tile gid="569"/>
    <tile gid="567"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="783"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="784"/>
+   <tile gid="785"/>
    <tile gid="584"/>
    <tile gid="585"/>
    <tile gid="583"/>
@@ -1327,17 +1327,17 @@
    <tile gid="584"/>
    <tile gid="585"/>
    <tile gid="583"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="799"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="800"/>
+   <tile gid="801"/>
    <tile gid="568"/>
    <tile gid="569"/>
    <tile gid="567"/>

@@ -10,34 +10,80 @@ import SpriteKit
 
 class SpriteSheet {
     
-    let texture: SKTexture
-    let rows: Int
-    let columns: Int
-    var margin: CGFloat = 0
-    var spacing: CGFloat = 0
+    private let texture: SKTexture
+    private let rows: Int
+    private let columns: Int
     
-    var frameSize: CGSize {
-        
-        return CGSize(
-            width: 16.0,
-            height: 16.0)
+    private var margin: CGFloat = 0
+    private var spacing: CGFloat = 0
+    private var firstGid: Int = 0
+    private var lastGid: Int = 0
+    private var spriteSize: CGSize
+    
+    var gidRange: Range<Int> {
+        get {
+            return firstGid..<lastGid
+        }
     }
     
-    init(texture: SKTexture, rows: Int, columns: Int, spacing: CGFloat, margin: CGFloat) {
+    /**
         
-        self.texture=texture
-        self.rows=rows
-        self.columns=columns
-        self.spacing=spacing
-        self.margin=margin
-        
-    }
+        Creates a new SpriteSheet using the specified texture and properties.
 
-    convenience init(texture: SKTexture, rows: Int, columns: Int, spacing: Int, margin: Int) {
+        - parameter texture: The sprite sheet texture.
+        - parameter spriteSize: The size of a sprite in the sprite sheet.
+        - parameter spacing: The spacing in pixels between sprites in the sprite sheet.
+        - parameter margin: The margin between the edge of the sprite sheet and the actual sprites.
+    */
+    init(texture: SKTexture, spriteSize: CGSize, spacing: Int, margin: Int, firstGid: Int, lastGid: Int) {
         
-        self.init(texture: texture, rows: rows, columns: columns, spacing: CGFloat(spacing), margin: CGFloat(margin))
+        self.texture = texture
+        self.spacing = CGFloat(spacing)
+        self.margin = CGFloat(margin)
+        self.spriteSize = spriteSize
+        
+        let tempRows = (self.texture.size().height - 2 * self.margin) / (self.spriteSize.height + self.spacing)
+        let tempColumns = (self.texture.size().width - 2 * self.margin) / (self.spriteSize.width + self.spacing)
+        
+        // Round up for tilesets with spacing
+        self.rows = Int(ceil(tempRows))
+        self.columns = Int(ceil(tempColumns))
+        self.firstGid = firstGid
+        self.lastGid = lastGid
     }
     
+    /**
+
+        Returns the row count of this SpriteSheet.
+
+        - returns: The row count of this SpriteSheet.
+    */
+    func getRows() -> Int {
+        
+        return self.rows
+    }
+    
+    /**
+
+        Returns the column count of this SpriteSheet.
+
+        - returns: The column count of this SpriteSheet.
+    */
+    func getColumns() -> Int {
+        
+        return self.columns
+    }
+    
+    /**
+
+        Returns the texture at the specified row and column
+        (the first sprite is located at the lower-left of the sprite sheet).
+
+        - parameter column: The column of the sprite.
+        - parameter row: The row of the sprite.
+
+        - returns: The texture at the specified row and column.
+    */
     func textureForColumn(column: Int, row: Int) -> SKTexture? {
         
         if !(0...self.rows ~= row && 0...self.columns ~= column) {
@@ -47,13 +93,10 @@ class SpriteSheet {
         }
         
         var textureRect = CGRect(
-            x: self.margin + CGFloat(column) * (self.frameSize.width + self.spacing),
-            y: self.margin + CGFloat(row) * (self.frameSize.height + self.spacing),
-            width: self.frameSize.width,
-            height: self.frameSize.height)
-        
-        print(textureRect)
-        print(self.texture.size())
+            x: self.margin + CGFloat(column) * (self.spriteSize.width + self.spacing),
+            y: self.margin + CGFloat(row) * (self.spriteSize.height + self.spacing),
+            width: self.spriteSize.width,
+            height: self.spriteSize.height)
         
         textureRect = CGRect(
             x: textureRect.origin.x / self.texture.size().width,
@@ -61,9 +104,10 @@ class SpriteSheet {
             width: textureRect.size.width / self.texture.size().width,
             height: textureRect.size.height / self.texture.size().height)
         
-        print(textureRect)
+        let texture = SKTexture(rect: textureRect, inTexture: self.texture)
+            
+        texture.filteringMode = SKTextureFilteringMode.Nearest
         
-        return SKTexture(rect: textureRect, inTexture: self.texture)
+        return texture
     }
-    
 }
