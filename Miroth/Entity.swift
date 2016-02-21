@@ -18,6 +18,26 @@ class Entity: Actor {
     private var isMoving: Bool = false
     private var lastValidPosition: CGPoint? = nil
     
+    var facing: Facing = Facing.Down
+    var previousFacing: Facing = Facing.Down
+    
+    enum Facing {
+        
+        case Up
+        
+        case Down
+        
+        case Left
+        
+        case Right
+    }
+    
+    /**
+        
+        Indicates if the Entity is attempting to move to a destination.
+
+        - returns: True if the Entity is attempting to move to a destination, false otherwise.
+    */
     func isEntityMoving() -> Bool {
         
         return self.isMoving
@@ -49,6 +69,7 @@ class Entity: Actor {
                 
                 if distanceToMove > 0.0 {
                     
+                    setFacing(directionVector)
                     self.position = VectorMath.computeNewPosition(currentPosition, directionVector: directionVector, speed: compensatedSpeed)
                     self.isMoving = true
                     
@@ -62,6 +83,52 @@ class Entity: Actor {
         }
         
         lastUpdateTime = currentTime
+    }
+    
+    func setFacing(directionVector: CGVector) {
+        
+        self.previousFacing = self.facing
+        
+        // Right/Up
+        if directionVector.dx > 0 && directionVector.dy > 0 {
+            
+            self.facing = Facing.Up
+        
+        // Right/Down
+        } else if directionVector.dx > 0 && directionVector.dy < 0 {
+            
+            self.facing = Facing.Down
+        
+        // Left/Down
+        } else if directionVector.dx < 0 && directionVector.dy < 0 {
+            
+            self.facing = Facing.Down
+        
+        // Left/Up
+        } else if directionVector.dx < 0 && directionVector.dy > 0 {
+            
+            self.facing = Facing.Up
+        
+        // Up
+        } else if directionVector.dx == 0 && directionVector.dy > 0 {
+            
+            self.facing = Facing.Up
+        
+        // Down
+        } else if directionVector.dx == 0 && directionVector.dy < 0 {
+            
+            self.facing = Facing.Down
+        
+        // Right
+        } else if directionVector.dx > 0 && directionVector.dy == 0 {
+            
+            self.facing = Facing.Right
+        
+        // Left
+        } else if directionVector.dx < 0 && directionVector.dy == 0 {
+            
+            self.facing = Facing.Left
+        }
     }
     
     /**
