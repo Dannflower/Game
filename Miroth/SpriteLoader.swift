@@ -16,6 +16,8 @@ class SpriteLoader {
         
         case AdventurerMale
         
+        case SwordUp
+        
         case Blocker
     }
     
@@ -40,6 +42,9 @@ class SpriteLoader {
         case .AdventurerMale:
             return getSpriteTexture("adventurer_m_front", spriteSize: CGSizeMake(16.0, 16.0), column: 0, row: 3, spacing: 2, margin: 1)
             
+        case .SwordUp:
+            return getSpriteTexture("sword attack", spriteSize: CGSizeMake(16.0, 16.0), column: 3, row: 0, spacing: 0, margin: 0)
+            
         case .Blocker:
             return getSpriteTexture("Blocked Tile", spriteSize: CGSizeMake(16.0, 16.0), column: 0, row: 0, spacing: 0, margin: 0)
         }
@@ -47,7 +52,7 @@ class SpriteLoader {
     
     /**
      
-        Returns a SpriteSheet based on the source image and specified properties, loading it if necessary.
+        Returns a SKTexture based on the source image and specified properties, loading the SpriteSheet if necessary.
      
         - parameter spriteSheetSourceImage: The file name of the source image or its path.
         - parameter spriteSize: The size of a sprite in the sprite sheet.
@@ -58,12 +63,42 @@ class SpriteLoader {
      */
     class func getSpriteTexture(spriteSheetSourceImage: String, spriteSize: CGSize, column: Int, row: Int, spacing: Int, margin: Int) -> SKTexture? {
         
-        let spriteSheet: SpriteSheet? = loadSpriteSheet(spriteSheetSourceImage, spriteSize: spriteSize, spacing: spacing, margin: margin, firstGid: 0, lastGid: 0)
+        let spriteSheet = loadSpriteSheet(spriteSheetSourceImage, spriteSize: spriteSize, spacing: spacing, margin: margin, firstGid: 0, lastGid: 0)
         
-        let spriteTexture = spriteSheet?.textureForColumn(column, row: row)
+        let spriteTexture = spriteSheet.textureForColumn(column, row: row)
         
         // Return the requested sprite or nil if it couldn't be obtained
         return spriteTexture
+    }
+    
+    /**
+        
+        Returns an SKTexture based on the source image and specified properties mirrored on the X-axis, loading the SpriteSheet if necessary.
+
+        - parameter spriteSheetSourceImage: The file name of the source image or its path.
+        - parameter spriteSize: The size of a sprite in the sprite sheet.
+        - parameter spacing: The spacing in pixels between each sprite in the sprite sheet.
+        - parameter margin: The margin between the edge of the sprite sheet and the actual sprites.
+
+        - returns: The requested SKTexture mirrored on the X-axis.
+    */
+    class func getMirroredSpriteTexture(spriteSheetSourceImage: String, spriteSize: CGSize, column: Int, row: Int, spacing: Int, margin: Int) -> SKTexture? {
+        
+        let spriteSheet = loadSpriteSheet(spriteSheetSourceImage, spriteSize: spriteSize, spacing: spacing, margin: margin, firstGid: 0, lastGid: 0)
+        let spriteTexture = spriteSheet.textureForColumn(column, row: row)
+        
+        let node = SKSpriteNode(texture: spriteTexture)
+        let view = SKView()
+        
+        // Mirror the texture on the X-axis
+        node.xScale = node.xScale * -1
+        
+        let texture = view.textureFromNode(node)
+        
+        // The View returns a linearly filtered texture
+        texture!.filteringMode = .Nearest
+        
+        return texture
     }
     
     /**

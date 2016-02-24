@@ -79,6 +79,10 @@ class Entity: Actor {
                     distanceToMove = 0.0
                     self.isMoving = false
                 }
+            
+            } else {
+                
+                self.isMoving = false
             }
         }
         
