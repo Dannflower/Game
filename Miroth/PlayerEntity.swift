@@ -10,13 +10,11 @@ import SpriteKit
 
 class PlayerEntity: Entity {
     
-    var hitPoints: Int = 0
-    var currentTarget: Entity? = nil
-    
     private let timePerFrame: NSTimeInterval = 0.1
-    private let timePerAttackFrame: NSTimeInterval = 0.1
+    private let timePerAttackFrame: NSTimeInterval = 0.025
     
     private var attackNode: SKSpriteNode! = nil
+    private var damageNode: DamageInteractor! = nil
     
     private var isAttacking: Bool = false
     
@@ -71,47 +69,56 @@ class PlayerEntity: Entity {
     func attack() {
         
         if !self.isAttacking {
-        
-            // The parent of the entity should always be the layer it occupies
-            let layer = self.parent!
             
             // Create the attack node using any texture
             self.attackNode = SKSpriteNode(texture: downAttackAnimation[1])
             self.attackNode.anchorPoint = CGPointMake(0.0, 0.0)
-            self.attackNode.zPosition = self.zPosition
+            
+            self.damageNode = DamageInteractor(size: self.attackNode.size)
+            self.damageNode.anchorPoint = CGPointMake(0.0, 0.0)
+            self.damageNode.zPosition = self.zPosition
+            
+            self.damageNode.owner = self
+            self.damageNode.damage = 1
             
             switch self.facing {
-                
+            
             case Facing.Down:
             
-                self.attackNode.position = CGPointMake(self.position.x, self.position.y - self.attackNode.size.height)
+                self.attackNode.position = CGPointMake(0.0, -self.size.height)
+                self.damageNode.position = CGPointMake(self.position.x, self.position.y - self.size.height)
                 self.attackNode.runAction(SKAction.animateWithTextures(downAttackAnimation, timePerFrame: timePerAttackFrame), completion: onAttackComplete)
             
             case Facing.Up:
                 
-                self.attackNode.position = CGPointMake(self.position.x, self.position.y + self.attackNode.size.height)
+                self.attackNode.position = CGPointMake(0.0, self.size.height)
+                self.damageNode.position = CGPointMake(self.position.x, self.position.y + self.size.height)
                 self.attackNode.runAction(SKAction.animateWithTextures(upAttackAnimation, timePerFrame: timePerAttackFrame), completion: onAttackComplete)
                 
             case Facing.Left:
                 
-                self.attackNode.position = CGPointMake(self.position.x - self.attackNode.size.width, self.position.y)
+                self.attackNode.position = CGPointMake(-self.size.width, 0.0)
+                self.damageNode.position = CGPointMake(self.position.x - self.size.width, self.position.y)
                 self.attackNode.runAction(SKAction.animateWithTextures(leftAttackAnimation, timePerFrame: timePerAttackFrame), completion: onAttackComplete)
                 
             case Facing.Right:
                 
-                self.attackNode.position = CGPointMake(self.position.x + self.attackNode.size.width, self.position.y)
+                self.attackNode.position = CGPointMake(self.size.width, 0.0)
+                self.damageNode.position = CGPointMake(self.position.x + self.size.width, self.position.y)
                 self.attackNode.runAction(SKAction.animateWithTextures(rightAttackAnimation, timePerFrame: timePerAttackFrame), completion: onAttackComplete)
             }
             
             self.isAttacking = true
             
-            layer.addChild(self.attackNode)
+            self.addChild(self.attackNode)
+            self.parent!.addChild(self.damageNode)
         }
     }
     
     private func onAttackComplete() {
         
         self.attackNode.removeFromParent()
+        self.damageNode.removeFromParent()
         self.isAttacking = false
     }
     
@@ -126,8 +133,6 @@ class PlayerEntity: Entity {
             
             // TODO: This should also reset the character's texture to standing
         }
-        
-        // TODO: The attack node should move with the player
     }
     
     override func setFacing(directionVector: CGVector) {

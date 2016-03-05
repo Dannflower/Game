@@ -15,7 +15,10 @@ class Entity: Actor {
     private var destination: CGPoint? = nil
     private var lastUpdateTime: CFTimeInterval? = nil
     private var distanceToMove: CGFloat = 0.0
+    
     private var isMoving: Bool = false
+    private var isAttacking: Bool = false
+    
     private var lastValidPosition: CGPoint? = nil
     
     var facing: Facing = Facing.Down
@@ -163,7 +166,7 @@ class Entity: Actor {
             // Check that collision is still happening since previous resolutions may have solved this collision.
             if computeXOverlap(self, actorB: actor) > 0.0 || computeYOverlap(self, actorB: actor) > 0.0 {
                 
-                print("X \(computeXOverlap(self, actorB: actor)) Y: \(computeYOverlap(self, actorB: actor))")
+                //print("X \(computeXOverlap(self, actorB: actor)) Y: \(computeYOverlap(self, actorB: actor))")
             
                 // Resolve the collision on the axis of least separation.
                 if computeXOverlap(self, actorB: actor) <= computeYOverlap(self, actorB: actor) {

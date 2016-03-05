@@ -11,7 +11,7 @@
 		073B1E6B1C45E12D0021BE62 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073B1E6A1C45E12D0021BE62 /* MainMenu.xib */; };
 		073B1E6D1C45E30A0021BE62 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073B1E6C1C45E30A0021BE62 /* GameScene.swift */; };
 		0741CFA01C69A7C200D85C8E /* map_7Soul.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0741CF9F1C69A7C200D85C8E /* map_7Soul.tmx */; };
-		0754942E1C79643E008B4D7D /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0754942D1C79643E008B4D7D /* Weapon.swift */; };
+		079357BA1C8B65BD00281650 /* DamageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079357B91C8B65BD00281650 /* DamageInteractor.swift */; };
 		07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */; };
 		07B58C141C6C4EFF00385CEA /* map_7Soul1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 07B58C131C6C4EFF00385CEA /* map_7Soul1.tmx */; };
 		07B837EE1C6ADFD100607369 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07B837ED1C6ADFD100607369 /* Images.xcassets */; };
@@ -47,7 +47,7 @@
 		073B1E6A1C45E12D0021BE62 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Miroth/MainMenu.xib; sourceTree = "<group>"; };
 		073B1E6C1C45E30A0021BE62 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = Miroth/GameScene.swift; sourceTree = "<group>"; };
 		0741CF9F1C69A7C200D85C8E /* map_7Soul.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_7Soul.tmx; sourceTree = "<group>"; };
-		0754942D1C79643E008B4D7D /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		079357B91C8B65BD00281650 /* DamageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageInteractor.swift; sourceTree = "<group>"; };
 		07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
 		07B58C131C6C4EFF00385CEA /* map_7Soul1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_7Soul1.tmx; sourceTree = "<group>"; };
 		07B837ED1C6ADFD100607369 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -111,12 +111,12 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
-		0754942C1C7963F7008B4D7D /* Weapons */ = {
+		0754942C1C7963F7008B4D7D /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				0754942D1C79643E008B4D7D /* Weapon.swift */,
+				079357B91C8B65BD00281650 /* DamageInteractor.swift */,
 			);
-			name = Weapons;
+			name = Interactor;
 			sourceTree = "<group>";
 		};
 		5E649F691BABD78E003DEE92 /* Math */ = {
@@ -132,7 +132,7 @@
 			children = (
 				07C5F8521C6EE08A00226C32 /* ActorFactory.swift */,
 				07C5F8501C6ED5E500226C32 /* Actor.swift */,
-				0754942C1C7963F7008B4D7D /* Weapons */,
+				0754942C1C7963F7008B4D7D /* Interactor */,
 				0754942B1C7963E3008B4D7D /* Entities */,
 			);
 			name = Actors;
@@ -340,7 +340,7 @@
 				5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */,
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
 				07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */,
-				0754942E1C79643E008B4D7D /* Weapon.swift in Sources */,
+				079357BA1C8B65BD00281650 /* DamageInteractor.swift in Sources */,
 				5E5A68B01BB77FD7001D7664 /* SpriteLoader.swift in Sources */,
 				5E649F6B1BABD88A003DEE92 /* VectorMath.swift in Sources */,
 				5EB461DF1BBCDBEB00327FDF /* Map.swift in Sources */,
