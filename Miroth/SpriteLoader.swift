@@ -82,7 +82,7 @@ class SpriteLoader {
 
         - returns: The requested SKTexture mirrored on the X-axis.
     */
-    class func getMirroredSpriteTexture(spriteSheetSourceImage: String, spriteSize: CGSize, column: Int, row: Int, spacing: Int, margin: Int) -> SKTexture? {
+    class func getXAxisMirroredSpriteTexture(spriteSheetSourceImage: String, spriteSize: CGSize, column: Int, row: Int, spacing: Int, margin: Int) -> SKTexture? {
         
         let spriteSheet = loadSpriteSheet(spriteSheetSourceImage, spriteSize: spriteSize, spacing: spacing, margin: margin, firstGid: 0, lastGid: 0)
         let spriteTexture = spriteSheet.textureForColumn(column, row: row)
