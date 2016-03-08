@@ -12,6 +12,8 @@ class Actor: SKSpriteNode {
     
     private var type: String = ""
     
+    var layer: Layer! = nil
+    
     convenience init(type: String, texture: SKTexture?) {
         
         self.init(texture: texture)

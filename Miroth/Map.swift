@@ -17,7 +17,7 @@ class Map: SKSpriteNode {
     private var widthInTiles: Int = 0
     private var heightInTiles: Int = 0
     
-    private var player: PlayerEntity? = nil
+    private var player: PlayerEntity! = nil
     
     // The set of layers that make up this map
     private var layers: [Layer] = []
@@ -131,8 +131,14 @@ class Map: SKSpriteNode {
             
             // Create a new player
             self.player = PlayerEntity()
+            self.player.layer = self.layers[layerNumber]
             self.layers[layerNumber].addActor(self.player!, x: x, y: y)
             
+        case "Spawn:Slime":
+            
+            // Create a new slime
+            let slime = SlimeEntity()
+            self.layers[layerNumber].addActor(slime, x: x, y: y)
             
         default:
             break

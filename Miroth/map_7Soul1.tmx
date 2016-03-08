@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" nextobjectid="45">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" nextobjectid="48">
  <tileset firstgid="1" name="dungeon_A" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="156">
   <image source="../Images.xcassets/Tiles - Dungeon/dungeon_A.imageset/dungeon_A.png" width="234" height="216"/>
  </tileset>
@@ -11,6 +11,9 @@
  </tileset>
  <tileset firstgid="414" name="adventurer_m" tilewidth="16" tileheight="16" spacing="2" margin="1" tilecount="16">
   <image source="../Images.xcassets/Sprites/Human (Front)/Full - Sheet/adventurer_m_front.imageset/adventurer_m.png" width="72" height="72"/>
+ </tileset>
+ <tileset firstgid="430" name="green slime" tilewidth="16" tileheight="16" tilecount="2">
+  <image source="../Images.xcassets/Sprites/Monster/green slime.imageset/green slime.png" width="32" height="16"/>
  </tileset>
  <layer name="Tile Layer 1" width="10" height="10">
   <data>
@@ -262,5 +265,6 @@
   <object id="42" type="Blocked" gid="413" x="64" y="64" width="16" height="16"/>
   <object id="43" type="Blocked" gid="413" x="48" y="64" width="16" height="16"/>
   <object id="44" type="Blocked" gid="413" x="80" y="80" width="16" height="16"/>
+  <object id="45" name="Slime" type="Spawn:Slime" gid="431" x="32" y="96" width="16" height="16"/>
  </objectgroup>
 </map>

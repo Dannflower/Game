@@ -111,7 +111,7 @@ class PlayerEntity: Entity {
             self.isAttacking = true
             
             self.addChild(self.attackNode)
-            self.parent!.addChild(self.damageNode)
+            self.layer.addActor(self.damageNode, x: self.damageNode.position.x, y: self.damageNode.position.y)
         }
     }
     
@@ -119,7 +119,9 @@ class PlayerEntity: Entity {
         
         self.attackNode.removeFromParent()
         self.damageNode.removeFromParent()
+        self.layer.removeActor(self.damageNode)
         self.isAttacking = false
+        
     }
     
     override func move(currentTime: CFTimeInterval) {

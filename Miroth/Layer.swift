@@ -229,6 +229,46 @@ class Layer: SKSpriteNode {
         
     }
     
+    func removeActor(actor: Actor) {
+        
+        // Remove from the common set of actors
+        for var i = 0; i < actors.count; i++ {
+            
+            if actors[i] == actor {
+                
+                actors.removeAtIndex(i)
+                break
+            }
+        }
+        
+        // Remove from the correct actor set
+        if actor.isStationaryActor() {
+            
+            for var i = 0; i < stationaryActors.count; i++ {
+                
+                if stationaryActors[i] == actor {
+                    
+                    stationaryActors.removeAtIndex(i)
+                    break
+                }
+            }
+        
+        } else {
+            
+            for var i = 0; i < movingActors.count; i++ {
+                
+                if movingActors[i] == actor {
+                    
+                    movingActors.removeAtIndex(i)
+                    break
+                }
+            }
+        }
+        
+        // Remove it from this node
+        actor.removeFromParent()
+    }
+    
     /**
 
         Adds a SpriteNode to the layer, above the tiles, at the coordinates specified after converting

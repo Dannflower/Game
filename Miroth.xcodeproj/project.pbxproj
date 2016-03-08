@@ -15,6 +15,7 @@
 		07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */; };
 		07B58C141C6C4EFF00385CEA /* map_7Soul1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 07B58C131C6C4EFF00385CEA /* map_7Soul1.tmx */; };
 		07B837EE1C6ADFD100607369 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07B837ED1C6ADFD100607369 /* Images.xcassets */; };
+		07C4A6C21C8E72110022E35D /* SlimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4A6C11C8E72110022E35D /* SlimeEntity.swift */; };
 		07C5F8511C6ED5E500226C32 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5F8501C6ED5E500226C32 /* Actor.swift */; };
 		07C5F8531C6EE08A00226C32 /* ActorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5F8521C6EE08A00226C32 /* ActorFactory.swift */; };
 		07CE360E1C65AEDE000E76DB /* map02.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 07CE360D1C65AEDE000E76DB /* map02.tmx */; };
@@ -51,6 +52,7 @@
 		07B1369F1C39DA4B00CC4D50 /* MapBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBuilder.swift; sourceTree = "<group>"; };
 		07B58C131C6C4EFF00385CEA /* map_7Soul1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_7Soul1.tmx; sourceTree = "<group>"; };
 		07B837ED1C6ADFD100607369 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		07C4A6C11C8E72110022E35D /* SlimeEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlimeEntity.swift; sourceTree = "<group>"; };
 		07C5F8501C6ED5E500226C32 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
 		07C5F8521C6EE08A00226C32 /* ActorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActorFactory.swift; sourceTree = "<group>"; };
 		07CE360D1C65AEDE000E76DB /* map02.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map02.tmx; sourceTree = "<group>"; };
@@ -105,8 +107,9 @@
 		0754942B1C7963E3008B4D7D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				5EC008031BB701DC0068C167 /* PlayerEntity.swift */,
 				5EC008011BB6FE790068C167 /* Entity.swift */,
+				5EC008031BB701DC0068C167 /* PlayerEntity.swift */,
+				07C4A6C11C8E72110022E35D /* SlimeEntity.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				5EAEDB3A1BB73A21004E658D /* SpriteSheet.swift in Sources */,
 				5EBBCDD71BDD62E4000FBC6A /* TmxConstants.swift in Sources */,
 				5EC008041BB701DC0068C167 /* PlayerEntity.swift in Sources */,
+				07C4A6C21C8E72110022E35D /* SlimeEntity.swift in Sources */,
 				5EC008021BB6FE790068C167 /* Entity.swift in Sources */,
 				07B136A01C39DA4B00CC4D50 /* MapBuilder.swift in Sources */,
 				079357BA1C8B65BD00281650 /* DamageInteractor.swift in Sources */,

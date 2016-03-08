@@ -46,6 +46,8 @@ class Entity: Actor {
         return self.isMoving
     }
     
+    
+    
     func setDestination(destinationPosition: CGPoint) {
         
         self.destination = destinationPosition
