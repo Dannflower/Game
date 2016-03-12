@@ -10,7 +10,7 @@ import SpriteKit
 
 class SlimeEntity: Entity {
     
-    var hitPoints: Int = 5
+    var hitPoints: Int = 14
     
     let timePerFrame: NSTimeInterval = 0.5
     
@@ -32,10 +32,28 @@ class SlimeEntity: Entity {
             
             if actor is DamageInteractor {
                 
-                print("Ouch! Says the slime.")
-                self.hitPoints--
-                print("HP: \(self.hitPoints)")
+                handleCollisionWithDamageInteractor(actor as! DamageInteractor)
             }
+        }
+    }
+    
+    /**
+
+        Handles collision with DamageInteractors.
+     
+        - parameter damageInteractor: The DamageInteractor colliding with the Slime.
+
+    */
+    private func handleCollisionWithDamageInteractor(damageInteractor: DamageInteractor) {
+        
+        self.hitPoints = self.hitPoints - damageInteractor.damage
+        print(hitPoints)
+        // Check if the slime has died
+        if self.hitPoints <= 0 {
+            
+            super.die()
+            
+            // TODO: See if the damage owner is the player, perhaps reward experience?
         }
     }
 }

@@ -35,6 +35,11 @@ class Entity: Actor {
         case Right
     }
     
+    override func update(currentTime: CFTimeInterval) {
+        
+        self.move(currentTime)
+    }
+    
     /**
         
         Indicates if the Entity is attempting to move to a destination.
@@ -204,6 +209,15 @@ class Entity: Actor {
     override func isStationaryActor() -> Bool {
         
         return false
+    }
+    
+    /**
+        
+        Performs death and clean-up logic for this Entity.
+    */
+    func die() {
+        
+        self.layer.removeActor(self)
     }
     
     /**

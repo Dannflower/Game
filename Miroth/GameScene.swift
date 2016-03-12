@@ -159,6 +159,7 @@ class GameScene: SKScene {
     
     override func update(currentTime: CFTimeInterval) {
         
+        // TODO: Control of the player characters should be abstracted from the GameScene class.
         let moveSpeed: CGFloat = 10.0
         var xSpeed: CGFloat = 0.0
         var ySpeed: CGFloat = 0.0
@@ -180,14 +181,13 @@ class GameScene: SKScene {
         }
         
         let destination = CGPointMake(self.character.position.x + xSpeed, self.character.position.y + ySpeed)
-        self.character.setDestination(destination)
         
-        /* Called before each frame is rendered */
-        if(self.character != nil) {
-            self.character!.move(currentTime)
+        if self.character != nil {
+        
+            self.character.setDestination(destination)
         }
         
-        self.map.checkForAndNotifyOfCollisions()
+        self.map.update(currentTime)
     }
 
 }

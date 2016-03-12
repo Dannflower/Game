@@ -121,11 +121,28 @@ class Layer: SKSpriteNode {
     }
     
     /**
+        
+        Update this layer, update all actors, and check for collisions.
+
+        - parameter currentTime: The current time.
+     
+    */
+    func update(currentTime: CFTimeInterval) {
+        
+        for actor in self.actors {
+            
+            actor.update(currentTime)
+        }
+        
+        checkForAndNotifyOfCollisions()
+    }
+    
+    /**
 
         Checks for collisions on this layer and informs the colliding objects.
 
     */
-    func checkForAndNotifyOfCollisions() {
+    private func checkForAndNotifyOfCollisions() {
         
         var collisions: [Actor: [Actor]] = [:]
         

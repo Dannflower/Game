@@ -138,6 +138,8 @@ class Map: SKSpriteNode {
             
             // Create a new slime
             let slime = SlimeEntity()
+            slime.layer = self.layers[layerNumber]
+            
             self.layers[layerNumber].addActor(slime, x: x, y: y)
             
         default:
@@ -147,14 +149,15 @@ class Map: SKSpriteNode {
     
     /**
 
-        Checks for collisions in each layer and informs
-        any collidables of collisions they are involved in.
+        Update the map.
+     
+        - parameter currentTime: The current time.
     */
-    func checkForAndNotifyOfCollisions() {
+    func update(currentTime: CFTimeInterval) {
         
         for layer in self.layers {
             
-            layer.checkForAndNotifyOfCollisions()
+            layer.update(currentTime)
         }
     }
 }

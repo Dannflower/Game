@@ -38,6 +38,17 @@ class Actor: SKSpriteNode {
     }
     
     /**
+        
+        Update this Actor.
+
+        - parameter currentTime: The current time.
+    */
+    func update(currentTime: CFTimeInterval) {
+        
+        // Sub-classes are responsible for their own implementation.
+    }
+    
+    /**
      
         Informs this object that it collided with another collidable, allowing
         it to resolve the collision.
