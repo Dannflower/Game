@@ -147,9 +147,9 @@ class Layer: SKSpriteNode {
         var collisions: [Actor: [Actor]] = [:]
         
         // Check moving Actors against each other
-        for var i = 0; i < self.movingActors.count - 1; i++ {
+        for i in 0 ..< self.movingActors.count {
             
-            for var j = i + 1; j < self.movingActors.count; j++ {
+            for j in i + 1 ..< self.movingActors.count {
                 
                 let actorA = self.movingActors[i]
                 let actorB = self.movingActors[j]
@@ -163,9 +163,9 @@ class Layer: SKSpriteNode {
         }
         
         // Check moving Actors against stationary ones
-        for var i = 0; i < self.movingActors.count; i++ {
+        for i in 0 ..< self.movingActors.count {
             
-            for var j = 0; j < self.stationaryActors.count; j++ {
+            for j in 0 ..< self.stationaryActors.count {
                 
                 let actorA = self.movingActors[i]
                 let actorB = self.stationaryActors[j]
@@ -249,7 +249,7 @@ class Layer: SKSpriteNode {
     func removeActor(actor: Actor) {
         
         // Remove from the common set of actors
-        for var i = 0; i < actors.count; i++ {
+        for i in 0 ..< actors.count {
             
             if actors[i] == actor {
                 
@@ -261,7 +261,7 @@ class Layer: SKSpriteNode {
         // Remove from the correct actor set
         if actor.isStationaryActor() {
             
-            for var i = 0; i < stationaryActors.count; i++ {
+            for i in 0 ..< stationaryActors.count {
                 
                 if stationaryActors[i] == actor {
                     
@@ -272,7 +272,7 @@ class Layer: SKSpriteNode {
         
         } else {
             
-            for var i = 0; i < movingActors.count; i++ {
+            for i in 0 ..< movingActors.count {
                 
                 if movingActors[i] == actor {
                     

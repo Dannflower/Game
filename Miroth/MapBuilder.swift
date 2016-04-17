@@ -101,7 +101,9 @@ class MapBuilder {
         // Assign a tileset and tile number to each GID
         for gid in spriteSheet.gidRange {
             
-            tilesetDict[gid] = (spriteSheet, tileNumber++)
+            tilesetDict[gid] = (spriteSheet, tileNumber)
+            
+            tileNumber += 1
         }
     }
     
@@ -151,7 +153,7 @@ class MapBuilder {
         
         self.map.addLayer(layer)
         self.currentLayerSize = CGSizeMake(CGFloat(widthInTiles * self.map.getTileWidth()), CGFloat(heightInTiles * self.map.getTileHeight()))
-        self.currentLayer++
+        self.currentLayer += 1
     }
     
     /**
